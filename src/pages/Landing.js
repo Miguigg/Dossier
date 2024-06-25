@@ -46,7 +46,7 @@ function Landing(){
                 </div>
             </section>
     
-            <section className="bg-light py-5 ms-3 me-3 rounded-4">
+            <section className="bg-light py-5 ms-5 me-5 rounded-4">
                 <div className="container">
                 <h2 className="text-center">Sobre nosotros</h2>
                 <p className="lead text-center">Information about our website.</p>

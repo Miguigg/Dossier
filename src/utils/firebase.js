@@ -1,4 +1,7 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { collection, getFirestore, updateDoc, addDoc  } from "firebase/firestore";
+import encrypt from "./validadores/validadorRegistro";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA0cs-pFgNfuZ3WBB1-y-JWgIFO7HtabNk",
@@ -11,3 +14,33 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+export {app, auth}
+
+//obtner referencias a la base de datos
+
+const db = getFirestore(app);
+
+//funciones de registro
+
+async function addUsr(nombre, apellidos, correo, contraseña) {
+  try {
+
+    const docRef = await addDoc(collection(db, "usuarios"), {
+      nombre: nombre,
+      apellidos: apellidos,
+      correo: correo,
+      contraseña: encrypt(contraseña)
+    });
+
+    await updateDoc(docRef, {
+      id: docRef.id 
+    });
+
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
+
+export default addUsr;

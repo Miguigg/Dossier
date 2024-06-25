@@ -13,7 +13,7 @@ function Navs() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/login"><b className='text-white'>Login</b></Nav.Link>
-            <Nav.Link as={Link}><b className='text-white'>Registro</b></Nav.Link>
+            <Nav.Link as={Link} to="/registro"><b className='text-white'>Registro</b></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
