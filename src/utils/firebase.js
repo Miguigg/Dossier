@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { collection, getFirestore, updateDoc, addDoc  } from "firebase/firestore";
-import encrypt from "./validadores/validadorRegistro";
+import encrypt from "./validadores/encrypt";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA0cs-pFgNfuZ3WBB1-y-JWgIFO7HtabNk",
