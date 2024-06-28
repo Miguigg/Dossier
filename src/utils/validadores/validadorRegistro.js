@@ -1,4 +1,3 @@
-
 function validaRegistro(nombre, apellidos, email, passwd, repPasswd){
 
     const reNombre = /^[a-zA-Z]+$/

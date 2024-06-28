@@ -21,7 +21,6 @@ function Registro() {
       .then((userCredential) => {
         const user = userCredential.user;
         addUsr(nombre, apellidos, email, passwd)
-        console.log(user)   
       })
       .catch((error) => {
         const errorCode = error.code;
