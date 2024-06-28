@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import '../css/login.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import { auth, app } from '../utils/firebase';
+import { auth } from '../utils/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import validarLogin from '../utils/validadores/validadorLogin';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
 
   const [email, setEmail] = useState('');
   const [passwd, setPasswd] = useState('');
-
+  const navigate = useNavigate();
+  const handleRedirect = () => {
+    navigate('/home');
+  };
   const signIn = (e) => {
     e.preventDefault();
     if(validarLogin(email)){
@@ -17,6 +21,7 @@ function Login() {
       .then((userCredential) => {
         document.getElementById("errCuenta").style.display = "none";
         const user = userCredential.user;
+        handleRedirect()
       })
       .catch((error) => {
         document.getElementById("errCuenta").style.display = "block";

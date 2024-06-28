@@ -3,6 +3,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../css/index.css'
 import Logo from '../imagenes/logo192.png'
+import Autenticacion from './Autenticacion';
 
 function Navs() {
   return (
@@ -12,8 +13,7 @@ function Navs() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/login"><b className='text-white'>Login</b></Nav.Link>
-            <Nav.Link as={Link} to="/registro"><b className='text-white'>Registro</b></Nav.Link>
+            <Autenticacion/>
           </Nav>
         </Navbar.Collapse>
       </Container>
