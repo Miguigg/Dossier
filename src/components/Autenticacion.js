@@ -34,6 +34,7 @@ const Autenticacion = () => {
             :
             <>
                 <Nav.Link as={Link} onClick={userSignOut} to="/home"><b className='text-white'>Cerrar Sesión</b></Nav.Link>
+                <Nav.Link as={Link} to="/cuenta-usr"><b className="text-white">Mi cuenta</b></Nav.Link>
             </>
         }
         

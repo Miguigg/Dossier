@@ -5,6 +5,7 @@ import Navs from './components/Nav';
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
+import CuentaUsr from './pages/CuentaUsr';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro/>} />
+          <Route path='/cuenta-usr' element={<CuentaUsr/>}/>
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>

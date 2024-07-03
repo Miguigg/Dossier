@@ -18,7 +18,7 @@ code {
 }
 
 .gradient-bg-landing {
-  background: linear-gradient(135deg, #234bf9, #26619d);;
+  background: #CFE2FF;
   color: white;
 }
 
@@ -32,5 +32,5 @@ code {
 
 .background{
   background: #FFFFFF;
-  background: linear-gradient(135deg, #FFFFFF, #017EFF);
+  background: linear-gradient(135deg, #FFFFFF, #9FFFCB);
 }

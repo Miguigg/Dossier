@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import '../css/login.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import { useNavigate } from 'react-router-dom';
+
 import { auth } from '../utils/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import validarLogin from '../utils/validadores/validadorLogin';
-import { Navigate, useNavigate } from 'react-router-dom';
+
+import '../css/landing.css'
+import '../css/login.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
 function Login() {
 
@@ -31,24 +34,24 @@ function Login() {
 
   return (
     <div className="container">
-      <div className="login-container bg-white">
-        <h2 className="text-center">Login</h2>
+      <div className="login-container gradient-bg-landing">
+        <h2 className="text-center text-color">Login</h2>
         <form onSubmit={signIn}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label mt-2">Dirección de correo</label>
+            <label htmlFor="email" className="form-label mt-2 text-color">Dirección de correo</label>
             <input type="email" className="form-control" value={email} onChange={(e)=> setEmail(e.target.value)} id="email" placeholder="Enter your email" />
             <div id="errEmail" style={{display: "none", color: "red"}}>
             *Debes introducir un email válido "miguel@gmail.com"
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Contraseña</label>
+            <label htmlFor="password" className="form-label text-color">Contraseña</label>
             <input type="password" className="form-control" value={passwd} id="password"  onChange={(e)=> setPasswd(e.target.value)} placeholder="Enter your password" />
             <div id="errCuenta" style={{display: "none", color: "red"}}>
             *La contraseña o el email no coinciden con el de ninguna cuenta
             </div>
           </div>
-          <button type="submit" className="btn btn-primary w-100 mt-3">Login</button>
+          <button type="submit" className="btn btn-primary w-100 mt-3 text-color">Login</button>
         </form>
       </div>
     </div>
