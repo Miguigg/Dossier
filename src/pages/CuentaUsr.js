@@ -5,7 +5,6 @@ import { auth } from '../utils/firebase';
 import ListaFavs from '../components/ListaFavoritos';
 import MisDatos from '../components/MisDatos';
 import MisEtiquetas from '../components/MisEtiquetas';
-import NoticiasLista from '../components/NoticiaLista';
 
 import '../css/landing.css'
 import '../css/login.css'

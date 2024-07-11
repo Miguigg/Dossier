@@ -7,6 +7,9 @@ import Login from './pages/Login';
 import Registro from './pages/Registro';
 import CuentaUsr from './pages/CuentaUsr';
 import UltimasNoticias from './pages/UltimasNoticias';
+import Etiquetas from './pages/Etiquetas';
+import TestIntegridad from './pages/TestIntegridad';
+import CrearEtiqueta from './pages/GestionEtiquetas/CrearEtiqueta';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path="/registro" element={<Registro/>} />
           <Route path='/cuenta-usr' element={<CuentaUsr/>}/>
           <Route path='/utlimas-noticias' element={<UltimasNoticias/>} />
+          <Route path='/etiquetas' element={<Etiquetas/>} />
+          <Route path='/test-integridad' element = {<TestIntegridad/>} />
+          <Route path='/crear-etiqueta' element = {<CrearEtiqueta/>}/>
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>

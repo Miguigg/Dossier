@@ -1,7 +1,7 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { auth, app } from '../utils/firebase';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { auth } from '../utils/firebase';
+import {  Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Autenticacion = () => {
@@ -36,7 +36,9 @@ const Autenticacion = () => {
             <>
                 <Nav.Link as={Link} onClick={userSignOut} to="/home"><b className='text-white'>Cerrar Sesión</b></Nav.Link>
                 <Nav.Link as={Link} to="/cuenta-usr"><b className="text-white">Mi cuenta</b></Nav.Link>
+                <Nav.Link as={Link} to="/etiquetas"><b className="text-white">Mis etiquetas</b></Nav.Link>
                 <Nav.Link as={Link} to="/utlimas-noticias"><b className='text-white'>Últimas noticias</b></Nav.Link>
+                <Nav.Link as={Link} to="/test-integridad"><b className='text-white'>Test integridad</b></Nav.Link>
             </>
         }
         
