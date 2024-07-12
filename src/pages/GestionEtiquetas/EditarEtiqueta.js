@@ -1,22 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 import '../../css/landing.css'
 import '../../css/login.css'
 
 
-function CrearEtiqueta() {
+function EditarEtiqueta() {
 
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
 
-    const crearEtiqueta = (e) => {}
-    
+    const EditarEtiqueta = (e) => {}
+    //recuperar datos del objeto a modificar
+    useEffect(() =>{
+
+        return () => {
+            
+        }
+    }, [])
+
     return (
         <div className="container">
         <div className="login-container gradient-bg-landing">
-          <h2 className="text-center text-color">Crear nueva etiqueta</h2>
-          <form onSubmit={crearEtiqueta}>
+          <h2 className="text-center text-color">Editar etiqueta</h2>
+          <form onSubmit={EditarEtiqueta}>
             <div className="mb-3">
               <label className="form-label mt-2 text-color">Nombre Etiqueta</label>
               <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" />
@@ -31,7 +38,7 @@ function CrearEtiqueta() {
               *Introduce una descripcion adecuada
               </div>
             </div>
-            <button type="submit" className="btn btn-success w-100 mt-3">Crear etiqueta</button>
+            <button type="submit" className="btn btn-success w-100 mt-3">Editar etiqueta</button>
             <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
           </form>
         </div>
@@ -39,4 +46,4 @@ function CrearEtiqueta() {
     );
   }
   
-  export default CrearEtiqueta;
+  export default EditarEtiqueta;

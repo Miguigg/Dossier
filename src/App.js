@@ -10,6 +10,7 @@ import UltimasNoticias from './pages/UltimasNoticias';
 import Etiquetas from './pages/Etiquetas';
 import TestIntegridad from './pages/TestIntegridad';
 import CrearEtiqueta from './pages/GestionEtiquetas/CrearEtiqueta';
+import AddArticulo from './pages/GestionArticulos/AddArticulo';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/etiquetas' element={<Etiquetas/>} />
           <Route path='/test-integridad' element = {<TestIntegridad/>} />
           <Route path='/crear-etiqueta' element = {<CrearEtiqueta/>}/>
+          <Route path='/add-articulo' element = {<AddArticulo/>}/>
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>

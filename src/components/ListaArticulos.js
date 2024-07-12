@@ -2,7 +2,7 @@ function ListaArticulos(){
     return(
         <div class="container my-5">
         <h1 class="mb-4">Lista de articulos</h1>
-        <button type="button" class="btn btn-success">Añadir articulo a etiqueta</button>
+        <a href="/add-articulo" class="btn btn-success" role="button">Añadir articulo a etiqueta</a>
         <div class="list-group p-3">
             <a href="#article1" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
