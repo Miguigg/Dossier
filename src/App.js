@@ -10,7 +10,14 @@ import UltimasNoticias from './pages/UltimasNoticias';
 import Etiquetas from './pages/Etiquetas';
 import TestIntegridad from './pages/TestIntegridad';
 import CrearEtiqueta from './pages/GestionEtiquetas/CrearEtiqueta';
+import EditarEtiqueta from './pages/GestionEtiquetas/EditarEtiqueta';
+import EliminarEtiqueta from './pages/GestionEtiquetas/EliminarEtiqueta';
 import AddArticulo from './pages/GestionArticulos/AddArticulo';
+import EliminarArticulo from './pages/GestionArticulos/EliminarArticulo';
+import EditArticulo from './pages/GestionArticulos/EditarArticulo';
+import EditarCuenta from './pages/GestionCuenta/EditarCuenta';
+import EliminarCuenta from './pages/GestionCuenta/EliminarCuenta';
+import AddAccesoDirecto from './pages/GestionAccesosDirectos/CrearAccesoDirecto';
 
 function App() {
   return (
@@ -22,11 +29,23 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro/>} />
           <Route path='/cuenta-usr' element={<CuentaUsr/>}/>
+          <Route path='/editar-cuenta' element={<EditarCuenta/>}/>
+          <Route path='/eliminar-cuenta' element = {<EliminarCuenta/>}/>
           <Route path='/utlimas-noticias' element={<UltimasNoticias/>} />
+
           <Route path='/etiquetas' element={<Etiquetas/>} />
-          <Route path='/test-integridad' element = {<TestIntegridad/>} />
           <Route path='/crear-etiqueta' element = {<CrearEtiqueta/>}/>
+          <Route path='/editar-etiqueta' element = {<EditarEtiqueta/>}/>
+          <Route path='/eliminar-etiqueta' element = {<EliminarEtiqueta/>}/>
+
+          <Route path='/test-integridad' element = {<TestIntegridad/>} />
+
           <Route path='/add-articulo' element = {<AddArticulo/>}/>
+          <Route path='/editar-articulo' element = {<EditArticulo/>}/>
+          <Route path='/eliminar-articulo' element = {<EliminarArticulo/>}/>
+
+          <Route path='/crear-acceso-directo' element= {<AddAccesoDirecto/>}/>
+
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>

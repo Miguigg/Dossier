@@ -47,7 +47,7 @@ function CuentaUsr() {
                                     </div>
                                 </div>
                                 <div class="col text-color">
-                                    <h2>Mis accesos directos<hr className="border border-primary border-3 opacity-75"></hr></h2>
+                                    <h2>Mis datos<hr className="border border-primary border-3 opacity-75"></hr></h2>
                                         <div className="container">
                                             <div className="login-container gradient-bg-landing">
                                                 <MisDatos/>
@@ -55,7 +55,7 @@ function CuentaUsr() {
                                         </div>
                                 </div>
                                 <div class="col text-color">
-                                    <h2>Mis accesos directos<hr className="border border-primary border-3 opacity-75"></hr></h2>
+                                    <h2>Mis etiquetas<hr className="border border-primary border-3 opacity-75"></hr></h2>
                                             <div className="container">
                                                 <div className="login-container gradient-bg-landing">
                                                     <MisEtiquetas/>
@@ -65,7 +65,7 @@ function CuentaUsr() {
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <h2>Mis accesos directos<hr className="border border-primary border-3 opacity-75"></hr></h2>
+                                    <h2>Descargar extensión<hr className="border border-primary border-3 opacity-75"></hr></h2>
                                                 <div className="container">
                                                     <div className="login-container gradient-bg-landing">
                                                     <table>

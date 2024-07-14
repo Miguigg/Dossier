@@ -13,7 +13,9 @@ function MisDatos(){
                 <label htmlFor="email" className="form-label mt-2 text-color">Dirección de correo</label>
                 <input type="email" className="form-control" id="email" placeholder="Enter your email" disabled/>
             </div>
-            <button type="button" class="btn btn-success">Editar usuario</button>
+            <a href="/editar-cuenta" class="btn btn-success w-100 mt-3" role="button">Editar usuario</a>
+            <a href="/eliminar-cuenta" class="btn btn-danger w-100 mt-3" role="button">Eliminar cuenta</a>
+
         </div>
     );
 }
