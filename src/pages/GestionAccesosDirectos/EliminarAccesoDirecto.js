@@ -18,16 +18,16 @@ function EliminarAccesoDirecto() {
           <h2 className="text-center text-color">Eliminar acceso directo</h2>
           <form onSubmit={EliminarAccesoDirecto}>
             <div className="mb-3">
-              <label className="form-label mt-2 text-color">Nombre del articulo</label>
-              <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" disabled/>
+              <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
+              <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" disabled/>
               <div id="errEmail" style={{display: "none", color: "red"}}>
               *Debes introducir un nombre válido para el articulo
               </div>
             </div>
 
             <div className="mb-3">
-              <label className="form-label mt-2 text-color">Enlace del articulo</label>
-              <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="nombre" placeholder="Enlace articulo" disabled/>
+              <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
+              <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="nombre" placeholder="Enlace" disabled/>
               <div id="errEmail" style={{display: "none", color: "red"}}>
               *Debes introducir un enlace válido
               </div>

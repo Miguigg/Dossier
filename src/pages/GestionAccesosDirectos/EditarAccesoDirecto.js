@@ -5,35 +5,35 @@ import '../../css/landing.css'
 import '../../css/login.css'
 
 
-function AddAccesoDirecto() {
+function EditarAccesoDirecto() {
 
     const [nombre, setNombre] = useState('');
     const [enlace, setEnlace] = useState('');
 
-    const AñadirAccesoDirecto = (e) => {}
+    const EditarAccesoDirecto = (e) => {}
 
     return (
         <div className="container">
         <div className="login-container gradient-bg-landing">
-          <h2 className="text-center text-color">Añadir acceso directo</h2>
-          <form onSubmit={AñadirAccesoDirecto}>
+          <h2 className="text-center text-color">Editar acceso directo</h2>
+          <form onSubmit={EditarAccesoDirecto}>
             <div className="mb-3">
               <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
               <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" />
               <div id="errNombre" style={{display: "none", color: "red"}}>
-              *Debes introducir un nombre válido para el articulo
+              *Debes introducir un nombre válido para el acceso directo
               </div>
             </div>
 
             <div className="mb-3">
-              <label className="form-label mt-2 text-color">Enlace</label>
+              <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
               <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="enlace" placeholder="Enlace" />
               <div id="errEnlace" style={{display: "none", color: "red"}}>
               *Debes introducir un enlace válido
               </div>
             </div>
 
-            <button type="submit" className="btn btn-success w-100 mt-3">Añadir acceso directo</button>
+            <button type="submit" className="btn btn-success w-100 mt-3">Editar acceso directo</button>
             <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
           </form>
         </div>
@@ -41,4 +41,4 @@ function AddAccesoDirecto() {
     );
   }
   
-  export default AddAccesoDirecto;
+  export default EditarAccesoDirecto;

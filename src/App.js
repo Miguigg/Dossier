@@ -18,6 +18,8 @@ import EditArticulo from './pages/GestionArticulos/EditarArticulo';
 import EditarCuenta from './pages/GestionCuenta/EditarCuenta';
 import EliminarCuenta from './pages/GestionCuenta/EliminarCuenta';
 import AddAccesoDirecto from './pages/GestionAccesosDirectos/CrearAccesoDirecto';
+import EliminarAccesoDirecto from './pages/GestionAccesosDirectos/EliminarAccesoDirecto'; 
+import EditarAccesoDirecto from './pages/GestionAccesosDirectos/EditarAccesoDirecto';
 
 function App() {
   return (
@@ -45,7 +47,8 @@ function App() {
           <Route path='/eliminar-articulo' element = {<EliminarArticulo/>}/>
 
           <Route path='/crear-acceso-directo' element= {<AddAccesoDirecto/>}/>
-
+          <Route path='/eliminar-acceso-directo' element = {<EliminarAccesoDirecto/>}/>
+          <Route path='/editar-acceso-directo' element = {< EditarAccesoDirecto />}/>
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>
