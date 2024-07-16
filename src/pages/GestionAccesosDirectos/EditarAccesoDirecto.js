@@ -1,16 +1,30 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 import '../../css/landing.css'
 import '../../css/login.css'
+import validarAccesoDirecto from '../../utils/validadores/validarAccesoDirecto';
 
 
 function EditarAccesoDirecto() {
-
+  
+    const [usuarioAutenticado, setUsuarioAutenticado] = useState("");
     const [nombre, setNombre] = useState('');
     const [enlace, setEnlace] = useState('');
+    const navigate = useNavigate();
 
-    const EditarAccesoDirecto = (e) => {}
+    const handleRedirect = () => {
+      navigate('/home');
+    };
+
+    const EditarAccesoDirecto = (e) => {
+      e.preventDefault();
+      if(validarAccesoDirecto(nombre, enlace)){
+        //realizar peticion
+        handleRedirect()
+      }
+    }
 
     return (
         <div className="container">
