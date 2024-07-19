@@ -1,18 +1,47 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react'
+import { auth } from '../../utils/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
 import '../../css/landing.css'
 import '../../css/login.css'
 
 
 function EliminarAccesoDirecto() {
-
+    const [usuarioAutenticado, setUsuarioAutenticado] = useState("");
     const [nombre, setNombre] = useState('');
     const [enlace, setEnlace] = useState('');
+    const navigate = useNavigate();
 
-    const EliminarAccesoDirecto = (e) => {}
+    useEffect(() => {
+      const flagLogin = onAuthStateChanged(auth, user => {
+        if (user) {
+          setUsuarioAutenticado(user)
+        } else {
+          setUsuarioAutenticado(null)
+        }
+      })
+      return () => {
+        flagLogin()
+      }
+    }, [])
+
+    const handleRedirect = () => {
+      navigate('/home');
+    };
+
+    const EliminarAccesoDirecto = (e) => {
+      handleRedirect()
+    }
 
     return (
+      <>
+        {usuarioAutenticado === null ? (
+        <div className='p-5'>
+          <h1>Debes tener la sesión iniciada</h1>
+        </div>
+      ) : (
         <div className="container">
         <div className="login-container gradient-bg-landing">
           <h2 className="text-center text-color">Eliminar acceso directo</h2>
@@ -38,6 +67,8 @@ function EliminarAccesoDirecto() {
           </form>
         </div>
       </div>
+      )}
+      </>
     );
   }
   

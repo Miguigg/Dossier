@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth'
+import { useEffect } from 'react'
+import { auth } from '../../utils/firebase'
 
 
 import '../../css/landing.css'
@@ -14,6 +17,19 @@ function EditarAccesoDirecto() {
     const [enlace, setEnlace] = useState('');
     const navigate = useNavigate();
 
+    useEffect(() => {
+      const flagLogin = onAuthStateChanged(auth, user => {
+        if (user) {
+          setUsuarioAutenticado(user)
+        } else {
+          setUsuarioAutenticado(null)
+        }
+      })
+      return () => {
+        flagLogin()
+      }
+    }, [])
+
     const handleRedirect = () => {
       navigate('/home');
     };
@@ -27,31 +43,39 @@ function EditarAccesoDirecto() {
     }
 
     return (
-        <div className="container">
-        <div className="login-container gradient-bg-landing">
-          <h2 className="text-center text-color">Editar acceso directo</h2>
-          <form onSubmit={EditarAccesoDirecto}>
-            <div className="mb-3">
-              <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
-              <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" />
-              <div id="errNombre" style={{display: "none", color: "red"}}>
-              *Debes introducir un nombre válido para el acceso directo
-              </div>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
-              <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="enlace" placeholder="Enlace" />
-              <div id="errEnlace" style={{display: "none", color: "red"}}>
-              *Debes introducir un enlace válido
-              </div>
-            </div>
-
-            <button type="submit" className="btn btn-success w-100 mt-3">Editar acceso directo</button>
-            <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
-          </form>
+      <>
+        {usuarioAutenticado === null ? (
+        <div className='p-5'>
+          <h1>Debes tener la sesión iniciada</h1>
         </div>
-      </div>
+      ) : (
+          <div className="container">
+          <div className="login-container gradient-bg-landing">
+            <h2 className="text-center text-color">Editar acceso directo</h2>
+            <form onSubmit={EditarAccesoDirecto}>
+              <div className="mb-3">
+                <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
+                <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" />
+                <div id="errNombre" style={{display: "none", color: "red"}}>
+                *Debes introducir un nombre válido para el acceso directo
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
+                <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="enlace" placeholder="Enlace" />
+                <div id="errEnlace" style={{display: "none", color: "red"}}>
+                *Debes introducir un enlace válido
+                </div>
+              </div>
+
+              <button type="submit" className="btn btn-success w-100 mt-3">Editar acceso directo</button>
+              <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+            </form>
+          </div>
+        </div>
+        )}
+      </>
     );
   }
   
