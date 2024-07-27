@@ -20,6 +20,7 @@ import EliminarCuenta from './pages/GestionCuenta/EliminarCuenta';
 import AddAccesoDirecto from './pages/GestionAccesosDirectos/CrearAccesoDirecto';
 import EliminarAccesoDirecto from './pages/GestionAccesosDirectos/EliminarAccesoDirecto'; 
 import EditarAccesoDirecto from './pages/GestionAccesosDirectos/EditarAccesoDirecto';
+import RecuerarPass from './pages/RecuperarContraseña';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path='/crear-acceso-directo' element= {<AddAccesoDirecto/>}/>
           <Route path='/eliminar-acceso-directo' element = {<EliminarAccesoDirecto/>}/>
           <Route path='/editar-acceso-directo' element = {< EditarAccesoDirecto />}/>
+          <Route path='/recuperar-contrasenha' element = { < RecuerarPass />  }/>
           <Route path="/" element={<Landing />} />
         </Routes>
       </div>

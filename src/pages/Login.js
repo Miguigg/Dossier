@@ -2,21 +2,34 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../utils/firebase';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword , sendEmailVerification  } from "firebase/auth";
 import validarLogin from '../utils/validadores/validadorLogin';
+import ComponenteModal from '../components/ComponenteModal';
 
 import '../css/landing.css'
 import '../css/login.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
 function Login() {
-
   const [email, setEmail] = useState('');
   const [passwd, setPasswd] = useState('');
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
+  const handleShow = () => setShow(true);
+
+  const handleShowAlert = () => {
+    handleShow()
+  };
+
   const handleRedirect = () => {
     navigate('/home');
   };
+
+  const handleClose = () => {
+    setShow(false)
+    handleRedirect()
+    };
+
   const signIn = (e) => {
     e.preventDefault();
     if(validarLogin(email)){
@@ -24,7 +37,14 @@ function Login() {
       .then((userCredential) => {
         document.getElementById("errCuenta").style.display = "none";
         const user = userCredential.user;
-        handleRedirect()
+        if(!user.emailVerified){
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              handleShowAlert()
+            });
+        }else{
+          handleRedirect()
+        }
       })
       .catch((error) => {
         document.getElementById("errCuenta").style.display = "block";
@@ -53,7 +73,10 @@ function Login() {
           </div>
           <button type="submit" className="btn btn-primary w-100 mt-3 text-color">Login</button>
         </form>
+        <br></br>
+        <p><a href="/recuperar-contrasenha">Recuperar contraseña</a></p>
       </div>
+      <ComponenteModal show={show} handleClose={handleClose} msg="Debes confirmar el correo electronico en el mensaje que acabamos de enviar" />
     </div>
   );
 }

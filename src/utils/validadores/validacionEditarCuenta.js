@@ -1,20 +1,20 @@
-function validaRegistro(nombre, apellidos, email, passwd, repPasswd){
-
-    const reNombre = /^[a-zA-Z]+$/
+function validarEditarCuenta(nombre,apellidos,email,passwd,repPasswd){
+    //acepta vacio porque si no lleva nada, no hay cambios
+    const reNombre = /^[a-zA-Z]*$/
     
     if(!reNombre.test(nombre)){
         document.getElementById("errNombreFormato").style.display = "block";
     }else{
         document.getElementById("errNombreFormato").style.display = "none";
     }
-    const reApellidos = /^[A-ZÁÉÍÓÚÑa-záéíóúñ]+(?:[ '-][A-ZÁÉÍÓÚÑa-záéíóúñ]+)*$/
+    const reApellidos = /^(?:[a-zA-ZáéíóúÁÉÍÓÚñÑ]+(?:[-' ][a-zA-ZáéíóúÁÉÍÓÚñÑ]+)*|)$/
     
     if(!reApellidos.test(apellidos)){
         document.getElementById("errApellidos").style.display = "block";
     }else{
         document.getElementById("errApellidos").style.display = "none";
     }
-    const reEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    const reEmail = /^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|)$/
     
     if(!reEmail.test(email)){
         document.getElementById("errEmail").style.display = "block";
@@ -22,7 +22,7 @@ function validaRegistro(nombre, apellidos, email, passwd, repPasswd){
         document.getElementById("errEmail").style.display = "none";
     }
     
-    const rePasswd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/
+    const rePasswd = /^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}|)$/
 
     let equalPass = false; 
     if(passwd === repPasswd){
@@ -40,4 +40,4 @@ function validaRegistro(nombre, apellidos, email, passwd, repPasswd){
     return reNombre.test(nombre) && reEmail.test(email) && reApellidos.test(apellidos) && equalPass && rePasswd.test(passwd)
 }
 
-export default validaRegistro
+export default validarEditarCuenta;
