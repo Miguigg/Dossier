@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import validarEnlaceNoticia from '../utils/validarEnlaceNoticia'
 import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from '../../utils/firebase'
+import { auth } from '../utils/firebase'
 
 function TestIntegridad () {
   const [enlace, setEnlace] = useState('')
