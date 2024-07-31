@@ -89,7 +89,7 @@ function CuentaUsr() {
                                                 </div>
                                 </div>
                                 <div class="col">
-                                columna
+                                
                                 </div>
                             </div>
                         </div>

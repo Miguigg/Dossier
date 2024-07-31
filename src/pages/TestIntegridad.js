@@ -30,41 +30,41 @@ function TestIntegridad () {
 
   return (
     <>
-          {usuarioAutenticado === null ? (
+      {usuarioAutenticado === null ? (
         <div className='p-5'>
           <h1>Debes tener la sesión iniciada</h1>
         </div>
       ) : (
         <div class='container my-5'>
-        <h1 class='mb-4'>Test de Integridad</h1>
-        <div className='container'>
-          <section className='text-black py-5 ms-5 me-5 p-auto rounded-4 gradient-bg-landing'>
-            <div className='container'>
-              <form onSubmit={ejecutarTest}>
-                <h2 className='text-center text-color p-5'>
-                  Introduce aquí el enlace
-                </h2>
-                <input
-                  type='text'
-                  className='form-control'
-                  id='enlace'
-                  value={enlace}
-                  onChange={e => setEnlace(e.target.value)}
-                  placeholder='Enlace'
-                />
-                <div className='p-5'>
-                  <button class='btn btn-success btn-lg'>
-                    Inspeccionar articulo
-                  </button>
+          <h1 class='mb-4'>Test de Integridad</h1>
+          <div className='container'>
+            <section className='text-black py-5 ms-5 me-5 p-auto rounded-4 gradient-bg-landing'>
+              <div className='container'>
+                <form onSubmit={ejecutarTest}>
+                  <h2 className='text-center text-color p-5'>
+                    Introduce aquí el enlace
+                  </h2>
+                  <input
+                    type='text'
+                    className='form-control'
+                    id='enlace'
+                    value={enlace}
+                    onChange={e => setEnlace(e.target.value)}
+                    placeholder='Enlace'
+                  />
+                  <div className='p-5'>
+                    <button class='btn btn-success btn-lg'>
+                      Inspeccionar articulo
+                    </button>
+                  </div>
+                </form>
+                <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
+                  *Debes introducir un enlace válido
                 </div>
-              </form>
-              <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                *Debes introducir un enlace válido
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
-      </div>
       )}
     </>
   )

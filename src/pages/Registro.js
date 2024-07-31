@@ -5,6 +5,8 @@ import { auth } from '../utils/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import addUsr from '../utils/firebase'
 import validaRegistro from '../utils/validadores/validadorRegistro'
+import { useNavigate } from 'react-router-dom';
+
 import '../css/landing.css'
 import '../css/login.css'
 
@@ -14,6 +16,11 @@ function Registro () {
   const [email, setEmail] = useState('')
   const [passwd, setPasswd] = useState('')
   const [repPasswd, setRepPasswd] = useState('')
+  const navigate = useNavigate();
+
+  const handleRedirect = () => {
+    navigate('/home');
+  };
 
   const registroUsr = e => {
     e.preventDefault()
@@ -22,6 +29,7 @@ function Registro () {
         .then(userCredential => {
           //const user = userCredential.user
           addUsr(nombre, apellidos, email, passwd)
+          handleRedirect()
         })
         .catch(error => {
           //const errorCode = error.code
