@@ -34,11 +34,41 @@ function Registro () {
         })
         .catch(error => {
           const errorCode = error.code
-          //const errorMessage = error.message
+
           if(errorCode === "auth/email-already-in-use"){
             document.getElementById("errEmailExiste").style.display = "block";
           }else{
             document.getElementById("errEmailExiste").style.display = "none";
+          }
+          if(errorCode === "auth/id-token-expired"){
+            document.getElementById("errSesion").style.display = "block";
+          }else{
+            document.getElementById("errSesion").style.display = "none";
+          }
+          if(errorCode === "auth/internal-error"){
+            document.getElementById("errSesion").style.display = "block";
+          }else{
+            document.getElementById("errSesion").style.display = "none";
+          }
+          if(errorCode === "auth/user-not-found"){
+            document.getElementById("errUsuarioServidor").style.display = "block";
+          }else{
+            document.getElementById("errUsuarioServidor").style.display = "none";
+          }
+          if(errorCode === "auth/too-many-requests"){
+            document.getElementById("errPeticiones").style.display = "block";
+          }else{
+            document.getElementById("errPeticiones").style.display = "none";
+          }
+          if(errorCode === "auth/invalid-password	"){
+            document.getElementById("errFormatPass").style.display = "block";
+          }else{
+            document.getElementById("errFormatPass").style.display = "none";
+          }
+          if(errorCode === "auth/invalid-email"){
+            document.getElementById("errEmail").style.display = "block";
+          }else{
+            document.getElementById("errEmail").style.display = "none";
           }
         })
     }
@@ -130,6 +160,21 @@ function Registro () {
           </div>
           <div id='errPassIgual' style={{ display: 'none', color: 'red' }}>
             *Las contraseñas tiene que ser iguales
+          </div>
+          <div id='errSesion' style={{ display: 'none', color: 'red' }}>
+              <h1>La sesión ha expirado</h1>
+          </div>
+          <div id='errInterno' style={{ display: 'none', color: 'red' }}>
+              *Tenemos problemas en el servido, intentalo más tarde
+          </div>
+          <div id='errInterno' style={{ display: 'none', color: 'red' }}>
+              *Tenemos problemas en el servido, intentalo más tarde
+          </div>
+          <div id='errUsuarioServidor' style={{ display: 'none', color: 'red' }}>
+              *Usuario desconocido
+          </div>
+          <div id='errPeticiones' style={{ display: 'none', color: 'red' }}>
+              *Demasiadas peticiones, intentalo más tarde
           </div>
           <button type='submit' className='btn btn-primary w-100'>
             Registrarme

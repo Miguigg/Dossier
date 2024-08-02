@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { collection, getFirestore, updateDoc, addDoc  } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { doc, setDoc } from "firebase/firestore"; 
 import encrypt from "./validadores/encrypt";
 
