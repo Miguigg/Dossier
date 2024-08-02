@@ -27,13 +27,19 @@ function Registro () {
     if (validaRegistro(nombre, apellidos, email, passwd, repPasswd)) {
       createUserWithEmailAndPassword(auth, email, passwd)
         .then(userCredential => {
-          //const user = userCredential.user
-          addUsr(nombre, apellidos, email, passwd)
+          const user = userCredential.user
+          const uid = user.uid;
+          addUsr(nombre, apellidos, email, passwd, uid)
           handleRedirect()
         })
         .catch(error => {
-          //const errorCode = error.code
+          const errorCode = error.code
           //const errorMessage = error.message
+          if(errorCode === "auth/email-already-in-use"){
+            document.getElementById("errEmailExiste").style.display = "block";
+          }else{
+            document.getElementById("errEmailExiste").style.display = "none";
+          }
         })
     }
   }
@@ -86,6 +92,9 @@ function Registro () {
             />
             <div id='errEmail' style={{ display: 'none', color: 'red' }}>
               *Debes introducir un email válido "miguel@gmail.com"
+            </div>
+            <div id='errEmailExiste' style={{ display: 'none', color: 'red' }}>
+              *El Email ya existe en la base de datos"
             </div>
           </div>
           <div className='mb-3'>

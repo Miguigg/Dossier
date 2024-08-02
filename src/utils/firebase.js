@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { collection, getFirestore, updateDoc, addDoc  } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore"; 
 import encrypt from "./validadores/encrypt";
 
 const firebaseConfig = {
@@ -24,18 +25,17 @@ const db = getFirestore(app);
 
 //funciones de registro
 
-async function addUsr(nombre, apellidos, correo, contraseña) {
+async function addUsr(nombre, apellidos, correo, contraseña, uid) {
+
+  let encryptPass =  encrypt(contraseña)
+  console.log(uid)
   try {
 
-    const docRef = await addDoc(collection(db, "usuarios"), {
+    await setDoc(doc(db, "usuarios", uid), {
       nombre: nombre,
       apellidos: apellidos,
       correo: correo,
-      contraseña: encrypt(contraseña)
-    });
-
-    await updateDoc(docRef, {
-      id: docRef.id 
+      contraseña: encryptPass
     });
 
   } catch (e) {
