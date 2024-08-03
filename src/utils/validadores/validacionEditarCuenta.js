@@ -14,13 +14,6 @@ function validarEditarCuenta(nombre,apellidos,email,passwd,repPasswd){
     }else{
         document.getElementById("errApellidos").style.display = "none";
     }
-    const reEmail = /^(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|)$/
-    
-    if(!reEmail.test(email)){
-        document.getElementById("errEmail").style.display = "block";
-    }else{
-        document.getElementById("errEmail").style.display = "none";
-    }
     
     const rePasswd = /^(?:(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}|)$/
 
@@ -37,7 +30,7 @@ function validarEditarCuenta(nombre,apellidos,email,passwd,repPasswd){
         document.getElementById("errPassIgual").style.display = "block";
         equalPass = false;
     }
-    return reNombre.test(nombre) && reEmail.test(email) && reApellidos.test(apellidos) && equalPass && rePasswd.test(passwd)
+    return reNombre.test(nombre) && reApellidos.test(apellidos) && equalPass && rePasswd.test(passwd)
 }
 
 export default validarEditarCuenta;

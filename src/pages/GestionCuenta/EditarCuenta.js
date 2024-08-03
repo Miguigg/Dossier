@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { auth } from '../../utils/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { updatePassword } from 'firebase/auth'
+import exportFuncionesCuenta from '../../utils/firebase'
 
 function EditarCuenta () {
   const [nombre, setNombre] = useState('')
@@ -37,25 +38,38 @@ function EditarCuenta () {
     if (validarEditarCuenta(nombre, apellidos, "" , passwd, repPasswd)) {
 
         if(passwd !== ""){
-            console.log("aaaaa")
             updatePassword(auth.currentUser, passwd)
             .then(() => {
               console.log('exito cambiando la contraseña')
+              document.getElementById("errBack").style.display = "none";
             })
             .catch(error => {
-              // An error ocurred
-              // ...
+              document.getElementById("errBack").style.display = "block";
             })
         }
 
         if(nombre !== ""){
-            console.log("aaaaaa")
-            //implementar modificacion en el documento
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              const uid = user.uid;
+              exportFuncionesCuenta.editNombre(uid,nombre)
+              document.getElementById("errBack").style.display = "none";
+            } else {
+              document.getElementById("errBack").style.display = "block";
+            }
+          });            
         }
 
         if(apellidos !== ""){
-            console.log("aaaaa")
-            //implementar modificacion en el documento
+            onAuthStateChanged(auth, (user) => {
+              if (user) {
+                const uid = user.uid;
+                exportFuncionesCuenta.editApellidos(uid,apellidos)
+                document.getElementById("errBack").style.display = "none";
+              } else {
+                document.getElementById("errBack").style.display = "block";
+              }
+            });  
         }
         handleRedirect()
     }
@@ -135,6 +149,9 @@ function EditarCuenta () {
               </div>
               <div id='errPassIgual' style={{ display: 'none', color: 'red' }}>
                 *Las contraseñas tiene que ser iguales
+              </div>
+              <div id='errBack' style={{ display: 'none', color: 'red' }}>
+                *Tenemos problemas en el serivdor, intentalo más tarde
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Editar usuario

@@ -3,7 +3,7 @@ import '../css/login.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import { auth } from '../utils/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import addUsr from '../utils/firebase'
+import exportFuncionesCuenta from '../utils/firebase'
 import validaRegistro from '../utils/validadores/validadorRegistro'
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ function Registro () {
         .then(userCredential => {
           const user = userCredential.user
           const uid = user.uid;
-          addUsr(nombre, apellidos, email, passwd, uid)
+          exportFuncionesCuenta.addUsr(nombre, apellidos, email, passwd, uid)
           handleRedirect()
         })
         .catch(error => {

@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth , updateEmail} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc , updateDoc } from "firebase/firestore"; 
 import encrypt from "./validadores/encrypt";
 
 const firebaseConfig = {
@@ -43,4 +43,37 @@ async function addUsr(nombre, apellidos, correo, contraseña, uid) {
   }
 }
 
-export default addUsr;
+async function editNombre(uid, nombre) {
+
+  const referencia = doc(db, "usuarios", uid);
+
+  await updateDoc(referencia, {
+    nombre: nombre
+  });
+}
+
+async function editApellidos(uid, apellidos) {
+
+  const referencia = doc(db, "usuarios", uid);
+
+  await updateDoc(referencia, {
+    nombre: apellidos
+  });
+}
+
+async function editEmail(currentUser, email) {
+  updateEmail(currentUser, email).then(() => {
+
+  }).catch((error) => {
+    console.log(error)
+  });
+}
+
+const exportFuncionesCuenta = {
+  addUsr,
+  editApellidos,
+  editNombre,
+  editEmail
+}
+
+export default exportFuncionesCuenta;
