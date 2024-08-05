@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth , updateEmail} from "firebase/auth";
+import { getAuth , updateEmail } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { doc, setDoc , updateDoc } from "firebase/firestore"; 
 import encrypt from "./validadores/encrypt";
@@ -21,7 +21,7 @@ export {app, auth}
 
 //obtner referencias a la base de datos
 
-const db = getFirestore(app);
+  const db = getFirestore(app);
 
 //funciones de registro
 
@@ -70,6 +70,7 @@ async function editEmail(currentUser, email) {
 }
 
 const exportFuncionesCuenta = {
+  db,
   addUsr,
   editApellidos,
   editNombre,
