@@ -42,7 +42,7 @@ function EliminarCuenta () {
     });
   }
 
-  const eliminarCuenta = e => {
+  const accionEliminar = e => {
     e.preventDefault()
     onAuthStateChanged(auth, async user => {
       if (user) {
@@ -80,7 +80,7 @@ function EliminarCuenta () {
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
             <h2 className='text-center text-color'>Eliminar cuenta</h2>
-            <form onSubmit={eliminarCuenta}>
+            <form onSubmit={accionEliminar}>
               <div>
                 <div className='mb-3 mt-2'>
                   <label className='form-label text-color'>Contraseña</label>
