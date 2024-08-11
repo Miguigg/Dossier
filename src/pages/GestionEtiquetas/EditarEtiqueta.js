@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
+import { useLocation, useNavigate } from 'react-router-dom';
 import validacionEtiqueta from '../../utils/validadores/validacionEtiqueta';
+import { doc, updateDoc } from "firebase/firestore";
+import exportFuncionesCuenta from '../../utils/firebase';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -12,6 +15,20 @@ function EditarEtiqueta() {
     const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
+
+    const location = useLocation();
+    const navigate = useNavigate()
+
+    const handleRedirect = () => {
+      navigate('/cuenta-usr')
+    }
+
+    const data = location.state;
+
+    useEffect(() => {
+      setNombre(data.nombre)
+      setDescripcion(data.descripcion)
+    }, [])
 
     useEffect(() => {
       const flagLogin = onAuthStateChanged(auth, user => {
@@ -26,18 +43,17 @@ function EditarEtiqueta() {
       }
     }, [])
 
-    const EditarEtiqueta = (e) => {
+    const EditarEtiqueta = async (e) => {
+      e.preventDefault()
       if(validacionEtiqueta){
-        console.log("aaaa")
+        const docRef = doc(exportFuncionesCuenta.db, "Etiquetas", data.idEtiqueta);
+        await updateDoc(docRef, {
+          nombre: nombre,
+          descripcion: descripcion
+        });
+        handleRedirect()
       }
     }
-    //recuperar datos del objeto a modificar
-    useEffect(() =>{
-
-        return () => {
-            
-        }
-    }, [])
 
     return (
       <>
@@ -59,13 +75,13 @@ function EditarEtiqueta() {
               </div>
               <div className="mb-3">
                 <label className="form-label text-color">Descripcion</label>
-                <textarea class="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
+                <textarea className="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
                 <div id="errDescripcion" style={{display: "none", color: "red"}}>
                 *Introduce una descripcion adecuada
                 </div>
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Editar etiqueta</button>
-              <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
         </div>

@@ -74,6 +74,11 @@ function Login() {
         }else{
           document.getElementById("errEmail").style.display = "none";
         }
+        if(errorCode === "auth/invalid-credential"){
+          document.getElementById("errUsuarioServidor").style.display = "block";
+        }else{
+          document.getElementById("errUsuarioServidor").style.display = "none";
+        }
       });
     }
   }

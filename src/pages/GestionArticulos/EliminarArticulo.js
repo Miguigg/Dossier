@@ -64,7 +64,7 @@ function EliminarArticulo () {
                   Selecciona etiqueta
                 </label>
                 <select
-                  class='form-select form-select mb-3'
+                  className='form-select form-select mb-3'
                   aria-label='Large select example'
                   disabled
                 >
@@ -84,7 +84,7 @@ function EliminarArticulo () {
                   Descripcion
                 </label>
                 <textarea
-                  class='form-control'
+                  className='form-control'
                   value={descripcion}
                   placeholder='Escribe una descripción'
                   id='descripcion'
@@ -98,7 +98,7 @@ function EliminarArticulo () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Eliminar articulo
               </button>
-              <a href='/home' class='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>

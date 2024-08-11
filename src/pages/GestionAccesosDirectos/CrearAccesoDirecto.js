@@ -87,7 +87,7 @@ function AddAccesoDirecto () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Añadir acceso directo
               </button>
-              <a href='/home' class='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>

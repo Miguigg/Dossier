@@ -73,13 +73,13 @@ function AddArticulo() {
               </div>
               <div className="mb-3">
                 <label className="form-label text-color">Descripcion</label>
-                <textarea class="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
+                <textarea className="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
                 <div id="errDescripcion" style={{display: "none", color: "red"}}>
                 *Introduce una descripcion adecuada
                 </div>
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Añadir articulo</button>
-              <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
         </div>

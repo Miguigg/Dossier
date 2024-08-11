@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { doc , deleteDoc } from "firebase/firestore";
+import exportFuncionesCuenta from '../../utils/firebase';
+
+
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -8,12 +13,22 @@ import '../../css/login.css'
 
 function  EliminarEtiqueta() {
 
-    const [nombre, setNombre] = useState('');
-    const [descripcion, setDescripcion] = useState('');
     const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
+    const location = useLocation();
+    const navigate = useNavigate()
 
-    const eliminarEtiqueta = (e) => {}
-    
+    const handleRedirect = () => {
+      navigate('/cuenta-usr')
+    }
+
+    const data = location.state;
+
+    const eliminarEtiqueta = async (e) => {
+      e.preventDefault()
+      await deleteDoc(doc(exportFuncionesCuenta.db, "Etiquetas", data.idEtiqueta));
+      handleRedirect()
+    }
+
     useEffect(() => {
       const flagLogin = onAuthStateChanged(auth, user => {
         if (user) {
@@ -27,12 +42,6 @@ function  EliminarEtiqueta() {
       }
     }, [])
 
-    //para recuperar los datos de la etiqueta a eliminar
-    useEffect(() =>{
-
-      return () => {
-      }
-  }, [])
 
     return (
       <>
@@ -47,14 +56,17 @@ function  EliminarEtiqueta() {
             <form onSubmit={eliminarEtiqueta}>
               <div className="mb-3">
                 <label className="form-label mt-2 text-color">Nombre Etiqueta</label>
-                <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" disabled/>
+                <input type="text" className="form-control" value={data.nombre} id="nombre" disabled/>
               </div>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label text-color">Descripcion</label>
-                <textarea class="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)} disabled></textarea>
+                <textarea className="form-control" value={data.descripcion} placeholder="Escribe una descripción" id="descripcion"  disabled></textarea>
+              </div>
+              <div id='errBack' style={{ display: 'none', color: 'red' }}>
+                *Tenemos problemas en el serivdor, intentalo más tarde
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Eliminar etiqueta</button>
-              <a href="/home" class="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
         </div>

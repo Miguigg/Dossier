@@ -29,10 +29,10 @@ function Etiquetas(){
             <h1>Debes tener la sesión iniciada</h1>
             </div>
             :
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-sm-4"><VerticalNav/></div>
-                    <div class="col-sm-8"><ListaArticulos/></div>
+            <div className="container text-center">
+                <div className="row">
+                    <div className="col-sm-4"><VerticalNav/></div>
+                    <div className="col-sm-8"><ListaArticulos/></div>
                 </div>
             </div>
         }

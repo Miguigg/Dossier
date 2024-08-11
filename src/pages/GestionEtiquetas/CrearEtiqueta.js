@@ -97,7 +97,7 @@ function CrearEtiqueta () {
               <div className='mb-3'>
                 <label className='form-label text-color'>Descripcion</label>
                 <textarea
-                  class='form-control'
+                  className='form-control'
                   value={descripcion}
                   placeholder='Escribe una descripción'
                   id='descripcion'
@@ -116,7 +116,7 @@ function CrearEtiqueta () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Crear etiqueta
               </button>
-              <a href='/home' class='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>

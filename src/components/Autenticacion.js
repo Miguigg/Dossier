@@ -19,7 +19,8 @@ const Autenticacion = () => {
             flagLogin()
         }
     }, [])
-    const userSignOut = () => {
+    const userSignOut = (e) => {
+        e.preventDefault()
         signOut(auth).then(()=>{
             console.log("adios")
         }).catch(error => console.log(error))

@@ -35,8 +35,8 @@ function TestIntegridad () {
           <h1>Debes tener la sesión iniciada</h1>
         </div>
       ) : (
-        <div class='container my-5'>
-          <h1 class='mb-4'>Test de Integridad</h1>
+        <div className='container my-5'>
+          <h1 className='mb-4'>Test de Integridad</h1>
           <div className='container'>
             <section className='text-black py-5 ms-5 me-5 p-auto rounded-4 gradient-bg-landing'>
               <div className='container'>
@@ -53,7 +53,7 @@ function TestIntegridad () {
                     placeholder='Enlace'
                   />
                   <div className='p-5'>
-                    <button class='btn btn-success btn-lg'>
+                    <button className='btn btn-success btn-lg'>
                       Inspeccionar articulo
                     </button>
                   </div>
