@@ -14,7 +14,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 function CuentaUsr () {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
-  const [listaEtiquetas, setListaEtiquetas] = useState('')
+  const [listaEtiquetas, setListaEtiquetas] = useState([])
+  const [listaAccesos, setListaAccesos] = useState([])
   const [datosUsr , setDatosUsr] = useState('')
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function CuentaUsr () {
   function getDocEtiqueta () {
     onAuthStateChanged(auth, async user => {
       if (user) {
+        let tmpLista = []
         const uid = user.uid
         const q = query(
           collection(exportFuncionesCuenta.db, 'Etiquetas'),
@@ -41,8 +43,9 @@ function CuentaUsr () {
 
         const querySnapshot = await getDocs(q)
         querySnapshot.forEach(doc => {
-          setListaEtiquetas([...listaEtiquetas, doc.data()])
+          tmpLista.push(doc.data())
         })
+        setListaEtiquetas(tmpLista)
       } else {
         console.log("error en back")
       }
@@ -50,9 +53,10 @@ function CuentaUsr () {
   }
 
   function getDocUsuario() {
+    
     onAuthStateChanged(auth, async user => {
-      const uid = user.uid
       if (user) {
+        const uid = user.uid
         const docRef = doc(exportFuncionesCuenta.db, "usuarios", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
@@ -66,9 +70,37 @@ function CuentaUsr () {
     })
   }
 
+  function getDocumentosAccesos(){
+    onAuthStateChanged(auth, async user => {
+      if (user) {
+        let tmpLista = []
+        const uid = user.uid
+        const q = query(
+          collection(exportFuncionesCuenta.db, 'Accesos-directos'),
+          where('idUsuario', '==', uid)
+        )
+
+        const querySnapshot = await getDocs(q)
+        querySnapshot.forEach(doc => {
+          tmpLista.push(doc.data())
+        })
+        setListaAccesos(tmpLista)
+      } else {
+        console.log("error en back")
+      }
+    })
+  }
+
   useEffect(() => {
-    getDocEtiqueta()
-    getDocUsuario()
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        getDocEtiqueta()
+        getDocUsuario()
+        getDocumentosAccesos()
+      } else {
+        console.log("error en back")
+      }
+    })
   }, [])
 
   return (
@@ -91,7 +123,7 @@ function CuentaUsr () {
                     <p className='text-color'>
                       Aquí puedes añadir accesos directos a tus medios favoritos
                     </p>
-                    <ListaFavs />
+                    <ListaFavs accesos={listaAccesos}/>
                   </div>
                 </div>
               </div>

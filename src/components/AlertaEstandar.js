@@ -19,14 +19,4 @@ const AlertaEstandar = ({ show, setShow, message, variant }) => {
     </Alert>
   );
 };
-
-/**
- *       <AlertaEstandar
-        show={showAlert}
-        setShow={setShowAlert}
-        message="Tienes que confirmar el email con el correo que acabamos de enviar"
-        variant="danger"
-      />
- */
-
 export default AlertaEstandar;

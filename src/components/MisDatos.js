@@ -11,8 +11,6 @@ function MisDatos (props) {
   const [usuarioVerificado, setUsuarioVerificado] = useState('')
   const navigate = useNavigate();
 
-  console.log(props.datosUsr)
-
   const handleRedirect = () => {
     navigate('/home');
   };

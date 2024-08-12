@@ -4,6 +4,7 @@ import '../css/CuentaUsr.css'
 import '../css/comun.css'
 
 function MisEtiquetas (props) {
+  console.log(props)
   return (
     <>
       {props.etiquetas.length < 1 ? (

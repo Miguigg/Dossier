@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
+import exportFuncionesCuenta from '../../utils/firebase'
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -35,8 +37,35 @@ function AddAccesoDirecto () {
   const AñadirAccesoDirecto = e => {
     e.preventDefault()
     if (validarAccesoDirecto(nombre, enlace)) {
-      //realizar peticion
-      handleRedirect()
+      onAuthStateChanged(auth, async user => {
+        if (user) {
+          const uid = user.uid
+          try {
+            const docRef = await addDoc(
+              collection(exportFuncionesCuenta.db, 'Accesos-directos'),
+              {
+                nombre: nombre,
+                enlace: enlace,
+                idUsuario: uid
+              }
+            )
+            const etRef = doc(
+              exportFuncionesCuenta.db,
+              'Accesos-directos',
+              docRef.id
+            )
+            await updateDoc(etRef, {
+              idAcceso: docRef.id
+            })
+            document.getElementById('errBack').style.display = 'none'
+            handleRedirect()
+          } catch (e) {
+            document.getElementById('errBack').style.display = 'block'
+          }
+        } else {
+          document.getElementById('errBack').style.display = 'block'
+        }
+      })
     }
   }
 
@@ -83,11 +112,17 @@ function AddAccesoDirecto () {
                   *Debes introducir un enlace válido
                 </div>
               </div>
-
+              <div id='errBack' style={{ display: 'none', color: 'red' }}>
+                *Tenemos problemas con el servidor, intentalo más tarde
+              </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Añadir acceso directo
               </button>
-              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
+              <a
+                href='/home'
+                className='btn btn-danger w-100 mt-3'
+                role='button'
+              >
                 Cancelar
               </a>
             </form>
