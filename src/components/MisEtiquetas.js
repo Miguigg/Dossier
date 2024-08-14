@@ -4,12 +4,20 @@ import '../css/CuentaUsr.css'
 import '../css/comun.css'
 
 function MisEtiquetas (props) {
-  console.log(props)
   return (
     <>
       {props.etiquetas.length < 1 ? (
         <div className='text-err'>
           <h1>No hay etiquetas que mostrar</h1>
+          <div className='p-4'>
+            <a
+              href='/crear-etiqueta'
+              className='btn btn-success w-100 mt-3'
+              role='button'
+            >
+              Añadir etiqueta
+            </a>
+          </div>
         </div>
       ) : (
         <table>
@@ -34,7 +42,7 @@ function MisEtiquetas (props) {
                 <td>
                   <Link
                     to='/eliminar-etiqueta'
-                    state={item}//pasar la etiqueta entera y poner los datos al otro lado
+                    state={item}
                     className='btn btn-danger'
                   >
                     <svg
@@ -52,7 +60,7 @@ function MisEtiquetas (props) {
                 <td>
                 <Link
                     to='/editar-etiqueta'
-                    state={item}//pasar la etiqueta entera y poner los datos al otro lado
+                    state={item}
                     className='btn btn-success'
                   >
                     <svg

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 import { auth } from '../../utils/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
+import { doc , deleteDoc } from "firebase/firestore";
+import exportFuncionesCuenta from '../../utils/firebase';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -10,10 +12,11 @@ import '../../css/login.css'
 
 function EliminarAccesoDirecto() {
     const [usuarioAutenticado, setUsuarioAutenticado] = useState("");
-    const [nombre, setNombre] = useState('');
-    const [enlace, setEnlace] = useState('');
-    const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state;
 
+    const navigate = useNavigate();
+    console.log(data)
     useEffect(() => {
       const flagLogin = onAuthStateChanged(auth, user => {
         if (user) {
@@ -28,10 +31,12 @@ function EliminarAccesoDirecto() {
     }, [])
 
     const handleRedirect = () => {
-      navigate('/home');
+      navigate('/cuenta-usr');
     };
 
-    const EliminarAccesoDirecto = (e) => {
+    const EliminarAccesoDirecto = async (e) => {
+      e.preventDefault()
+      await deleteDoc(doc(exportFuncionesCuenta.db, "Accesos-directos", data.idAcceso));
       handleRedirect()
     }
 
@@ -48,7 +53,7 @@ function EliminarAccesoDirecto() {
           <form onSubmit={EliminarAccesoDirecto}>
             <div className="mb-3">
               <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
-              <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" disabled/>
+              <input type="text" className="form-control" value={data.nombre} id="nombre" placeholder="Nombre" disabled/>
               <div id="errEmail" style={{display: "none", color: "red"}}>
               *Debes introducir un nombre válido para el articulo
               </div>
@@ -56,7 +61,7 @@ function EliminarAccesoDirecto() {
 
             <div className="mb-3">
               <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
-              <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="nombre" placeholder="Enlace" disabled/>
+              <input type="text" className="form-control" value={data.enlace} id="nombre" placeholder="Enlace" disabled/>
               <div id="errEmail" style={{display: "none", color: "red"}}>
               *Debes introducir un enlace válido
               </div>

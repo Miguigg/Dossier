@@ -3,10 +3,15 @@ import { useEffect, useState } from "react";
 import { auth } from '../utils/firebase';
 import {  Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Autenticacion = () => {
     const [usuarioAutenticado, setUsuarioAutenticado] = useState("");
+    const navigate = useNavigate()
 
+    const handleRedirect = () => {
+      navigate('/home')
+    }
     useEffect(() =>{
         const flagLogin = onAuthStateChanged(auth, (user) =>{
             if(user){
@@ -22,7 +27,7 @@ const Autenticacion = () => {
     const userSignOut = (e) => {
         e.preventDefault()
         signOut(auth).then(()=>{
-            console.log("adios")
+            handleRedirect()
         }).catch(error => console.log(error))
     }
     return (

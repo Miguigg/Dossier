@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
+import ComponenteModal from '../../components/ComponenteModal'
 import exportFuncionesCuenta from '../../utils/firebase'
 
 import '../../css/landing.css'
@@ -14,6 +15,17 @@ function AddAccesoDirecto () {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
   const [nombre, setNombre] = useState('')
   const [enlace, setEnlace] = useState('')
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  
+  const handleShowAlert = () => {
+    handleShow()
+  };
+
+  const handleClose = () => {
+    setShow(false)
+    handleRedirect()
+    };
 
   useEffect(() => {
     const flagLogin = onAuthStateChanged(auth, user => {
@@ -31,7 +43,7 @@ function AddAccesoDirecto () {
   const navigate = useNavigate()
 
   const handleRedirect = () => {
-    navigate('/home')
+    navigate('/cuenta-usr')
   }
 
   const AñadirAccesoDirecto = e => {
@@ -57,13 +69,13 @@ function AddAccesoDirecto () {
             await updateDoc(etRef, {
               idAcceso: docRef.id
             })
-            document.getElementById('errBack').style.display = 'none'
+            handleClose()
             handleRedirect()
           } catch (e) {
-            document.getElementById('errBack').style.display = 'block'
+            handleShowAlert()
           }
         } else {
-          document.getElementById('errBack').style.display = 'block'
+          handleShowAlert()
         }
       })
     }
@@ -127,6 +139,7 @@ function AddAccesoDirecto () {
               </a>
             </form>
           </div>
+          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas en el servidor" />
         </div>
       )}
     </>

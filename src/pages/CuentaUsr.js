@@ -6,6 +6,7 @@ import ListaFavs from '../components/ListaFavoritos'
 import MisDatos from '../components/MisDatos'
 import MisEtiquetas from '../components/MisEtiquetas'
 import exportFuncionesCuenta from '../utils/firebase'
+import ComponenteModal from '../components/ComponenteModal'
 import { collection, query, where, getDocs , doc, getDoc } from 'firebase/firestore'
 
 import '../css/landing.css'
@@ -17,6 +18,16 @@ function CuentaUsr () {
   const [listaEtiquetas, setListaEtiquetas] = useState([])
   const [listaAccesos, setListaAccesos] = useState([])
   const [datosUsr , setDatosUsr] = useState('')
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
+  const handleShowAlert = () => {
+    handleShow()
+  };
+
+  const handleClose = () => {
+    setShow(false)
+    };
 
   useEffect(() => {
     const flagLogin = onAuthStateChanged(auth, user => {
@@ -46,8 +57,9 @@ function CuentaUsr () {
           tmpLista.push(doc.data())
         })
         setListaEtiquetas(tmpLista)
+        handleClose()
       } else {
-        console.log("error en back")
+        handleShowAlert()
       }
     })
   }
@@ -60,12 +72,13 @@ function CuentaUsr () {
         const docRef = doc(exportFuncionesCuenta.db, "usuarios", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
+          handleClose()
           setDatosUsr(docSnap.data())
         } else {
-          console.log("No such document!");
+          handleShowAlert()
         }
       } else {
-        console.log("error en back")
+        handleShowAlert()
       }
     })
   }
@@ -84,9 +97,10 @@ function CuentaUsr () {
         querySnapshot.forEach(doc => {
           tmpLista.push(doc.data())
         })
+        handleClose()
         setListaAccesos(tmpLista)
       } else {
-        console.log("error en back")
+        handleShowAlert()
       }
     })
   }
@@ -97,8 +111,9 @@ function CuentaUsr () {
         getDocEtiqueta()
         getDocUsuario()
         getDocumentosAccesos()
+        handleClose()
       } else {
-        console.log("error en back")
+        handleShowAlert()
       }
     })
   }, [])
@@ -188,9 +203,7 @@ function CuentaUsr () {
               <div className='col'></div>
             </div>
           </div>
-          <div id='errBack' style={{ display: 'none', color: 'red' }}>
-            *Tenemos problemas en el serivdor, intentalo más tarde
-          </div>
+          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas para contactar con el servidor, intentalo más tarde" />
         </div>
       )}
     </>

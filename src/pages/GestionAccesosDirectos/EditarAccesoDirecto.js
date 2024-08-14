@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
 import { auth } from '../../utils/firebase'
-
+import exportFuncionesCuenta from '../../utils/firebase';
+import { doc, updateDoc } from "firebase/firestore";
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -16,6 +17,13 @@ function EditarAccesoDirecto() {
     const [nombre, setNombre] = useState('');
     const [enlace, setEnlace] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state;
+
+    useEffect(() => {
+      setNombre(data.nombre)
+      setEnlace(data.enlace)
+    }, [])
 
     useEffect(() => {
       const flagLogin = onAuthStateChanged(auth, user => {
@@ -31,13 +39,17 @@ function EditarAccesoDirecto() {
     }, [])
 
     const handleRedirect = () => {
-      navigate('/home');
+      navigate('/cuenta-usr');
     };
 
-    const EditarAccesoDirecto = (e) => {
+    const EditarAccesoDirecto = async (e) => {
       e.preventDefault();
       if(validarAccesoDirecto(nombre, enlace)){
-        //realizar peticion
+        const docRef = doc(exportFuncionesCuenta.db, "Accesos-directos", data.idAcceso);
+        await updateDoc(docRef, {
+          nombre: nombre,
+          enlace: enlace
+        });
         handleRedirect()
       }
     }

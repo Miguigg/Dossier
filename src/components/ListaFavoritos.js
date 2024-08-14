@@ -4,12 +4,20 @@ import '../css/CuentaUsr.css'
 import '../css/comun.css'
 
 function ListaFavs (props) {
-    console.log(props)
   return (
     <>
       {props.accesos.length < 1 ? (
         <div className='text-err'>
           <h1>No hay etiquetas que mostrar</h1>
+          <div className='p-4'>
+            <a
+              href='/crear-acceso-directo'
+              className='btn btn-success w-100 mt-3'
+              role='button'
+            >
+              Añadir acceso directo
+            </a>
+          </div>
         </div>
       ) : (
         <div>
@@ -34,7 +42,7 @@ function ListaFavs (props) {
                   </td>
                   <td>
                     <Link
-                      href='/eliminar-acceso-directo'
+                      to='/eliminar-acceso-directo'
                       state={item}
                       className='btn btn-danger'
                     >
@@ -52,7 +60,7 @@ function ListaFavs (props) {
                   </td>
                   <td>
                     <Link
-                      href='/editar-acceso-directo'
+                      to='/editar-acceso-directo'
                       state={item}
                       className='btn btn-success'
                     >
