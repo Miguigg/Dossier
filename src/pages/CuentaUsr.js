@@ -47,6 +47,7 @@ function CuentaUsr () {
       if (user) {
         let tmpLista = []
         const uid = user.uid
+        console.log(uid)
         const q = query(
           collection(exportFuncionesCuenta.db, 'Etiquetas'),
           where('idUsuario', '==', uid)
@@ -57,6 +58,7 @@ function CuentaUsr () {
           tmpLista.push(doc.data())
         })
         setListaEtiquetas(tmpLista)
+        tmpLista = []
         handleClose()
       } else {
         handleShowAlert()
@@ -69,6 +71,7 @@ function CuentaUsr () {
     onAuthStateChanged(auth, async user => {
       if (user) {
         const uid = user.uid
+        console.log(uid)
         const docRef = doc(exportFuncionesCuenta.db, "usuarios", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {

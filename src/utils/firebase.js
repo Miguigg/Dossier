@@ -1,8 +1,9 @@
 import { getAuth , updateEmail } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc , updateDoc } from "firebase/firestore"; 
+import { doc, setDoc , updateDoc, addDoc } from "firebase/firestore"; 
 import encrypt from "./validadores/encrypt";
 import { initializeApp } from "firebase/app";
+import { collection  } from 'firebase/firestore'
 
 
 const firebaseConfig = {
@@ -46,6 +47,19 @@ async function addUsr(nombre, apellidos, correo, contraseña, uid) {
       correo: correo,
       contraseña: encryptPass
     });
+
+    const docRef = await addDoc(
+      collection(db, 'Etiquetas'),
+      {
+        nombre: "Mis favoritos",
+        descripcion: "Etiqueta creada por defecto para tus favoritos",
+        idUsuario: uid
+      }
+    )
+    const etRef = doc(db, "Etiquetas", docRef.id);
+    await updateDoc(etRef, {
+      idEtiqueta: docRef.id
+    })
 
   } catch (e) {
     console.error("Error adding document: ", e);

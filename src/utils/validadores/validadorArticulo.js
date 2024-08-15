@@ -1,5 +1,5 @@
-function validarArticulo(nombre, descripcion){
-    const reNombre = /^[a-zA-Z]+$/
+function validarArticulo(nombre, enlace, etiquetaSeleccionada){
+    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
 
     if(!reNombre.test(nombre)){
         document.getElementById("errNombre").style.display = "block";
@@ -7,23 +7,20 @@ function validarArticulo(nombre, descripcion){
         document.getElementById("errNombre").style.display = "none";
     }
 
-    var reDescripcion = /^[a-zA-Z0-9]+$/;
+    const reEnlace = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/
 
-    if(!reDescripcion.test(descripcion)){
-        document.getElementById("errDescripcion").style.display = "block";
+    if(!reEnlace.test(enlace)){
+        document.getElementById("errEnlace").style.display = "block";
     }else{
-        document.getElementById("errDescripcion").style.display = "none";
+        document.getElementById("errEnlace").style.display = "none";
     }
 
-
-    var selectElement = document.getElementById('selectEtc');
-    var selectedValue = selectElement.value;
-    if(selectedValue === "0"){
+    if(etiquetaSeleccionada === "0" || etiquetaSeleccionada===""){
         document.getElementById("errSelect").style.display = "block";
     }else{
         document.getElementById("errSelect").style.display = "none";
     }
-    return reNombre.test(nombre) && reDescripcion.test(descripcion) && selectedValue !== "0"
+    return reNombre.test(nombre) && reEnlace.test(enlace) && etiquetaSeleccionada !== "0" && etiquetaSeleccionada !== ""
 }
 
 export default validarArticulo;

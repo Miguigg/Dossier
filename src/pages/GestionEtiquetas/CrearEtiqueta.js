@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
 import { collection, addDoc, updateDoc , doc } from 'firebase/firestore'
 import exportFuncionesCuenta from '../../utils/firebase'
+import ComponenteModal from '../../components/ComponenteModal'
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -15,6 +16,17 @@ function CrearEtiqueta () {
   const [nombre, setNombre] = useState('')
   const [descripcion, setDescripcion] = useState('')
   const navigate = useNavigate()
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  
+  const handleShowAlert = () => {
+    handleShow()
+  };
+
+  const handleClose = () => {
+    setShow(false)
+    handleRedirect()
+    };
 
   const handleRedirect = () => {
     navigate('/cuenta-usr')
@@ -52,13 +64,13 @@ function CrearEtiqueta () {
             await updateDoc(etRef, {
               idEtiqueta: docRef.id
             })
-            document.getElementById('errBack').style.display = 'none'
+            handleClose()
             handleRedirect()
           } catch (e) {
-            document.getElementById('errBack').style.display = 'block'
+            handleShowAlert()
           }
         } else {
-          document.getElementById('errBack').style.display = 'block'
+          handleShowAlert()
         }
       })
     }
@@ -121,6 +133,7 @@ function CrearEtiqueta () {
               </a>
             </form>
           </div>
+          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas en el servidor" />
         </div>
       )}
     </>
