@@ -35,9 +35,13 @@ function MisEtiquetas (props) {
             {props.etiquetas.map(item => (
               <tr key={item.id}>
                 <td>
-                  <button type='button' className='btn custom-btn'>
-                    {item.nombre}
-                  </button>
+                <Link
+                      to='/etiquetas'
+                      state={item.idEtiqueta}
+                      className='btn custom-btn'
+                    >
+                  {item.nombre}
+                </Link>
                 </td>
                 <td>
                   <Link

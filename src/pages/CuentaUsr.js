@@ -47,7 +47,6 @@ function CuentaUsr () {
       if (user) {
         let tmpLista = []
         const uid = user.uid
-        console.log(uid)
         const q = query(
           collection(exportFuncionesCuenta.db, 'Etiquetas'),
           where('idUsuario', '==', uid)

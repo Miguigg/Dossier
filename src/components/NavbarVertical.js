@@ -1,11 +1,10 @@
 import '../css/landing.css'
 
 
-function VerticalNav() {
+function VerticalNav(props) {
     return(
         <div className='p-5'>
             <h2>Mis Etiquetas<hr className="border border-primary border-3 opacity-75"></hr></h2>
-            <p>Etiqueta seleccionada: ****</p>
             <nav className="navbar">
                 <div className="container-fluid gradient-bg-landing">
                     <ul className="navbar-nav">
