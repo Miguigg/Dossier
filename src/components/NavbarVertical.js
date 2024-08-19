@@ -1,30 +1,44 @@
+import { Link } from 'react-router-dom'
+
 import '../css/landing.css'
 
+function VerticalNav (props) {
 
-function VerticalNav(props) {
-    return(
-        <div className='p-5'>
-            <h2>Mis Etiquetas<hr className="border border-primary border-3 opacity-75"></hr></h2>
-            <nav className="navbar">
-                <div className="container-fluid gradient-bg-landing">
-                    <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <a className="nav-link" href="/home">Etiqueta</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/home">Etiqueta</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/home">Etiqueta</a>
-                    </li>
-                    <li className=''>
-                        <a href="/crear-etiqueta" className="btn btn-success" role="button">Crear etiqueta</a>
-                    </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    );
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  return (
+    <div className='p-5'>
+      <h2>
+        Mis Etiquetas
+        <hr className='border border-primary border-3 opacity-75'></hr>
+      </h2>
+      <nav className='navbar'>
+        {props.listaEtiquetas.length < 1 ? (
+          <div className='text-err'>
+            <h1>No hay etiquetas que mostrar</h1>
+          </div>
+        ) : (
+          <div className='container-fluid gradient-bg-landing'>
+            <ul className='navbar-nav'>
+            {props.listaEtiquetas.map(item => (
+              <li className='nav-item'>
+                <Link
+                    to="/etiquetas"
+                    state={item.idEtiqueta}
+                    className='nav-link'
+                    onClick={refreshPage}
+                  >
+                {item.nombre}
+                </Link>
+            </li>
+            ))}
+            </ul>
+          </div>
+        )}
+      </nav>
+    </div>
+  )
 }
 
-export default VerticalNav;
+export default VerticalNav

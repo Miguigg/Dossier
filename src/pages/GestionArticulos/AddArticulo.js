@@ -17,6 +17,7 @@ function AddArticulo() {
     const [nombre, setNombre] = useState('');
     const [enlace, setEnlace] = useState('');
     const [etiquetaSeleccionada, setEtiquetaSeleccionada] = useState('')
+    const [descripcion, setDescripcion] = useState('');
 
     const [listaEtiquetas, setListaEtiquetas] = useState('')
     const [show, setShow] = useState(false);
@@ -101,6 +102,7 @@ function AddArticulo() {
                   nombre: nombre,
                   enlace: enlace,
                   idUsuario: uid,
+                  descripcion: descripcion,
                   idEtiqueta: etiquetaSeleccionada
                 }
               )
@@ -169,6 +171,13 @@ function AddArticulo() {
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
                   *Debes introducir un enlace válido
+                </div>
+              </div>
+              <div className="mb-3">
+                <label className="form-label text-color">Descripcion</label>
+                <textarea className="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
+                <div id="errDescripcion" style={{display: "none", color: "red"}}>
+                *Introduce una descripcion adecuada
                 </div>
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Añadir articulo</button>

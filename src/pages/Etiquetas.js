@@ -14,11 +14,10 @@ function Etiquetas () {
   const [listaEtiquetas, setListaEtiquetas] = useState([])
   const [idEtiquetaSeleccionada, setIdEtiquetaSeleccionada] = useState('')
   const [nombreEtiquetaSeleccionada, setNombreEtiquetaSeleccionada] = useState('')
+
   const handleShow = () => setShow(true)
   const [show, setShow] = useState(false)
-
   const location = useLocation()
-  const data = location.state
 
   const handleShowAlert = () => {
     handleShow()
@@ -52,6 +51,8 @@ function Etiquetas () {
   }
 
   function getInfoSeleccionada () {
+    const data = location.state
+
     if (data === null) {
       onAuthStateChanged(auth, async user => {
         if (user) {
@@ -67,6 +68,7 @@ function Etiquetas () {
             tmpLista = doc.data()
           })
           setIdEtiquetaSeleccionada(tmpLista.idEtiqueta)
+          console.log(idEtiquetaSeleccionada)
           setNombreEtiquetaSeleccionada(tmpLista.nombre)
           tmpLista = ''
           handleClose()
@@ -95,6 +97,7 @@ function Etiquetas () {
             } else {
               handleShowAlert()
             }
+            
           })
     }
   }
@@ -117,8 +120,6 @@ function Etiquetas () {
     getInfoSeleccionada()
   }, [])
 
-  console.log(idEtiquetaSeleccionada)
-
   return (
     <>
       {usuarioAutenticado === null ? (
@@ -127,13 +128,13 @@ function Etiquetas () {
         </div>
       ) : (
         <div className='container text-center'>
-          {idEtiquetaSeleccionada === undefined ? (
+          {idEtiquetaSeleccionada === '' ? (
             <div className='p-5'>
               <h1>No hay etiquetas seleccionadas</h1>
             </div>
           ) : (
             <div>
-              <h2 className='mt-5'>Etiqueta Seleccionada: {nombreEtiquetaSeleccionada}</h2>
+              <h2 className='mt-5'>Etiqueta Seleccionada:  {nombreEtiquetaSeleccionada}</h2>
               <div className='row'>
                 <div className='col-sm-4'>
                   <VerticalNav listaEtiquetas={listaEtiquetas} />

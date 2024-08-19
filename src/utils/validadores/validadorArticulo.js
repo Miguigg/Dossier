@@ -1,4 +1,4 @@
-function validarArticulo(nombre, enlace, etiquetaSeleccionada){
+function validarArticulo(nombre, enlace, etiquetaSeleccionada, descripcion){
     const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
 
     if(!reNombre.test(nombre)){
@@ -20,7 +20,14 @@ function validarArticulo(nombre, enlace, etiquetaSeleccionada){
     }else{
         document.getElementById("errSelect").style.display = "none";
     }
-    return reNombre.test(nombre) && reEnlace.test(enlace) && etiquetaSeleccionada !== "0" && etiquetaSeleccionada !== ""
+
+    var reDescripcion = /^[a-zA-Z0-9]+$/;
+    if(!reDescripcion.test(descripcion)){
+        document.getElementById("errDescripcion").style.display = "block";
+    }else{
+        document.getElementById("errDescripcion").style.display = "none";
+    }
+    return reNombre.test(nombre) && reEnlace.test(enlace) && etiquetaSeleccionada !== "0" && etiquetaSeleccionada !== "" && reDescripcion.test(descripcion)
 }
 
 export default validarArticulo;

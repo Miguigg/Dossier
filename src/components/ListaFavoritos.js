@@ -8,7 +8,7 @@ function ListaFavs (props) {
     <>
       {props.accesos.length < 1 ? (
         <div className='text-err'>
-          <h1>No hay etiquetas que mostrar</h1>
+          <h1>No hay accesos directos que mostrar</h1>
           <div className='p-4'>
             <a
               href='/crear-acceso-directo'
