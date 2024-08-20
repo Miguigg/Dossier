@@ -33,7 +33,7 @@ function AddArticulo() {
   
     const handleClose = () => {
       setShow(false)
-      };
+    };
   
 
     function getDocsEtiquetas () {

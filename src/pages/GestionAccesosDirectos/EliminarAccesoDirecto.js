@@ -16,7 +16,7 @@ function EliminarAccesoDirecto() {
     const data = location.state;
 
     const navigate = useNavigate();
-    console.log(data)
+ 
     useEffect(() => {
       const flagLogin = onAuthStateChanged(auth, user => {
         if (user) {

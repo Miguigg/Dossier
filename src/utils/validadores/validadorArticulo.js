@@ -1,5 +1,5 @@
 function validarArticulo(nombre, enlace, etiquetaSeleccionada, descripcion){
-    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/
+    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9,. ]+$/
 
     if(!reNombre.test(nombre)){
         document.getElementById("errNombre").style.display = "block";
@@ -21,7 +21,8 @@ function validarArticulo(nombre, enlace, etiquetaSeleccionada, descripcion){
         document.getElementById("errSelect").style.display = "none";
     }
 
-    var reDescripcion = /^[a-zA-Z0-9]+$/;
+    var reDescripcion = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9,. ]+$/;
+    console.log(descripcion)
     if(!reDescripcion.test(descripcion)){
         document.getElementById("errDescripcion").style.display = "block";
     }else{
