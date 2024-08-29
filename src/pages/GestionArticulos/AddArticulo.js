@@ -181,7 +181,7 @@ function AddArticulo() {
                 </div>
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Añadir articulo</button>
-              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/etiquetas" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
           <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas para contactar con el servidor, intentalo más tarde" />

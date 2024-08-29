@@ -52,6 +52,7 @@ async function addUsr(nombre, apellidos, correo, contraseña, uid) {
       collection(db, 'Etiquetas'),
       {
         nombre: "Mis favoritos",
+        flag: "noEditable",
         descripcion: "Etiqueta creada por defecto para tus favoritos",
         idUsuario: uid
       }
@@ -80,7 +81,7 @@ async function editApellidos(uid, apellidos) {
   const referencia = doc(db, "usuarios", uid);
 
   await updateDoc(referencia, {
-    nombre: apellidos
+    apellidos: apellidos
   });
 }
 

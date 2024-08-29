@@ -166,7 +166,7 @@ function EliminarArticulo () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Eliminar articulo
               </button>
-              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/etiquetas' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>

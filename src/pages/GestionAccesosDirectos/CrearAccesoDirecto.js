@@ -131,7 +131,7 @@ function AddAccesoDirecto () {
                 Añadir acceso directo
               </button>
               <a
-                href='/home'
+                href='/cuenta-usr'
                 className='btn btn-danger w-100 mt-3'
                 role='button'
               >

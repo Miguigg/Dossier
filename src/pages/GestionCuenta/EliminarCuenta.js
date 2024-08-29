@@ -1,11 +1,19 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, deleteUser } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { deleteUser } from "firebase/auth";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  getDoc,
+  deleteDoc
+} from 'firebase/firestore'
 
+import ComponenteModal from '../../components/ComponenteModal'
 import { auth } from '../../utils/firebase'
-import { doc, getDoc, deleteDoc } from 'firebase/firestore'
 import encrypt from '../../utils/validadores/encrypt'
 import exportFuncionesCuenta from '../../utils/firebase'
 
@@ -13,6 +21,26 @@ function EliminarCuenta () {
   const [contraseña, setContraseña] = useState('')
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
   const navigate = useNavigate()
+  const [show, setShow] = useState(false)
+  const [showErr, setShowErr] = useState('')
+  const handleShow = () => setShow(true)
+  const handleShowErr = () => setShowErr()
+
+  const handleShowAlert = () => {
+    handleShow()
+  }
+
+  const handleClose = () => {
+    setShow(false)
+  }
+
+  const handleShowErrAlert = () => {
+    handleShowErr()
+  }
+
+  const handleCloseErr = () =>{
+    setShowErr(false)
+  }
 
   const handleRedirect = () => {
     navigate('/home')
@@ -31,41 +59,106 @@ function EliminarCuenta () {
     }
   }, [])
 
-  const eliminarUsuario = e => {
-    const user = auth.currentUser;
-
-    deleteUser(user).then(() => {
-        document.getElementById('errInterno').style.display = 'none'
-        handleRedirect()
-    }).catch((error) => {
-        console.log("Error interno")
-    });
+  const eliminarUsuario = () => {
+    const auth = getAuth()
+    const userToDelete = auth.currentUser
+    deleteUser(userToDelete)
+      .then(() => {
+        handleClose()
+      })
+      .catch(error => {
+        handleShowAlert()
+      })
+      handleRedirect()
+      window.location.reload();
   }
 
   const accionEliminar = e => {
     e.preventDefault()
+
     onAuthStateChanged(auth, async user => {
       if (user) {
-        const uid = user.uid;
+        const uid = user.uid
         const db = exportFuncionesCuenta.db
-        const docRef = doc(db, "usuarios", uid);
-        const docSnap = await getDoc(docRef);
-
+        const docRef = doc(db, 'usuarios', uid)
+        const docSnap = await getDoc(docRef)
+        
         if (docSnap.exists()) {
-            if(encrypt(contraseña) === docSnap.data().contraseña){
-                document.getElementById('errPass').style.display = 'none'
-                eliminarUsuario()
-                await deleteDoc(doc(db, "usuarios", uid));
-                handleRedirect()
-            }else{
-                document.getElementById('errPass').style.display = 'block'
-            }
-          } else {
-            handleRedirect()
-          }
+          if (encrypt(contraseña) === docSnap.data().contraseña) {
+            handleCloseErr()
+            const q = query(
+              collection(exportFuncionesCuenta.db, 'Etiquetas'),
+              where('idUsuario', '==', uid)
+            )
 
+            const querySnapshot = await getDocs(q)
+
+            querySnapshot.forEach(async document => {
+              const idEtiqueta = document.data().idEtiqueta
+              await deleteDoc(
+                doc(exportFuncionesCuenta.db, 'Etiquetas', idEtiqueta)
+              )
+                .then(() => {
+                  handleClose()
+                })
+                .catch(error => {
+                  handleShowAlert()
+                })
+            })
+
+            const q2 = query(
+              collection(exportFuncionesCuenta.db, 'Articulos'),
+              where('idUsuario', '==', uid)
+            )
+            const querySnapshot2 = await getDocs(q2)
+            querySnapshot2.forEach(async document => {
+              const idArticulo = document.data().idArticulo
+              await deleteDoc(
+                doc(exportFuncionesCuenta.db, 'Articulos', idArticulo)
+              )
+                .then(() => {
+                  handleClose()
+                })
+                .catch(error => {
+                  handleShowAlert()
+                })
+            })
+
+            //Elimina los accesos directos del usuario
+            const q3 = query(
+              collection(exportFuncionesCuenta.db, 'Accesos-directos'),
+              where('idUsuario', '==', uid)
+            )
+            const querySnapshot3 = await getDocs(q3)
+            querySnapshot3.forEach(async document => {
+              const idAcceso = document.data().idAcceso
+              await deleteDoc(
+                doc(exportFuncionesCuenta.db, 'Accesos-directos', idAcceso)
+              )
+              .then(() => {
+                console.log(idAcceso)
+              })
+              .catch(error => {
+                console.log(error)
+              })
+            })
+
+            await deleteDoc(doc(exportFuncionesCuenta.db, 'usuarios', uid))
+            .then(() => {
+              handleClose()
+            }).catch(error =>{
+              handleShowAlert()
+            })
+            .catch(error => {
+              handleShowAlert()
+            })
+          }else{
+            handleShowErrAlert()
+          }
+        }
+        eliminarUsuario()
       } else {
-        console.log("Error desconocido")
+        handleShowAlert()
       }
     })
   }
@@ -92,18 +185,21 @@ function EliminarCuenta () {
                     value={contraseña}
                     onChange={e => setContraseña(e.target.value)}
                   />
-                <div id='errPass' style={{ display: 'none', color: 'red' }}>
+                  <div id='errPass' style={{ display: 'none', color: 'red' }}>
                     *La contraseña es incorrecta
-                </div>
-                <div id='errInterno' style={{ display: 'none', color: 'red' }}>
+                  </div>
+                  <div
+                    id='errInterno'
+                    style={{ display: 'none', color: 'red' }}
+                  >
                     *Tenemos problemas en el servido, intentalo más tarde
-                </div>
+                  </div>
                 </div>
                 <button type='submit' className='btn btn-success w-100 mt-3'>
                   Eliminar usuario
                 </button>
                 <a
-                  href='/home'
+                  href='/cuenta-usr'
                   className='btn btn-danger w-100 mt-3'
                   role='button'
                 >
@@ -112,6 +208,16 @@ function EliminarCuenta () {
               </div>
             </form>
           </div>
+          <ComponenteModal
+            show={show}
+            handleClose={handleClose}
+            msg='Tenemos problemas para contactar con el servidor, intentalo más tarde'
+          />
+          <ComponenteModal
+            show={showErr}
+            handleClose={handleCloseErr}
+            msg='Contraseña incorrecta'
+          />
         </div>
       )}
     </>

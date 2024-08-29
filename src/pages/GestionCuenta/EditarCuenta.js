@@ -17,7 +17,7 @@ function EditarCuenta () {
   const navigate = useNavigate()
 
   const handleRedirect = () => {
-    navigate('/home')
+    navigate('/cuenta-usr')
   }
 
   useEffect(() => {
@@ -156,7 +156,7 @@ function EditarCuenta () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Editar usuario
               </button>
-              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </div>

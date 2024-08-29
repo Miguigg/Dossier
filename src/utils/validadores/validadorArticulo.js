@@ -1,5 +1,5 @@
 function validarArticulo(nombre, enlace, etiquetaSeleccionada, descripcion){
-    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9,. ]+$/
+    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9,."“” ]+$/
 
     if(!reNombre.test(nombre)){
         document.getElementById("errNombre").style.display = "block";

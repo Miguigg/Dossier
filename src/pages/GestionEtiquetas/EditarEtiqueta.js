@@ -81,7 +81,7 @@ function EditarEtiqueta() {
                 </div>
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Editar etiqueta</button>
-              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
         </div>

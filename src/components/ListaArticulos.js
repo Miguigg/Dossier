@@ -68,7 +68,7 @@ function ListaArticulos (props) {
             <div>
               {listaArticulos.map(item => (
                 <a
-                  href='#article1'
+                  href={item.enlace}
                   className='list-group-item list-group-item-action'
                 >
                   <div className='d-flex w-100 justify-content-between'>

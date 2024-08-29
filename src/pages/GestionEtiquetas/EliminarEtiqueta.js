@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { doc , deleteDoc } from "firebase/firestore";
+import { doc , deleteDoc, query, collection, where, getDocs } from "firebase/firestore";
 import exportFuncionesCuenta from '../../utils/firebase';
 
 
@@ -25,6 +25,16 @@ function  EliminarEtiqueta() {
 
     const eliminarEtiqueta = async (e) => {
       e.preventDefault()
+      const idEtiquetaEliminar = data.idEtiqueta
+
+      const q = query(collection(exportFuncionesCuenta.db, "Articulos"), where("idEtiqueta", "==", idEtiquetaEliminar));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (documento) => {
+        const idArticuloEliminar = documento.data().idArticulo
+        await deleteDoc(doc(exportFuncionesCuenta.db, "Articulos", idArticuloEliminar));
+      });
+
       await deleteDoc(doc(exportFuncionesCuenta.db, "Etiquetas", data.idEtiqueta));
       handleRedirect()
     }
@@ -66,7 +76,7 @@ function  EliminarEtiqueta() {
                 *Tenemos problemas en el serivdor, intentalo más tarde
               </div>
               <button type="submit" className="btn btn-success w-100 mt-3">Eliminar etiqueta</button>
-              <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
             </form>
           </div>
         </div>

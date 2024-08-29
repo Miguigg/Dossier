@@ -1,5 +1,5 @@
 function validarAccesoDirecto(nombre, enlace){
-    const reNombre = /^[a-zA-Z]+$/
+    const reNombre = /^[\p{L}\p{Zs}ñÑáéíóúÁÉÍÓÚüÜ:]+$/
 
     if(!reNombre.test(nombre)){
         document.getElementById("errNombre").style.display = "block";

@@ -68,7 +68,7 @@ function EliminarAccesoDirecto() {
             </div>
 
             <button type="submit" className="btn btn-success w-100 mt-3">Eliminar acceso directo</button>
-            <a href="/home" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+            <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
           </form>
         </div>
       </div>

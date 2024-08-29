@@ -56,6 +56,7 @@ function CrearEtiqueta () {
               collection(exportFuncionesCuenta.db, 'Etiquetas'),
               {
                 nombre: nombre,
+                flag: "editable",
                 descripcion: descripcion,
                 idUsuario: uid
               }
@@ -128,7 +129,7 @@ function CrearEtiqueta () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Crear etiqueta
               </button>
-              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>

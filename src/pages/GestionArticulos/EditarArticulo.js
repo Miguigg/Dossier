@@ -183,7 +183,7 @@ function EditArticulo () {
               <button type='submit' className='btn btn-success w-100 mt-3'>
                 Editar articulo
               </button>
-              <a href='/home' className='btn btn-danger w-100 mt-3' role='button'>
+              <a href='/etiquetas' className='btn btn-danger w-100 mt-3' role='button'>
                 Cancelar
               </a>
             </form>
