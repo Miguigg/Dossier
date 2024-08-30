@@ -48,7 +48,9 @@ function AddAccesoDirecto () {
 
   const AñadirAccesoDirecto = e => {
     e.preventDefault()
+   
     if (validarAccesoDirecto(nombre, enlace)) {
+      
       onAuthStateChanged(auth, async user => {
         if (user) {
           const uid = user.uid

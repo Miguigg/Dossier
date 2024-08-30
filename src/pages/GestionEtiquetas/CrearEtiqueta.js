@@ -47,7 +47,7 @@ function CrearEtiqueta () {
 
   const crearEtiqueta = e => {
     e.preventDefault()
-    if (validacionEtiqueta) {
+    if (validacionEtiqueta(nombre, descripcion)) {
       onAuthStateChanged(auth, async user => {
         if (user) {
           const uid = user.uid

@@ -45,7 +45,7 @@ function EditarEtiqueta() {
 
     const EditarEtiqueta = async (e) => {
       e.preventDefault()
-      if(validacionEtiqueta){
+      if(validacionEtiqueta(nombre, descripcion)){
         const docRef = doc(exportFuncionesCuenta.db, "Etiquetas", data.idEtiqueta);
         await updateDoc(docRef, {
           nombre: nombre,

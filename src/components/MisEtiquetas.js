@@ -46,7 +46,7 @@ function MisEtiquetas (props) {
                   </td>
                   <td>
                     {item.flag === 'noEditable' ? (
-                      ''
+                     <div className='text-err'>Etiqueta no editable</div>
                     ) : (
                       <Link
                         to='/eliminar-etiqueta'

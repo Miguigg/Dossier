@@ -1,5 +1,5 @@
 function validacionEtiqueta(nombre, descripcion){
-    const reNombre = /^[a-zA-Z]+$/
+    const reNombre = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ0-9\s]+$/
     
     if(!reNombre.test(nombre)){
         document.getElementById("errNombreFormato").style.display = "block";

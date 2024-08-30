@@ -22,7 +22,7 @@ function EliminarArticulo () {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate('/cuenta-usr');
+    navigate('/etiquetas');
   };
 
   const location = useLocation();

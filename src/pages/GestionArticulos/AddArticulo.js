@@ -91,7 +91,7 @@ function AddArticulo() {
 
     const AñadirArticulo = (e) => {
       e.preventDefault();
-      if(validarArticulo(nombre, enlace, etiquetaSeleccionada)){
+      if(validarArticulo(nombre, enlace,etiquetaSeleccionada,descripcion)){
         onAuthStateChanged(auth, async user => {
           if (user) {
             const uid = user.uid

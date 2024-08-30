@@ -24,7 +24,7 @@ function EliminarCuenta () {
   const [show, setShow] = useState(false)
   const [showErr, setShowErr] = useState('')
   const handleShow = () => setShow(true)
-  const handleShowErr = () => setShowErr()
+  const handleShowErr = () => setShowErr(true)
 
   const handleShowAlert = () => {
     handleShow()
@@ -69,8 +69,6 @@ function EliminarCuenta () {
       .catch(error => {
         handleShowAlert()
       })
-      handleRedirect()
-      window.location.reload();
   }
 
   const accionEliminar = e => {
@@ -86,6 +84,7 @@ function EliminarCuenta () {
         if (docSnap.exists()) {
           if (encrypt(contraseña) === docSnap.data().contraseña) {
             handleCloseErr()
+            
             const q = query(
               collection(exportFuncionesCuenta.db, 'Etiquetas'),
               where('idUsuario', '==', uid)
@@ -152,11 +151,12 @@ function EliminarCuenta () {
             .catch(error => {
               handleShowAlert()
             })
+            eliminarUsuario()
+            window.location.reload();
           }else{
             handleShowErrAlert()
           }
         }
-        eliminarUsuario()
       } else {
         handleShowAlert()
       }
@@ -211,7 +211,7 @@ function EliminarCuenta () {
           <ComponenteModal
             show={show}
             handleClose={handleClose}
-            msg='Tenemos problemas para contactar con el servidor, intentalo más tarde'
+            msg='Tenemos problemas para contactar con el servidor, cierre sesión y vuelva iniciarla antes de intentarlo de nuevo'
           />
           <ComponenteModal
             show={showErr}
