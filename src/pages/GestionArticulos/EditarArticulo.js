@@ -48,7 +48,6 @@ function EditArticulo () {
     e.preventDefault()
 
     if (validarArticulo(nombre,enlace,etiquetaSeleccionada,descripcion)) {
-      console.log(nombre)
       const docRef = doc(exportFuncionesCuenta.db, "Articulos", data.idArticulo);
       await updateDoc(docRef, {
         nombre: nombre,

@@ -70,7 +70,6 @@ function CuentaUsr () {
     onAuthStateChanged(auth, async user => {
       if (user) {
         const uid = user.uid
-        console.log(uid)
         const docRef = doc(exportFuncionesCuenta.db, "usuarios", uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {

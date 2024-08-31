@@ -24,7 +24,7 @@ function TestIntegridad () {
   const ejecutarTest = e => {
     e.preventDefault()
     if (validarEnlaceNoticia(enlace)) {
-      console.log('aaaaa')
+
     }
   }
 

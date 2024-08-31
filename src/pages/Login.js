@@ -48,7 +48,6 @@ function Login() {
       })
       .catch((error) => {
         const errorCode = error.code
-        console.log(errorCode)
         if(errorCode === "auth/id-token-expired"){
           document.getElementById("errSesion").style.display = "block";
         }else{

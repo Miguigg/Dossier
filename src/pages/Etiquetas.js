@@ -68,7 +68,6 @@ function Etiquetas () {
             tmpLista = doc.data()
           })
           setIdEtiquetaSeleccionada(tmpLista.idEtiqueta)
-          console.log(idEtiquetaSeleccionada)
           setNombreEtiquetaSeleccionada(tmpLista.nombre)
           tmpLista = ''
           handleClose()
