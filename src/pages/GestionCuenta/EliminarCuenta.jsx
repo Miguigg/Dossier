@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { getAuth, onAuthStateChanged, deleteUser } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
 import {
   collection,
   query,
@@ -20,7 +19,6 @@ import exportFuncionesCuenta from '../../utils/firebase'
 function EliminarCuenta () {
   const [contraseña, setContraseña] = useState('')
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
-  const navigate = useNavigate()
   const [show, setShow] = useState(false)
   const [showErr, setShowErr] = useState('')
   const handleShow = () => setShow(true)
@@ -40,10 +38,6 @@ function EliminarCuenta () {
 
   const handleCloseErr = () =>{
     setShowErr(false)
-  }
-
-  const handleRedirect = () => {
-    navigate('/home')
   }
 
   useEffect(() => {
