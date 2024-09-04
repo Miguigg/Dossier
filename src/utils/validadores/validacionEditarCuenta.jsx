@@ -1,4 +1,4 @@
-function validarEditarCuenta(nombre,apellidos,email,passwd,repPasswd){
+function validarEditarCuenta(nombre,apellidos,passwd,repPasswd){
     //acepta vacio porque si no lleva nada, no hay cambios
     const reNombre = /^[a-zA-Z]*$/
     

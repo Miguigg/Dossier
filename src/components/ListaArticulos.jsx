@@ -68,6 +68,7 @@ function ListaArticulos (props) {
             <div>
               {listaArticulos.map(item => (
                 <a
+                data-testid={item.idArticulo}
                   key={item.idArticulo}
                   href={item.enlace}
                   className='list-group-item list-group-item-action'

@@ -7,20 +7,26 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.26.1",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "crypto-js": "^4.2.0",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.3.0",
+    "jsdom": "^25.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.3.1",
     "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
+    "vitest": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

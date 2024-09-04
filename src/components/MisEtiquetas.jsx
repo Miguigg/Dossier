@@ -34,7 +34,7 @@ function MisEtiquetas (props) {
             </thead>
             <tbody>
               {props.etiquetas.map(item => (
-                <tr key={item.id}>
+                <tr data-testid={item.idEtiqueta} key={item.id}>
                   <td>
                     <Link
                       to='/etiquetas'

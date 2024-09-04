@@ -34,7 +34,7 @@ function ListaFavs (props) {
             </thead>
             <tbody>
               {props.accesos.map(item => (
-                <tr key={item.idAcceso}>
+                <tr data-testid={item.idAcceso} key={item.idAcceso}>
                   <td>
                     <a type='button' href={item.enlace} className='btn btn-info'>
                       {item.nombre}

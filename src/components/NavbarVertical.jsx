@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import '../css/landing.css'
 
 function VerticalNav (props) {
-
   function refreshPage() {
     window.location.reload(false);
   }
@@ -22,7 +21,7 @@ function VerticalNav (props) {
           <div className='container-fluid gradient-bg-landing'>
             <ul className='navbar-nav'>
             {props.listaEtiquetas.map(item => (
-              <li className='nav-item' key={item.idEtiqueta}>
+              <li className='nav-item' data-testid={item.idEtiqueta} key={item.idEtiqueta}>
                 <Link
                     to="/etiquetas"
                     state={item.idEtiqueta}
