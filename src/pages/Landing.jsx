@@ -1,15 +1,23 @@
 import '../css/login.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/landing.css'
-
+import "../utils/i18n"
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 function Landing(){
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+    }, [])
+
     return(
         <div className="App mt-2 container-react">
             <div>
             <header className="gradient-bg-landing text-white text-center py-5 ms-3 me-3 rounded-4">
                 <div className="container">
-                <h1 className='text-black'>Bienvenida/o a Dossier</h1>
+                <h1 className='text-black'>{t("welcome")}</h1>
                 </div>
             </header>
     
