@@ -51,14 +51,14 @@ function NoticiasLista(){
     case 'elDiario':
       content = newsDataElDiario.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={9} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3 card-title fs-2">  {newsData.title}</Card.Title>
+                <Card.Title className="my-2 card-title fs-2"><b>{newsData.title}</b></Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 
-                  <Card.Text className='text-body-secondary fs-5'>
+                  <Card.Text className='text-body-secondary fs-6'>
                     {newsData.description}
                   </Card.Text>
                 </Card.Body>
@@ -71,14 +71,14 @@ function NoticiasLista(){
     case 'El Mundo':
       content = newsDataElMundo.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={9} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3">  {newsData.title}</Card.Title>
+                <Card.Title className="my-3 card-title fs-2"><b>{newsData.title}</b></Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 
-                  <Card.Text>
+                  <Card.Text className='text-body-secondary fs-6'>
                     {newsData.description}
                   </Card.Text>
                 </Card.Body>
@@ -91,14 +91,14 @@ function NoticiasLista(){
     case 'europaPress':
       content = newsDataEuropaPress.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={9} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3 ">  {newsData.title}</Card.Title>
+                <Card.Title className="my-3 card-title fs-2"><b>{newsData.title}</b></Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 
-                  <Card.Text>
+                  <Card.Text className='text-body-secondary fs-6'>
                     {newsData.description}
                   </Card.Text>
                 </Card.Body>
