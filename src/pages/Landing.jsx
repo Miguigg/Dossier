@@ -23,7 +23,7 @@ function Landing(){
     
             <section id="features" className="py-5">
                 <div className="container">
-                <h2 className="text-center">Caracteristicas</h2>
+                <h2 className="text-center">{t("caracteristicas")}</h2>
                 <div className="row mt-4">
                     <div className="col-md-4">
                     <div className="card text-black">
@@ -62,7 +62,7 @@ function Landing(){
     
             <footer className="text-black text-center py-4 footer gradient-bg-landing">
                 <div className="container">
-                <p>&copy; 2024 Our Website. All rights reserved.</p>
+                <p>&copy; {t("derechos")}</p>
                 </div>
             </footer>
             </div>

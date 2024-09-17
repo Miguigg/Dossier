@@ -7,12 +7,16 @@ i18n.use(initReactI18next).init({
     resources:{
         en: {
             translation: {
-                welcome: "Welcome to Dossier"
+                welcome: "Welcome to Dossier",
+                caracteristicas: "features",
+                derechos:"2024 Our Website. All rights reserved.",
             },
         },
         es: {
             translation: {
-                welcome: "Bienvenida/o a Dossier"
+                welcome: "Bienvenida/o a Dossier",
+                caracteristicas: "Características",
+                derechos:"2024 Derechos reservados",
             },
         },
     }
