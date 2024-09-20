@@ -93,7 +93,7 @@ function Login() {
   return (
     <div className="container">
       <div className="login-container gradient-bg-landing">
-        <h2 className="text-center text-color">Login</h2>
+        <h2 className="text-center text-color">{t("login")}</h2>
         <form onSubmit={signIn}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label mt-2 text-color">{t("email")}</label>

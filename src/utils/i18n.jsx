@@ -52,6 +52,7 @@ i18n.use(initReactI18next).init({
                 nosotros:"Sobre nosotros",
                 about:"Proyecto desarrollado para el TFM del máster en Ingeniería informática (MEI)",
                 //Login
+                login:"Login",
                 email:"Dirección de correo",
                 emailErr:"*Debes introducir un email válido 'miguel@gmail.com'",
                 contraseña:"Contraseña",
@@ -68,7 +69,15 @@ i18n.use(initReactI18next).init({
                 cerrar_sesion:"Cerrar sesión",
                 mi_cuenta:"Mi Cuenta",
                 mis_etq:"Mis Etiquetas",
-                test_int:"Test de integridad"
+                test_int:"Test de integridad",
+                //Registro
+                nombre:"Nombre",
+                errNombreFormato:"*Debes introducir un nombre con solo carácteres",
+                apellidos:"Apellidos",
+                errApellidos:"*Debes introducir unos apellidos con solo carácteres",
+                errEmailExiste:"*El Email ya existe en la base de datos",
+                errFormatPass:"*La contraseña debe tener 1 mayúscula, 1 minuscula, 1 número, 1 simbolo y entre 8 y 12 carácteres",
+                repPass:"Repetir contraseña"
             },
         },
     }
