@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 import { auth } from '../utils/firebase';
 import { signInWithEmailAndPassword , sendEmailVerification  } from "firebase/auth";
@@ -16,6 +18,12 @@ function Login() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const handleShow = () => setShow(true);
+  
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   const handleShowAlert = () => {
     handleShow()
@@ -88,40 +96,37 @@ function Login() {
         <h2 className="text-center text-color">Login</h2>
         <form onSubmit={signIn}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label mt-2 text-color">Dirección de correo</label>
+            <label htmlFor="email" className="form-label mt-2 text-color">{t("email")}</label>
             <input type="email" className="form-control" value={email} onChange={(e)=> setEmail(e.target.value)} id="email" placeholder="Enter your email" />
             <div id="errEmail" style={{display: "none", color: "red"}}>
-            *Debes introducir un email válido "miguel@gmail.com"
+            {t("emailErr")}
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label text-color">Contraseña</label>
+            <label htmlFor="password" className="form-label text-color">{t("contraseña")}</label>
             <input type="password" className="form-control" value={passwd} id="password"  onChange={(e)=> setPasswd(e.target.value)} placeholder="Enter your password" />
             <div id="errCuenta" style={{display: "none", color: "red"}}>
-            *La contraseña o el email no coinciden con el de ninguna cuenta
+            {t("contraseñaErr")}
             </div>
           </div>
           <div id='errSesion' style={{ display: 'none', color: 'red' }}>
-              <h1>La sesión ha expirado</h1>
+              <h1>{t("sesionErr")}</h1>
           </div>
           <div id='errInterno' style={{ display: 'none', color: 'red' }}>
-              *Tenemos problemas en el servido, intentalo más tarde
-          </div>
-          <div id='errInterno' style={{ display: 'none', color: 'red' }}>
-              *Tenemos problemas en el servido, intentalo más tarde
+              {t("errInterno")}
           </div>
           <div id='errUsuarioServidor' style={{ display: 'none', color: 'red' }}>
-              *Usuario desconocido
+              {t("usuarioDesc")}
           </div>
           <div id='errPeticiones' style={{ display: 'none', color: 'red' }}>
-              *Demasiadas peticiones, intentalo más tarde
+              {t("intentosErr")}
           </div>
           <button type="submit" className="btn btn-primary w-100 mt-3 text-color">Login</button>
         </form>
         <br></br>
-        <p><a href="/recuperar-contrasenha">Recuperar contraseña</a></p>
+        <p><a href="/recuperar-contrasenha">{t("recConstra")}</a></p>
       </div>
-      <ComponenteModal show={show} handleClose={handleClose} msg="Debes confirmar el correo electronico en el mensaje que acabamos de enviar" />
+      <ComponenteModal show={show} handleClose={handleClose} msg={t("confirmarCorreo")} />
     </div>
   );
 }

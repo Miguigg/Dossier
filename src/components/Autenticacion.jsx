@@ -4,10 +4,16 @@ import { auth } from '../utils/firebase';
 import {  Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 const Autenticacion = () => {
     const [usuarioAutenticado, setUsuarioAutenticado] = useState("");
     const navigate = useNavigate()
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+    }, [])
 
     const handleRedirect = () => {
       navigate('/home')
@@ -35,16 +41,16 @@ const Autenticacion = () => {
         {usuarioAutenticado === null ?
             <>
                 <Nav.Link as={Link} to="/login"><b className='text-white'>Login</b></Nav.Link>
-                <Nav.Link as={Link} to="/registro"><b className='text-white'>Registro</b></Nav.Link>
-                <Nav.Link as={Link} to="/utlimas-noticias"><b className='text-white'>Últimas noticias</b></Nav.Link>
+                <Nav.Link as={Link} to="/registro"><b className='text-white'>{t("registro")}</b></Nav.Link>
+                <Nav.Link as={Link} to="/utlimas-noticias"><b className='text-white'>{t("noticias")}</b></Nav.Link>
             </>
             :
             <>
-                <Nav.Link as={Link} onClick={userSignOut} to="/home"><b className='text-white'>Cerrar Sesión</b></Nav.Link>
-                <Nav.Link as={Link} to="/cuenta-usr"><b className="text-white">Mi cuenta</b></Nav.Link>
-                <Nav.Link as={Link} to="/etiquetas"><b className="text-white">Mis etiquetas</b></Nav.Link>
-                <Nav.Link as={Link} to="/utlimas-noticias"><b className='text-white'>Últimas noticias</b></Nav.Link>
-                <Nav.Link as={Link} to="/test-integridad"><b className='text-white'>Test integridad</b></Nav.Link>
+                <Nav.Link as={Link} onClick={userSignOut} to="/home"><b className='text-white'>{t("cerrar_sesion")}</b></Nav.Link>
+                <Nav.Link as={Link} to="/cuenta-usr"><b className="text-white">{t("mi_cuenta")}</b></Nav.Link>
+                <Nav.Link as={Link} to="/etiquetas"><b className="text-white">{t("mis_etq")}</b></Nav.Link>
+                <Nav.Link as={Link} to="/utlimas-noticias"><b className='text-white'>{t("noticias")}</b></Nav.Link>
+                <Nav.Link as={Link} to="/test-integridad"><b className='text-white'>{t("test_int")}</b></Nav.Link>
             </>
         }
         
