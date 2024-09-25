@@ -21,6 +21,7 @@ i18n.use(initReactI18next).init({
                 errSesionIniciada:"You must login to wiew this page",
                 ultimas_noticias:"Latest news",
                 correo_conf:"If the email is correct, you will receive an email to recover your password",
+                cancelar:"Cancel",
                 //Login
                 email:"Email address",
                 emailErr:"*You must enter a valid email 'miguel@gmail.com'",
@@ -47,11 +48,21 @@ i18n.use(initReactI18next).init({
                 err_et_select:"No tags selected",
                 et_seleccionada:"Selected Tag: ",
                 nombre_et:"Tag name",
+                err_nombre_etiqueta:"*You must enter a valid name for the label",
+                descripcion:"Description",
+                err_descripcion:"*Enter an appropriate description",
+                crear_et:"Create tag",
+                editar_et:"Editar etiqueta",
+                eliminar_et:"Delete tag",
                 //Cuenta usuario
                 accesos_directos:"My shortcuts",
                 medios_favs:"Here you can add shortcuts to your favorite media",
                 mis_datos:"My data",
-                extension:"Download extension"
+                extension:"Download extension",
+                edit_cuenta:"Edit account",
+                edit_usr:"Edit user",
+                eliminar_cuenta:"Delete account",
+                err_cont_inc:"Incorrect password"
             },
         },
         es: {
@@ -70,6 +81,7 @@ i18n.use(initReactI18next).init({
                 ultimas_noticias:"Últimas noticias",
                 errSesionIniciada:"Debes tener la sesión iniciada",
                 correo_conf:"Si el correo es correcto, recibirás un correo para recuperar la contraseña",
+                cancelar:"Cancelar",
                 //Login
                 login:"Login",
                 email:"Dirección de correo",
@@ -106,12 +118,21 @@ i18n.use(initReactI18next).init({
                 err_et_select:"No hay etiquetas seleccionadas",
                 et_seleccionada:"Etiqueta Seleccionada: ",
                 nombre_et:"Nombre etiqueta",
-
+                err_nombre_etiqueta:"*Debes introducir un nombre válido para la etiqueta",
+                descripcion:"Descripción",
+                err_descripcion:"*Introduce una descripción adecuada",
+                crear_et:"Crear etiqueta",
+                eliminar_et:"Eliminar etiqueta",
                 //Cuenta usuario
                 accesos_directos:"Mis accesos directos",
                 medios_favs:"Aquí puedes añadir accesos directos a tus medios favoritos",
                 mis_datos:"Mis datos",
                 extension:"Descargar extensión",
+                edit_cuenta:"Editar cuenta",
+                errFormatoContrasena:" *La contraseña debe tener 1 mayúscula, 1 minuscula, 1 número, 1 simbolo y entre 8 y 12 carácteres",
+                edit_usr:"Editar usuario",
+                eliminar_cuenta:"Eliminar cuenta",
+                err_cont_inc:"*La contraseña es incorrecta",
             },
         },
     }

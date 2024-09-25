@@ -15,6 +15,8 @@ import ComponenteModal from '../../components/ComponenteModal'
 import { auth } from '../../utils/firebase'
 import encrypt from '../../utils/validadores/encrypt'
 import exportFuncionesCuenta from '../../utils/firebase'
+import { useTranslation } from 'react-i18next';
+
 
 function EliminarCuenta () {
   const [contraseña, setContraseña] = useState('')
@@ -23,6 +25,11 @@ function EliminarCuenta () {
   const [showErr, setShowErr] = useState('')
   const handleShow = () => setShow(true)
   const handleShowErr = () => setShowErr(true)
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   const handleShowAlert = () => {
     handleShow()
@@ -161,16 +168,16 @@ function EliminarCuenta () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Eliminar cuenta</h2>
+            <h2 className='text-center text-color'>{t("eliminar_cuenta")}</h2>
             <form onSubmit={accionEliminar}>
               <div>
                 <div className='mb-3 mt-2'>
-                  <label className='form-label text-color'>Contraseña</label>
+                  <label className='form-label text-color'>{t("contraseña")}</label>
                   <input
                     type='password'
                     className='form-control'
@@ -180,24 +187,24 @@ function EliminarCuenta () {
                     onChange={e => setContraseña(e.target.value)}
                   />
                   <div id='errPass' style={{ display: 'none', color: 'red' }}>
-                    *La contraseña es incorrecta
+                    {t("err_cont_inc")}
                   </div>
                   <div
                     id='errInterno'
                     style={{ display: 'none', color: 'red' }}
                   >
-                    *Tenemos problemas en el servido, intentalo más tarde
+                    {t("errInterno")}
                   </div>
                 </div>
                 <button type='submit' className='btn btn-success w-100 mt-3'>
-                  Eliminar usuario
+                  {t("eliminar_cuenta")}
                 </button>
                 <a
                   href='/cuenta-usr'
                   className='btn btn-danger w-100 mt-3'
                   role='button'
                 >
-                  Cancelar
+                  {t("cancelar")}
                 </a>
               </div>
             </form>

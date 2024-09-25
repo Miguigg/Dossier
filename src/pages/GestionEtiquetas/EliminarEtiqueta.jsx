@@ -4,6 +4,7 @@ import { auth } from '../../utils/firebase'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { doc , deleteDoc, query, collection, where, getDocs } from "firebase/firestore";
 import exportFuncionesCuenta from '../../utils/firebase';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -20,6 +21,12 @@ function  EliminarEtiqueta() {
     const handleRedirect = () => {
       navigate('/cuenta-usr')
     }
+
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+    }, [])
 
     const data = location.state;
 
@@ -57,26 +64,26 @@ function  EliminarEtiqueta() {
       <>
         {usuarioAutenticado === null ? (
             <div className='p-5'>
-            <h1>Debes tener la sesión iniciada</h1>
+            <h1>{t("errSesionIniciada")}</h1>
             </div>
         ) : (
           <div className="container">
           <div className="login-container gradient-bg-landing">
-            <h2 className="text-center text-color">Eliminar etiqueta</h2>
+            <h2 className="text-center text-color">{t("eliminar_et")}</h2>
             <form onSubmit={eliminarEtiqueta}>
               <div className="mb-3">
-                <label className="form-label mt-2 text-color">Nombre Etiqueta</label>
+                <label className="form-label mt-2 text-color">{t("nombre_et")}</label>
                 <input type="text" className="form-control" value={data.nombre} id="nombre" disabled/>
               </div>
               <div className="mb-3">
-                <label htmlFor="password" className="form-label text-color">Descripcion</label>
+                <label htmlFor="password" className="form-label text-color">{t("descripcion")}</label>
                 <textarea className="form-control" value={data.descripcion} placeholder="Escribe una descripción" id="descripcion"  disabled></textarea>
               </div>
               <div id='errBack' style={{ display: 'none', color: 'red' }}>
-                *Tenemos problemas en el serivdor, intentalo más tarde
+                {t("errInterno")}
               </div>
-              <button type="submit" className="btn btn-success w-100 mt-3">Eliminar etiqueta</button>
-              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <button type="submit" className="btn btn-success w-100 mt-3">{t("eliminar_et")}</button>
+              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">{t("cancelar")}</a>
             </form>
           </div>
         </div>

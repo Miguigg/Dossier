@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import validacionEtiqueta from '../../utils/validadores/validacionEtiqueta';
 import { doc, updateDoc } from "firebase/firestore";
 import exportFuncionesCuenta from '../../utils/firebase';
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -24,6 +25,12 @@ function EditarEtiqueta() {
     }
 
     const data = location.state;
+
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+    }, [])
 
     useEffect(() => {
       setNombre(data.nombre)
@@ -59,29 +66,29 @@ function EditarEtiqueta() {
       <>
         {usuarioAutenticado === null ? (
             <div className='p-5'>
-            <h1>Debes tener la sesión iniciada</h1>
+            <h1>{t("errSesionIniciada")}</h1>
             </div>
         ) : (
           <div className="container">
           <div className="login-container gradient-bg-landing">
-            <h2 className="text-center text-color">Editar etiqueta</h2>
+            <h2 className="text-center text-color">{t("editar_et")}</h2>
             <form onSubmit={EditarEtiqueta}>
               <div className="mb-3">
-                <label className="form-label mt-2 text-color">Nombre Etiqueta</label>
+                <label className="form-label mt-2 text-color">{t("nombre_et")}</label>
                 <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" />
                 <div id="errNombreFormato" style={{display: "none", color: "red"}}>
-                *Debes introducir un nombre válido para la etiqueta
+                {t("err_nombre_etiqueta")}
                 </div>
               </div>
               <div className="mb-3">
-                <label className="form-label text-color">Descripcion</label>
+                <label className="form-label text-color">{t("descripcion")}</label>
                 <textarea className="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
                 <div id="errDescripcion" style={{display: "none", color: "red"}}>
-                *Introduce una descripcion adecuada
+                {t("err_descripcion")}
                 </div>
               </div>
-              <button type="submit" className="btn btn-success w-100 mt-3">Editar etiqueta</button>
-              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <button type="submit" className="btn btn-success w-100 mt-3">{t("editar_et")}</button>
+              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">{t("cancelar")}</a>
             </form>
           </div>
         </div>

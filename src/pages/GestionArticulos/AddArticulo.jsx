@@ -5,6 +5,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
 import { collection, query, where, getDocs , doc,  addDoc, updateDoc } from 'firebase/firestore'
 import ComponenteModal from '../../components/ComponenteModal';
+import { useTranslation } from 'react-i18next';
 
 import exportFuncionesCuenta from '../../utils/firebase';
 import validarArticulo from '../../utils/validadores/validadorArticulo';
@@ -22,6 +23,13 @@ function AddArticulo() {
     const [listaEtiquetas, setListaEtiquetas] = useState('')
     const [show, setShow] = useState(false);
     const handleShow = () => setShow(true);
+
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+    }, [])
+  
 
     let handleEtiquetaChange = (e) => {
       setEtiquetaSeleccionada(e.target.value)
@@ -129,18 +137,18 @@ function AddArticulo() {
       <>
             {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
           <div className="container">
           <div className="login-container gradient-bg-landing">
-            <h2 className="text-center text-color">Añadir articulo a una etiqueta</h2>
+            <h2 className="text-center text-color">{t("anhadir_art")}</h2>
             <form onSubmit={AñadirArticulo}>
               <div className="mb-3">
                 <label className="form-label mt-2 text-color">Nombre del articulo</label>
                 <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" />
                 <div id="errNombre" style={{display: "none", color: "red"}}>
-                *Debes introducir un nombre válido para el articulo
+                {t("err_nombre_art")}
                 </div>
               </div>
               <div>

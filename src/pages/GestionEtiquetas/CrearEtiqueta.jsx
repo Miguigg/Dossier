@@ -112,11 +112,11 @@ function CrearEtiqueta () {
                   id='errNombreFormato'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Debes introducir un nombre válido para la etiqueta
+                  {t("err_nombre_etiqueta")}
                 </div>
               </div>
               <div className='mb-3'>
-                <label className='form-label text-color'>Descripcion</label>
+                <label className='form-label text-color'>{t("descripcion")}</label>
                 <textarea
                   className='form-control'
                   value={descripcion}
@@ -128,21 +128,21 @@ function CrearEtiqueta () {
                   id='errDescripcion'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Introduce una descripcion adecuada
+                  {t("err_descripcion")}
                 </div>
                 <div id='errBack' style={{ display: 'none', color: 'red' }}>
-                  *Tenemos problemas con el servidor, intentalo más tarde
+                  {t("errInterno")}
                 </div>
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Crear etiqueta
+                {t("crear_et")}
               </button>
               <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
-                Cancelar
+                {t("cancelar")}
               </a>
             </form>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas en el servidor" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>
