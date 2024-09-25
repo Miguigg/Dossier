@@ -62,7 +62,10 @@ i18n.use(initReactI18next).init({
                 edit_cuenta:"Edit account",
                 edit_usr:"Edit user",
                 eliminar_cuenta:"Delete account",
-                err_cont_inc:"Incorrect password"
+                err_cont_inc:"Incorrect password",
+                //Articulos
+                anhadir_art:"Add an article to this tag",
+                err_nombre_art:"You must input a valid name for the article"
             },
         },
         es: {
@@ -133,6 +136,9 @@ i18n.use(initReactI18next).init({
                 edit_usr:"Editar usuario",
                 eliminar_cuenta:"Eliminar cuenta",
                 err_cont_inc:"*La contraseña es incorrecta",
+                //Articulos
+                anhadir_art:"Añadir artículo a una etiqueta",
+                err_nombre_art:"*Debes introducir un nombre válido para el artículo"
             },
         },
     }
