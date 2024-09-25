@@ -8,6 +8,7 @@ import MisEtiquetas from '../components/MisEtiquetas'
 import exportFuncionesCuenta from '../utils/firebase'
 import ComponenteModal from '../components/ComponenteModal'
 import { collection, query, where, getDocs , doc, getDoc } from 'firebase/firestore'
+import { useTranslation } from 'react-i18next';
 
 import '../css/landing.css'
 import '../css/login.css'
@@ -20,7 +21,12 @@ function CuentaUsr () {
   const [datosUsr , setDatosUsr] = useState('')
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
+  const {t, i18n} = useTranslation();
 
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+  
   const handleShowAlert = () => {
     handleShow()
   };
@@ -123,7 +129,7 @@ function CuentaUsr () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='p-5'>
@@ -131,13 +137,13 @@ function CuentaUsr () {
             <div className='row'>
               <div className='col text-color'>
                 <h2>
-                  Mis accesos directos
+                  {t("accesos_directos")}
                   <hr className='border border-primary border-3 opacity-75'></hr>
                 </h2>
                 <div className='container'>
                   <div className='login-container gradient-bg-landing'>
                     <p className='text-color'>
-                      Aquí puedes añadir accesos directos a tus medios favoritos
+                      {t("medios_favs")}
                     </p>
                     <ListaFavs accesos={listaAccesos}/>
                   </div>
@@ -145,7 +151,7 @@ function CuentaUsr () {
               </div>
               <div className='col text-color'>
                 <h2>
-                  Mis datos
+                  {t("mis_datos")}
                   <hr className='border border-primary border-3 opacity-75'></hr>
                 </h2>
                 <div className='container'>
@@ -156,7 +162,7 @@ function CuentaUsr () {
               </div>
               <div className='col text-color'>
                 <h2>
-                  Mis etiquetas
+                  {t("mis_etq")}
                   <hr className='border border-primary border-3 opacity-75'></hr>
                 </h2>
                 <div className='container'>
@@ -169,7 +175,7 @@ function CuentaUsr () {
             <div className='row'>
               <div className='col'>
                 <h2>
-                  Descargar extensión
+                  {t("extension")}
                   <hr className='border border-primary border-3 opacity-75'></hr>
                 </h2>
                 <div className='container'>
@@ -181,7 +187,7 @@ function CuentaUsr () {
                       <tbody>
                         <tr>
                           <td>
-                            <h1 className='text-black'>Descargar extensión</h1>
+                            <h1 className='text-black'>{t("extension")}</h1>
                           </td>
                           <td>
                             <svg
@@ -204,7 +210,7 @@ function CuentaUsr () {
               <div className='col'></div>
             </div>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas para contactar con el servidor, intentalo más tarde" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>

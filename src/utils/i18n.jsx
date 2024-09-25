@@ -18,6 +18,9 @@ i18n.use(initReactI18next).init({
                 organiza_desc:"Create labels and organize the news you save into them",
                 nosotros:"About us",
                 about:"Project developed for the Master's Thesis in Computer Engineering (MEI)",
+                errSesionIniciada:"You must login to wiew this page",
+                ultimas_noticias:"Latest news",
+                correo_conf:"If the email is correct, you will receive an email to recover your password",
                 //Login
                 email:"Email address",
                 emailErr:"*You must enter a valid email 'miguel@gmail.com'",
@@ -35,7 +38,20 @@ i18n.use(initReactI18next).init({
                 cerrar_sesion:"Log out",
                 mi_cuenta:"My Account",
                 mis_etq:"My Tags",
-                test_int:"Integrity test"
+                test_int:"Integrity test",
+                //Test integridad
+                int_enlace:"Enter the link here",
+                inspec_articulo:"Inspect article",
+                err_link:"*You must enter a valid link",
+                //Etiquetas
+                err_et_select:"No tags selected",
+                et_seleccionada:"Selected Tag: ",
+                nombre_et:"Tag name",
+                //Cuenta usuario
+                accesos_directos:"My shortcuts",
+                medios_favs:"Here you can add shortcuts to your favorite media",
+                mis_datos:"My data",
+                extension:"Download extension"
             },
         },
         es: {
@@ -51,6 +67,9 @@ i18n.use(initReactI18next).init({
                 organiza_desc:"Crea etiquetas y organiza en ellas las noticias que guardes",
                 nosotros:"Sobre nosotros",
                 about:"Proyecto desarrollado para el TFM del máster en Ingeniería informática (MEI)",
+                ultimas_noticias:"Últimas noticias",
+                errSesionIniciada:"Debes tener la sesión iniciada",
+                correo_conf:"Si el correo es correcto, recibirás un correo para recuperar la contraseña",
                 //Login
                 login:"Login",
                 email:"Dirección de correo",
@@ -77,7 +96,22 @@ i18n.use(initReactI18next).init({
                 errApellidos:"*Debes introducir unos apellidos con solo carácteres",
                 errEmailExiste:"*El Email ya existe en la base de datos",
                 errFormatPass:"*La contraseña debe tener 1 mayúscula, 1 minuscula, 1 número, 1 simbolo y entre 8 y 12 carácteres",
-                repPass:"Repetir contraseña"
+                repPass:"Repetir contraseña",
+                errPassIgual:"*Las contraseñas tiene que ser iguales",
+                //Test integridad
+                int_enlace:"Introduce aquí el enlace",
+                inspec_articulo:"Inspeccionar artículo",
+                err_link:"*Debes introducir un enlace válido",
+                //Etiquetas
+                err_et_select:"No hay etiquetas seleccionadas",
+                et_seleccionada:"Etiqueta Seleccionada: ",
+                nombre_et:"Nombre etiqueta",
+
+                //Cuenta usuario
+                accesos_directos:"Mis accesos directos",
+                medios_favs:"Aquí puedes añadir accesos directos a tus medios favoritos",
+                mis_datos:"Mis datos",
+                extension:"Descargar extensión",
             },
         },
     }

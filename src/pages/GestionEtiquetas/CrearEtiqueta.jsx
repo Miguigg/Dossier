@@ -7,6 +7,7 @@ import { auth } from '../../utils/firebase'
 import { collection, addDoc, updateDoc , doc } from 'firebase/firestore'
 import exportFuncionesCuenta from '../../utils/firebase'
 import ComponenteModal from '../../components/ComponenteModal'
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -19,6 +20,13 @@ function CrearEtiqueta () {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+  
+
   const handleShowAlert = () => {
     handleShow()
   };
@@ -81,7 +89,7 @@ function CrearEtiqueta () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
@@ -90,7 +98,7 @@ function CrearEtiqueta () {
             <form onSubmit={crearEtiqueta}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
-                  Nombre Etiqueta
+                  {t("nombre_et")}
                 </label>
                 <input
                   type='text'

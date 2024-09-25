@@ -62,7 +62,7 @@ function RecuerarPass(){
             <button type="submit" className="btn btn-primary w-100 mt-3 text-color">{t("recConstra")}</button>
           </form>
         </div>
-        <ComponenteModal show={show} handleClose={handleClose} msg="Si el correo es correcto, recibirás un correo para recuperar la contraseña" />
+        <ComponenteModal show={show} handleClose={handleClose} msg={t("correo_conf")} />
       </div>
     );
 }

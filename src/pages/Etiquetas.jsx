@@ -8,6 +8,7 @@ import exportFuncionesCuenta from '../utils/firebase'
 import ComponenteModal from '../components/ComponenteModal'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 function Etiquetas () {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
@@ -18,6 +19,11 @@ function Etiquetas () {
   const handleShow = () => setShow(true)
   const [show, setShow] = useState(false)
   const location = useLocation()
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   const handleShowAlert = () => {
     handleShow()
@@ -123,17 +129,17 @@ function Etiquetas () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container text-center'>
           {idEtiquetaSeleccionada === '' ? (
             <div className='p-5'>
-              <h1>No hay etiquetas seleccionadas</h1>
+              <h1>{t("err_et_select")}</h1>
             </div>
           ) : (
             <div>
-              <h2 className='mt-5'>Etiqueta Seleccionada:  {nombreEtiquetaSeleccionada}</h2>
+              <h2 className='mt-5'>{t("et_seleccionada")}  {nombreEtiquetaSeleccionada}</h2>
               <div className='row'>
                 <div className='col-sm-4'>
                   <VerticalNav listaEtiquetas={listaEtiquetas} />
@@ -147,7 +153,7 @@ function Etiquetas () {
           <ComponenteModal
             show={show}
             handleClose={handleClose}
-            msg='Tenemos problemas para contactar con el servidor, intentalo más tarde'
+            msg={t("errInterno")}
           />
         </div>
       )}
