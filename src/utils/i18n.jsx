@@ -64,8 +64,13 @@ i18n.use(initReactI18next).init({
                 eliminar_cuenta:"Delete account",
                 err_cont_inc:"Incorrect password",
                 //Articulos
-                anhadir_art:"Add an article to this tag",
-                err_nombre_art:"You must input a valid name for the article"
+                anhadir_art:"Add an article",
+                err_nombre_art:"You must input a valid name for the article",
+                art_nombre:"Article name",
+                selecciona_etq:"Select a tag",
+                err_etq_disp:"*There are no avaliable tags",
+                err_select_etq:"*Select a valid tag",
+                enlace:"Link"
             },
         },
         es: {
@@ -137,8 +142,14 @@ i18n.use(initReactI18next).init({
                 eliminar_cuenta:"Eliminar cuenta",
                 err_cont_inc:"*La contraseña es incorrecta",
                 //Articulos
-                anhadir_art:"Añadir artículo a una etiqueta",
-                err_nombre_art:"*Debes introducir un nombre válido para el artículo"
+                anhadir_art:"Añadir artículo",
+                err_nombre_art:"*Debes introducir un nombre válido para el artículo",
+                art_nombre:"Nombre del artículo",
+                selecciona_etq:"Selecciona la etiqueta",
+                err_etq_disp:"*No tienes etiquetas disponibles",
+                err_select_etq:"*Selecciona una etiqueta correcta",
+                enlace:"Link",
+                
             },
         },
     }
