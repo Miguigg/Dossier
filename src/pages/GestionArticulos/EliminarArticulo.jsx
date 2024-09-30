@@ -5,6 +5,7 @@ import exportFuncionesCuenta from '../../utils/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../utils/firebase'
 import ComponenteModal from '../../components/ComponenteModal'
+import { useTranslation } from 'react-i18next';
 
 
 import '../../css/landing.css'
@@ -27,7 +28,12 @@ function EliminarArticulo () {
 
   const location = useLocation();
   const data = location.state;
-  
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+
   const handleShowAlert = () => {
     handleShow()
   };
@@ -90,7 +96,7 @@ function EliminarArticulo () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
@@ -99,7 +105,7 @@ function EliminarArticulo () {
             <form onSubmit={EliminarArticulo}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
-                  Nombre del articulo
+                  {t("art_nombre")}
                 </label>
                 <input
                   type='text'
@@ -111,12 +117,12 @@ function EliminarArticulo () {
                   disabled
                 />
                 <div id='errEmail' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un nombre válido para la etiqueta
+                  {t("err_nombre_art")}
                 </div>
               </div>
               <div>
                 <label className='form-label mt-2 text-color'>
-                  Selecciona etiqueta
+                  {t("selecciona_etq")}
                 </label>
                 <label className='form-label mt-2 text-color'>Enlace</label>
                 <input
@@ -129,7 +135,7 @@ function EliminarArticulo () {
                   disabled
                 />
                 <div id='errSelect' style={{ display: 'none', color: 'red' }}>
-                  *Introduce una descripcion adecuada
+                  {t("err_etq_disp")}
                 </div>
               </div>
               <div className='mb-3'>
@@ -144,12 +150,12 @@ function EliminarArticulo () {
                   disabled
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un enlace válido
+                  {t("err_link")}
                 </div>
               </div>
               <div className='mb-3'>
                 <label htmlFor='password' className='form-label text-color'>
-                  Descripcion
+                  {t("descripcion")}
                 </label>
                 <textarea
                   className='form-control'
@@ -160,18 +166,18 @@ function EliminarArticulo () {
                   disabled
                 ></textarea>
                 <div id='errCuenta' style={{ display: 'none', color: 'red' }}>
-                  *Introduce una descripcion adecuada
+                  {t("err_descripcion")}
                 </div>
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Eliminar articulo
+                {t("eliminar_art")}
               </button>
               <a href='/etiquetas' className='btn btn-danger w-100 mt-3' role='button'>
-                Cancelar
+                {t("cancelar")}
               </a>
             </form>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas para contactar con el servidor, intentalo más tarde" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>

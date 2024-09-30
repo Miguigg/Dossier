@@ -70,7 +70,8 @@ i18n.use(initReactI18next).init({
                 selecciona_etq:"Select a tag",
                 err_etq_disp:"*There are no avaliable tags",
                 err_select_etq:"*Select a valid tag",
-                enlace:"Link"
+                enlace:"Link",
+                editar_art:"Edit article"
             },
         },
         es: {
@@ -149,6 +150,8 @@ i18n.use(initReactI18next).init({
                 err_etq_disp:"*No tienes etiquetas disponibles",
                 err_select_etq:"*Selecciona una etiqueta correcta",
                 enlace:"Link",
+                editar_art:"Editar artículo",
+                eliminar_art:"Eliminar artículo"
                 
             },
         },

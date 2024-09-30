@@ -6,6 +6,7 @@ import { collection, query, where, getDocs , doc, updateDoc } from 'firebase/fir
 import validarArticulo from '../../utils/validadores/validadorArticulo'
 import exportFuncionesCuenta from '../../utils/firebase'
 import ComponenteModal from '../../components/ComponenteModal'
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -27,6 +28,12 @@ function EditArticulo () {
   const location = useLocation();
 
   const data = location.state;
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   let handleEtiquetaChange = (e) => {
     setEtiquetaSeleccionada(e.target.value)
@@ -109,7 +116,7 @@ function EditArticulo () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
@@ -118,7 +125,7 @@ function EditArticulo () {
             <form onSubmit={EditarArticulo}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
-                  Nombre del articulo
+                  {t("art_nombre")}
                 </label>
                 <input
                   type='text'
@@ -126,26 +133,26 @@ function EditArticulo () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre etiqueta'
+                  placeholder='Nombre artículo'
                 />
                 <div id='errNombre' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un nombre válido para la etiqueta
+                  {t("err_nombre_art")}
                 </div>
               </div>
               <div>
-                  <label className="form-label mt-2 text-color">Selecciona etiqueta</label>
+                  <label className="form-label mt-2 text-color">{t("selecciona_etq")}</label>
                   {hasValues(listaEtiquetas) ? (
                   <select id="selectEtc" className="form-select form-select mb-3" onChange={handleEtiquetaChange}> 
-                    <option value="0"> -- Selecciona una etiqueta -- </option>  
+                    <option value="0"> -- {t("selecciona_etq")} -- </option>  
                     {listaEtiquetas.map((et) => <option key={et.idEtiqueta} value={et.idEtiqueta}>{et.nombre}</option>)}
                   </select>
                   ) : (
                     <div id="errSelect" style={{display: "block", color: "red"}}>
-                    *No tienes etiquetas disponibles
+                    {t("err_etq_disp")}
                     </div>
                   )}
                   <div id="errSelect" style={{display: "none", color: "red"}}>
-                  *Selecciona una etiqueta correcta
+                    {t("err_select_etq")}
                   </div>
               </div>
               <div className='mb-3'>
@@ -159,12 +166,12 @@ function EditArticulo () {
                   placeholder='Enlace'
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un enlace válido
+                  {t("err_link")}
                 </div>
               </div>
               <div className='mb-3'>
                 <label htmlFor='password' className='form-label text-color'>
-                  Descripcion
+                  {t("descripcion")}
                 </label>
                 <textarea
                   className='form-control'
@@ -177,18 +184,18 @@ function EditArticulo () {
                   id='errDescripcion'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Introduce una descripcion adecuada
+                  {t("err_descripcion")}
                 </div>
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Editar articulo
+                {t("editar_art")}
               </button>
               <a href='/etiquetas' className='btn btn-danger w-100 mt-3' role='button'>
-                Cancelar
+                {t("cancelar")}
               </a>
             </form>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas para contactar con el servidor, intentalo más tarde" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>

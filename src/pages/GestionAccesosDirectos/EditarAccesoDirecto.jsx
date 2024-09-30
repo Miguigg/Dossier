@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { auth } from '../../utils/firebase'
 import exportFuncionesCuenta from '../../utils/firebase';
 import { doc, updateDoc } from "firebase/firestore";
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -19,6 +20,13 @@ function EditarAccesoDirecto() {
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state;
+
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+          i18n.changeLanguage(navigator.language)
+    }, [])
+    
 
     useEffect(() => {
       setNombre(data.nombre)
