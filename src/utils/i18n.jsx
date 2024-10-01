@@ -71,7 +71,14 @@ i18n.use(initReactI18next).init({
                 err_etq_disp:"*There are no avaliable tags",
                 err_select_etq:"*Select a valid tag",
                 enlace:"Link",
-                editar_art:"Edit article"
+                editar_art:"Edit article",
+                eliminar_art:"Delete article",
+                //Accesos directos
+                anhadir_accesos:"Add shortcut",
+                nombre_acceso_dir:"Shortcut Name",
+                nombre_acceso_valido:"*You must enter a valid name for the item, letters only",
+                edit_acceso:"Edit shortcut",
+                eliminar_acceso:"Delete shortcut"
             },
         },
         es: {
@@ -151,8 +158,13 @@ i18n.use(initReactI18next).init({
                 err_select_etq:"*Selecciona una etiqueta correcta",
                 enlace:"Link",
                 editar_art:"Editar artículo",
-                eliminar_art:"Eliminar artículo"
-                
+                eliminar_art:"Eliminar artículo",
+                //Accesos directos
+                anhadir_accesos:"Añadir acceso directo",
+                nombre_acceso_dir:"Nombre acceso directo",
+                nombre_acceso_valido:"*Debes introducir un nombre válido para el artículo, solo letras",
+                edit_acceso:"Editar acceso directo",
+                eliminar_acceso:"Eliminar acceso directo"                
             },
         },
     }
