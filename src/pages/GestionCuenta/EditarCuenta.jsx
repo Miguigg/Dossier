@@ -160,7 +160,7 @@ function EditarCuenta () {
                 {t("errInterno")}
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                {t("edit_usrs")}
+                {t("edit_usr")}
               </button>
               <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
                 {t("cancelar")}

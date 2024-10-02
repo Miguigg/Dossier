@@ -22,6 +22,7 @@ i18n.use(initReactI18next).init({
                 ultimas_noticias:"Latest news",
                 correo_conf:"If the email is correct, you will receive an email to recover your password",
                 cancelar:"Cancel",
+                opciones:"Options",
                 //Login
                 email:"Email address",
                 emailErr:"*You must enter a valid email 'miguel@gmail.com'",
@@ -40,6 +41,15 @@ i18n.use(initReactI18next).init({
                 mi_cuenta:"My Account",
                 mis_etq:"My Tags",
                 test_int:"Integrity test",
+                //Registro
+                nombre:"Name",
+                errNombreFormato:"*You must enter a name with only characterson solo caracteres",
+                apellidos:"Lastname",
+                errApellidos:"*You must enter a surname with only characters",
+                errEmailExiste:"*The Email already exists in the database",
+                errFormatPass:"*The password must be 1 uppercase, 1 lowercase, 1 number, 1 symbol and between 8 and 12 characters",
+                repPass:"Repeat password",
+                errPassIgual:"*Passwords must be the same",
                 //Test integridad
                 int_enlace:"Enter the link here",
                 inspec_articulo:"Inspect article",
@@ -78,7 +88,8 @@ i18n.use(initReactI18next).init({
                 nombre_acceso_dir:"Shortcut Name",
                 nombre_acceso_valido:"*You must enter a valid name for the item, letters only",
                 edit_acceso:"Edit shortcut",
-                eliminar_acceso:"Delete shortcut"
+                eliminar_acceso:"Delete shortcut",
+                err_vacio_accesos:"No shortcuts to display",
             },
         },
         es: {
@@ -98,6 +109,7 @@ i18n.use(initReactI18next).init({
                 errSesionIniciada:"Debes tener la sesión iniciada",
                 correo_conf:"Si el correo es correcto, recibirás un correo para recuperar la contraseña",
                 cancelar:"Cancelar",
+                opciones:"Options",
                 //Login
                 login:"Login",
                 email:"Dirección de correo",

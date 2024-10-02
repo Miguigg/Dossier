@@ -51,10 +51,10 @@ function NoticiasLista(){
     case 'elDiario':
       content = newsDataElDiario.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={8} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3 card-title fs-2">  {newsData.title}</Card.Title>
+                <Card.Title className="my-3 card-title fs-2 fw-bolder mb-3">  {newsData.title}</Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 
@@ -71,10 +71,10 @@ function NoticiasLista(){
     case 'El Mundo':
       content = newsDataElMundo.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={8} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3">  {newsData.title}</Card.Title>
+                <Card.Title className="my-3 card-title fs-2 fw-bolder mb-3">  {newsData.title}</Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 
@@ -91,10 +91,10 @@ function NoticiasLista(){
     case 'europaPress':
       content = newsDataEuropaPress.map((newsData, index) =>
         <Row className="d-flex justify-content-center bg-light border-bottom" key={newsData.url}>
-          <Col xs={12} className="mt-5 w-500" key={index}>
+          <Col xs={8} className="mt-5 w-500" key={index}>
             <a target="_blank" href={newsData.url} rel="noreferrer">
               <Card >
-                <Card.Title className="my-3 ">  {newsData.title}</Card.Title>
+                <Card.Title className="my-3 card-title fs-2 fw-bolder mb-3">  {newsData.title}</Card.Title>
                 <Card.Img src={newsData.urlToImage} />
                 <Card.Body>
 

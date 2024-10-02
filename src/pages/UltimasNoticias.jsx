@@ -11,7 +11,7 @@ function UltimasNoticias(){
     }, [])
 
     return(
-        <div>
+        <div className="mt-5">
             <h2>{t("ultimas_noticias")}<hr className="border border-primary border-3 opacity-75"></hr></h2>
             <div className="container"><NoticiasLista/></div>
 
