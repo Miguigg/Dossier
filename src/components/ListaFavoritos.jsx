@@ -2,29 +2,26 @@ import { Link } from 'react-router-dom'
 
 import '../css/CuentaUsr.css'
 import '../css/comun.css'
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react'
 
 function ListaFavs (props) {
-
-  const {t, i18n} = useTranslation();
-
-  useEffect(() => {
-      i18n.changeLanguage(navigator.language)
-  }, [])
-
+  const t = props.t
   return (
     <>
+      <h2 className='text-dark'>
+        {t('accesos_directos')}
+        <hr className='border border-primary border-3 opacity-75'></hr>
+      </h2>
+      <p className='text-color'>{t('medios_favs')}</p>
       {props.accesos.length < 1 ? (
         <div className='text-err'>
-          <h1>{t("err_vacio_accesos")}</h1>
+          <h1>{t('err_vacio_accesos')}</h1>
           <div className='p-4'>
             <a
               href='/crear-acceso-directo'
               className='btn btn-success w-100 mt-3'
               role='button'
             >
-              {t("anhadir_accesos")}
+              {t('anhadir_accesos')}
             </a>
           </div>
         </div>
@@ -34,10 +31,10 @@ function ListaFavs (props) {
             <thead>
               <tr>
                 <th scope='col' className='text-color'>
-                  {t("nombre_acceso_dir")}
+                  {t('nombre_acceso_dir')}
                 </th>
                 <th scope='col' className='text-color'>
-                  {t("opciones")}
+                  {t('opciones')}
                 </th>
               </tr>
             </thead>
@@ -45,7 +42,11 @@ function ListaFavs (props) {
               {props.accesos.map(item => (
                 <tr data-testid={item.idAcceso} key={item.idAcceso}>
                   <td>
-                    <a type='button' href={item.enlace} className='btn btn-info'>
+                    <a
+                      type='button'
+                      href={item.enlace}
+                      className='btn btn-info'
+                    >
                       {item.nombre}
                     </a>
                   </td>
@@ -95,7 +96,7 @@ function ListaFavs (props) {
               className='btn btn-success w-100 mt-3'
               role='button'
             >
-              {t("anhadir_accesos")}
+              {t('anhadir_accesos')}
             </a>
           </div>
         </div>

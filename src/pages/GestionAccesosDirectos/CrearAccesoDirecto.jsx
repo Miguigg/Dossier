@@ -112,7 +112,7 @@ function AddAccesoDirecto () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre'
+                  placeholder={t("nombre_acceso_dir")}
                 />
                 <div id='errNombre' style={{ display: 'none', color: 'red' }}>
                   {t("nombre_acceso_valido")}
@@ -127,7 +127,7 @@ function AddAccesoDirecto () {
                   value={enlace}
                   onChange={e => setEnlace(e.target.value)}
                   id='enlace'
-                  placeholder='Enlace'
+                  placeholder={t("enlace")}
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
                   {t("err_link")}

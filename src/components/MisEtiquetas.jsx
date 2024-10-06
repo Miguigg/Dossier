@@ -4,18 +4,23 @@ import '../css/CuentaUsr.css'
 import '../css/comun.css'
 
 function MisEtiquetas (props) {
+  const t = props.t
   return (
     <>
+      <h2 className='text-dark'>
+        {t('mis_etq')}
+        <hr className='border border-primary border-3 opacity-75'></hr>
+      </h2>
       {props.etiquetas.length < 1 ? (
         <div className='text-err'>
-          <h1>No hay etiquetas que mostrar</h1>
+          <h1>{t('err_et_vacias')}</h1>
           <div className='p-4'>
             <a
               href='/crear-etiqueta'
               className='btn btn-success w-100 mt-3'
               role='button'
             >
-              Añadir etiqueta
+              {t('mis_et')}
             </a>
           </div>
         </div>
@@ -25,10 +30,10 @@ function MisEtiquetas (props) {
             <thead>
               <tr>
                 <th scope='col' className='text-color'>
-                  Nombre Etiqueta
+                  {t('nombre_et')}
                 </th>
                 <th scope='col' className='text-color'>
-                  Opciones
+                  {t('opciones')}
                 </th>
               </tr>
             </thead>
@@ -46,7 +51,7 @@ function MisEtiquetas (props) {
                   </td>
                   <td>
                     {item.flag === 'noEditable' ? (
-                     <div className='text-err'>Etiqueta no editable</div>
+                      <div className='text-err'>{t('et_no_edit')}</div>
                     ) : (
                       <Link
                         to='/eliminar-etiqueta'
@@ -98,7 +103,7 @@ function MisEtiquetas (props) {
               className='btn btn-success w-100 mt-3'
               role='button'
             >
-              Añadir etiqueta
+              {t('add_et')}
             </a>
           </div>
         </div>

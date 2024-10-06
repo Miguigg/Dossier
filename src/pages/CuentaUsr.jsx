@@ -26,7 +26,8 @@ function CuentaUsr () {
   useEffect(() => {
       i18n.changeLanguage(navigator.language)
   }, [])
-  
+
+
   const handleShowAlert = () => {
     handleShow()
   };
@@ -136,48 +137,29 @@ function CuentaUsr () {
           <div className='container text-center'>
             <div className='row'>
               <div className='col text-color'>
-                <h2>
-                  {t("accesos_directos")}
-                  <hr className='border border-primary border-3 opacity-75'></hr>
-                </h2>
                 <div className='container'>
                   <div className='login-container gradient-bg-landing'>
-                    <p className='text-color'>
-                      {t("medios_favs")}
-                    </p>
-                    <ListaFavs accesos={listaAccesos}/>
+                    <ListaFavs accesos={listaAccesos} t={t}/>
                   </div>
                 </div>
               </div>
               <div className='col text-color'>
-                <h2>
-                  {t("mis_datos")}
-                  <hr className='border border-primary border-3 opacity-75'></hr>
-                </h2>
                 <div className='container'>
                   <div className='login-container gradient-bg-landing'>
-                    <MisDatos datosUsr={datosUsr} />
+                    <MisDatos datosUsr={datosUsr} t={t}/>
                   </div>
                 </div>
               </div>
               <div className='col text-color'>
-                <h2>
-                  {t("mis_etq")}
-                  <hr className='border border-primary border-3 opacity-75'></hr>
-                </h2>
                 <div className='container'>
                   <div className='login-container gradient-bg-landing'>
-                    <MisEtiquetas etiquetas={listaEtiquetas} />
+                    <MisEtiquetas etiquetas={listaEtiquetas} t={t}/>
                   </div>
                 </div>
               </div>
             </div>
             <div className='row'>
               <div className='col'>
-                <h2>
-                  {t("extension")}
-                  <hr className='border border-primary border-3 opacity-75'></hr>
-                </h2>
                 <div className='container'>
                   <div className='login-container gradient-bg-landing'>
                     <table>

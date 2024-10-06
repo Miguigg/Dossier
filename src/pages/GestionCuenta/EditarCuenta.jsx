@@ -99,7 +99,7 @@ function EditarCuenta () {
                 <input
                   className='form-control'
                   id='nombre'
-                  placeholder='Nombre'
+                  placeholder={t("nombre")}
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                 />
@@ -115,7 +115,7 @@ function EditarCuenta () {
                 <input
                   className='form-control'
                   id='apellidos'
-                  placeholder='Apellidos'
+                  placeholder={t("apellidos")}
                   value={apellidos}
                   onChange={e => setApellidos(e.target.value)}
                 />
@@ -133,7 +133,7 @@ function EditarCuenta () {
                   value={passwd}
                   id='password'
                   onChange={e => setPasswd(e.target.value)}
-                  placeholder='Contraseña'
+                  placeholder={t("contraseña")}
                 />
                 <div id='errFormatPass' style={{ display: 'none', color: 'red' }}>
                   {t("errFormatoContrasena")}
@@ -150,7 +150,7 @@ function EditarCuenta () {
                   id='password'
                   value={repPasswd}
                   onChange={e => setRepPasswd(e.target.value)}
-                  placeholder='Repite la contraseña'
+                  placeholder={t("repPass")}
                 />
               </div>
               <div id='errPassIgual' style={{ display: 'none', color: 'red' }}>

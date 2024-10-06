@@ -121,7 +121,7 @@ function EditArticulo () {
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Editar articulo</h2>
+            <h2 className='text-center text-color'>{t("editar_art")}</h2>
             <form onSubmit={EditarArticulo}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
@@ -133,7 +133,7 @@ function EditArticulo () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre artículo'
+                  placeholder={t("art_nombre")}
                 />
                 <div id='errNombre' style={{ display: 'none', color: 'red' }}>
                   {t("err_nombre_art")}
@@ -156,14 +156,14 @@ function EditArticulo () {
                   </div>
               </div>
               <div className='mb-3'>
-                <label className='form-label mt-2 text-color'>Enlace</label>
+                <label className='form-label mt-2 text-color'>{t("enlace")}</label>
                 <input
                   type='text'
                   className='form-control'
                   value={enlace}
                   onChange={e => setEnlace(e.target.value)}
                   id='enlace'
-                  placeholder='Enlace'
+                  placeholder={t("enlace")}
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
                   {t("err_link")}
@@ -176,7 +176,7 @@ function EditArticulo () {
                 <textarea
                   className='form-control'
                   value={descripcion}
-                  placeholder='Escribe una descripción'
+                  placeholder={t("descripcion")}
                   id='descripcion'
                   onChange={e => setDescripcion(e.target.value)}
                 ></textarea>

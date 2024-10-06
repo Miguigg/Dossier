@@ -101,7 +101,7 @@ function EliminarArticulo () {
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Eliminar articulo</h2>
+            <h2 className='text-center text-color'>{t("eliminar_art")}</h2>
             <form onSubmit={EliminarArticulo}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
@@ -113,7 +113,7 @@ function EliminarArticulo () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre etiqueta'
+                  placeholder={t("art_nombre")}
                   disabled
                 />
                 <div id='errEmail' style={{ display: 'none', color: 'red' }}>
@@ -122,9 +122,8 @@ function EliminarArticulo () {
               </div>
               <div>
                 <label className='form-label mt-2 text-color'>
-                  {t("selecciona_etq")}
+                  {t("nombre_et")}
                 </label>
-                <label className='form-label mt-2 text-color'>Enlace</label>
                 <input
                   type='text'
                   className='form-control'
@@ -139,7 +138,7 @@ function EliminarArticulo () {
                 </div>
               </div>
               <div className='mb-3'>
-                <label className='form-label mt-2 text-color'>Enlace</label>
+                <label className='form-label mt-2 text-color'>{t("enlace")}</label>
                 <input
                   type='text'
                   className='form-control'

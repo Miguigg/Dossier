@@ -182,7 +182,7 @@ function EliminarCuenta () {
                     type='password'
                     className='form-control'
                     id='contraseña'
-                    placeholder='Contraseña'
+                    placeholder={t("contraseña")}
                     value={contraseña}
                     onChange={e => setContraseña(e.target.value)}
                   />

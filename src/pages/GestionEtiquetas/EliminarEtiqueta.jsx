@@ -77,7 +77,7 @@ function  EliminarEtiqueta() {
               </div>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label text-color">{t("descripcion")}</label>
-                <textarea className="form-control" value={data.descripcion} placeholder="Escribe una descripción" id="descripcion"  disabled></textarea>
+                <textarea className="form-control" value={data.descripcion} placeholder={t("descripcion")} id="descripcion"  disabled></textarea>
               </div>
               <div id='errBack' style={{ display: 'none', color: 'red' }}>
                 {t("errInterno")}

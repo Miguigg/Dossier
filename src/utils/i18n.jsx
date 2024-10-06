@@ -23,6 +23,10 @@ i18n.use(initReactI18next).init({
                 correo_conf:"If the email is correct, you will receive an email to recover your password",
                 cancelar:"Cancel",
                 opciones:"Options",
+                et_no_edit:"Non-editable tag",
+                verif_email:"Unverified email",
+                envio_mail:"Send verification email",
+                mail_verificado:"The email is already verified",
                 //Login
                 email:"Email address",
                 emailErr:"*You must enter a valid email 'miguel@gmail.com'",
@@ -64,6 +68,9 @@ i18n.use(initReactI18next).init({
                 crear_et:"Create tag",
                 editar_et:"Editar etiqueta",
                 eliminar_et:"Delete tag",
+                mis_et:"My Tags",
+                err_et_vacias:"There are no tags to show",
+                add_et:"Add tag",
                 //Cuenta usuario
                 accesos_directos:"My shortcuts",
                 medios_favs:"Here you can add shortcuts to your favorite media",
@@ -83,6 +90,9 @@ i18n.use(initReactI18next).init({
                 enlace:"Link",
                 editar_art:"Edit article",
                 eliminar_art:"Delete article",
+                add_art_a_et:"Add item to tag",
+                err_art_vacio:"There are no items to display",
+                lista_articulos:"Article List",
                 //Accesos directos
                 anhadir_accesos:"Add shortcut",
                 nombre_acceso_dir:"Shortcut Name",
@@ -110,6 +120,10 @@ i18n.use(initReactI18next).init({
                 correo_conf:"Si el correo es correcto, recibirás un correo para recuperar la contraseña",
                 cancelar:"Cancelar",
                 opciones:"Options",
+                et_no_edit:"Etiqueta no editable",
+                verif_email:"Email no verificado",
+                envio_mail:"Enviar email de verificación",
+                mail_verificado:"El mail ya está verificado",
                 //Login
                 login:"Login",
                 email:"Dirección de correo",
@@ -151,6 +165,9 @@ i18n.use(initReactI18next).init({
                 err_descripcion:"*Introduce una descripción adecuada",
                 crear_et:"Crear etiqueta",
                 eliminar_et:"Eliminar etiqueta",
+                mis_et:"Mis etiquetas",
+                err_et_vacias:"No hay etiquetas que mostrar",
+                add_et:"Añadir etiqueta",
                 //Cuenta usuario
                 accesos_directos:"Mis accesos directos",
                 medios_favs:"Aquí puedes añadir accesos directos a tus medios favoritos",
@@ -171,6 +188,9 @@ i18n.use(initReactI18next).init({
                 enlace:"Link",
                 editar_art:"Editar artículo",
                 eliminar_art:"Eliminar artículo",
+                add_art_a_et:"Añadir artículo a etiqueta",
+                err_art_vacio:"No hay artículos que mostrar",
+                lista_articulos:"Lista de artículos",
                 //Accesos directos
                 anhadir_accesos:"Añadir acceso directo",
                 nombre_acceso_dir:"Nombre acceso directo",

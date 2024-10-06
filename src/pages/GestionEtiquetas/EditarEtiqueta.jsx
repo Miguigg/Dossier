@@ -75,14 +75,14 @@ function EditarEtiqueta() {
             <form onSubmit={EditarEtiqueta}>
               <div className="mb-3">
                 <label className="form-label mt-2 text-color">{t("nombre_et")}</label>
-                <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre etiqueta" />
+                <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder={t("nombre_et")} />
                 <div id="errNombreFormato" style={{display: "none", color: "red"}}>
                 {t("err_nombre_etiqueta")}
                 </div>
               </div>
               <div className="mb-3">
                 <label className="form-label text-color">{t("descripcion")}</label>
-                <textarea className="form-control" value={descripcion} placeholder="Escribe una descripción" id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
+                <textarea className="form-control" value={descripcion} placeholder={t("descripcion")} id="descripcion"  onChange={(e)=> setDescripcion(e.target.value)}></textarea>
                 <div id="errDescripcion" style={{display: "none", color: "red"}}>
                 {t("err_descripcion")}
                 </div>

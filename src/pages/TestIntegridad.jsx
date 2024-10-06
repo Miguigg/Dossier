@@ -55,7 +55,7 @@ function TestIntegridad () {
                     id='enlace'
                     value={enlace}
                     onChange={e => setEnlace(e.target.value)}
-                    placeholder='Enlace'
+                    placeholder={t("enlace")}
                   />
                   <div className='p-5'>
                     <button className='btn btn-success btn-lg'>

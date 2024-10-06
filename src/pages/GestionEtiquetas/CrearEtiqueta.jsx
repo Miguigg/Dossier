@@ -94,7 +94,7 @@ function CrearEtiqueta () {
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Crear nueva etiqueta</h2>
+            <h2 className='text-center text-color'>{t("crear_et")}</h2>
             <form onSubmit={crearEtiqueta}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
@@ -106,7 +106,7 @@ function CrearEtiqueta () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre etiqueta'
+                  placeholder={t("nombre_et")}
                 />
                 <div
                   id='errNombreFormato'
@@ -120,7 +120,7 @@ function CrearEtiqueta () {
                 <textarea
                   className='form-control'
                   value={descripcion}
-                  placeholder='Escribe una descripción'
+                  placeholder={t("descripcion")}
                   id='descripcion'
                   onChange={e => setDescripcion(e.target.value)}
                 ></textarea>
