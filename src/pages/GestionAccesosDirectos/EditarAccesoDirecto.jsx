@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { auth } from '../../utils/firebase'
 import exportFuncionesCuenta from '../../utils/firebase';
 import { doc, updateDoc } from "firebase/firestore";
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -19,6 +20,13 @@ function EditarAccesoDirecto() {
     const navigate = useNavigate();
     const location = useLocation();
     const data = location.state;
+
+    const {t, i18n} = useTranslation();
+
+    useEffect(() => {
+          i18n.changeLanguage(navigator.language)
+    }, [])
+    
 
     useEffect(() => {
       setNombre(data.nombre)
@@ -58,31 +66,31 @@ function EditarAccesoDirecto() {
       <>
         {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
           <div className="container">
           <div className="login-container gradient-bg-landing">
-            <h2 className="text-center text-color">Editar acceso directo</h2>
+            <h2 className="text-center text-color">{t()}</h2>
             <form onSubmit={EditarAccesoDirecto}>
               <div className="mb-3">
-                <label className="form-label mt-2 text-color">Nombre del acceso directo</label>
+                <label className="form-label mt-2 text-color">{t("nombre_acceso_dir")}</label>
                 <input type="text" className="form-control" value={nombre} onChange={(e)=> setNombre(e.target.value)} id="nombre" placeholder="Nombre" />
                 <div id="errNombre" style={{display: "none", color: "red"}}>
-                *Debes introducir un nombre válido para el acceso directo
+                {t("nombre_acceso_valido")}
                 </div>
               </div>
 
               <div className="mb-3">
-                <label className="form-label mt-2 text-color">Enlace del acceso directo</label>
+                <label className="form-label mt-2 text-color">{t("enlace")}</label>
                 <input type="text" className="form-control" value={enlace} onChange={(e)=> setEnlace(e.target.value)} id="enlace" placeholder="Enlace" />
                 <div id="errEnlace" style={{display: "none", color: "red"}}>
-                *Debes introducir un enlace válido
+                {t("err_link")}
                 </div>
               </div>
 
-              <button type="submit" className="btn btn-success w-100 mt-3">Editar acceso directo</button>
-              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">Cancelar</a>
+              <button type="submit" className="btn btn-success w-100 mt-3">{t("edit_acceso")}</button>
+              <a href="/cuenta-usr" className="btn btn-danger w-100 mt-3" role="button">{t("cancelar")}</a>
             </form>
           </div>
         </div>

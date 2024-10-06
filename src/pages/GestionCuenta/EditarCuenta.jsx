@@ -6,6 +6,7 @@ import { auth } from '../../utils/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { updatePassword } from 'firebase/auth'
 import exportFuncionesCuenta from '../../utils/firebase'
+import { useTranslation } from 'react-i18next';
 
 function EditarCuenta () {
   const [nombre, setNombre] = useState('')
@@ -19,6 +20,12 @@ function EditarCuenta () {
   const handleRedirect = () => {
     navigate('/cuenta-usr')
   }
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   useEffect(() => {
     const flagLogin = onAuthStateChanged(auth, user => {
@@ -79,20 +86,20 @@ function EditarCuenta () {
     <>
         {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
         <div className='login-container gradient-bg-landing'>
-          <h2 className='text-center text-color'>Editar cuenta</h2>
+          <h2 className='text-center text-color'>{t("edit_cuenta")}</h2>
           <form onSubmit={editarCuenta}>
             <div>
               <div className='mb-3 mt-2'>
-                <label className='form-label text-color'>Nombre</label>
+                <label className='form-label text-color'>{t("nombre")}</label>
                 <input
                   className='form-control'
                   id='nombre'
-                  placeholder='Nombre'
+                  placeholder={t("nombre")}
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                 />
@@ -100,25 +107,25 @@ function EditarCuenta () {
                   id='errNombreFormato'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Debes introducir un nombre con solo carácteres
+                  {t("errNombreFormato")}
                 </div>
               </div>
               <div className='mb-3 mt-2'>
-                <label className='form-label text-color'>Apellidos</label>
+                <label className='form-label text-color'>{t("apellidos")}</label>
                 <input
                   className='form-control'
                   id='apellidos'
-                  placeholder='Apellidos'
+                  placeholder={t("apellidos")}
                   value={apellidos}
                   onChange={e => setApellidos(e.target.value)}
                 />
                 <div id='errApellidos' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir unos apellidos con solo carácteres
+                  {t("errApellidos")}
                 </div>
               </div>
               <div className='mb-3'>
                 <label htmlFor='password' className='form-label text-color'>
-                  Contraseña
+                  {t("contraseña")}
                 </label>
                 <input
                   type='password'
@@ -126,17 +133,16 @@ function EditarCuenta () {
                   value={passwd}
                   id='password'
                   onChange={e => setPasswd(e.target.value)}
-                  placeholder='Contraseña'
+                  placeholder={t("contraseña")}
                 />
                 <div id='errFormatPass' style={{ display: 'none', color: 'red' }}>
-                  *La contraseña debe tener 1 mayúscula, 1 minuscula, 1 número, 1
-                  simbolo y entre 8 y 12 carácteres
+                  {t("errFormatoContrasena")}
                 </div>
               </div>
   
               <div className='mb-3'>
                 <label htmlFor='password' className='form-label text-color'>
-                  Repetir contraseña
+                  {t("repPass")}
                 </label>
                 <input
                   type='password'
@@ -144,20 +150,20 @@ function EditarCuenta () {
                   id='password'
                   value={repPasswd}
                   onChange={e => setRepPasswd(e.target.value)}
-                  placeholder='Repite la contraseña'
+                  placeholder={t("repPass")}
                 />
               </div>
               <div id='errPassIgual' style={{ display: 'none', color: 'red' }}>
-                *Las contraseñas tiene que ser iguales
+                {t("errPassIgual")}
               </div>
               <div id='errBack' style={{ display: 'none', color: 'red' }}>
-                *Tenemos problemas en el serivdor, intentalo más tarde
+                {t("errInterno")}
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Editar usuario
+                {t("edit_usr")}
               </button>
               <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
-                Cancelar
+                {t("cancelar")}
               </a>
             </div>
           </form>

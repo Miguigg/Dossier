@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import '../css/login.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import { auth } from '../utils/firebase'
@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import exportFuncionesCuenta from '../utils/firebase'
 import validaRegistro from '../utils/validadores/validadorRegistro'
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import '../css/landing.css'
 import '../css/login.css'
@@ -17,7 +18,11 @@ function Registro () {
   const [passwd, setPasswd] = useState('')
   const [repPasswd, setRepPasswd] = useState('')
   const navigate = useNavigate();
+  const {t, i18n} = useTranslation();
 
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
   const handleRedirect = () => {
     navigate('/home');
   };
@@ -76,10 +81,10 @@ function Registro () {
   return (
     <div className='container'>
       <div className='login-container gradient-bg-landing'>
-        <h2 className='text-center text-color'>Registro</h2>
+        <h2 className='text-center text-color'>{t("registro")}</h2>
         <form onSubmit={registroUsr}>
           <div className='mb-3 mt-2'>
-            <label className='form-label text-color'>Nombre</label>
+            <label className='form-label text-color'>{t("nombre")}</label>
             <input
               className='form-control'
               id='nombre'
@@ -91,11 +96,11 @@ function Registro () {
               id='errNombreFormato'
               style={{ display: 'none', color: 'red' }}
             >
-              *Debes introducir un nombre con solo carácteres
+              {t("errNombreFormato")}
             </div>
           </div>
           <div className='mb-3 mt-2'>
-            <label className='form-label text-color'>Apellidos</label>
+            <label className='form-label text-color'>{t("apellidos")}</label>
             <input
               className='form-control'
               id='apellidos'
@@ -104,13 +109,13 @@ function Registro () {
               placeholder='Apellidos'
             />
             <div id='errApellidos' style={{ display: 'none', color: 'red' }}>
-              *Debes introducir unos apellidos con solo carácteres
+              {t("errApellidos")}
             </div>
           </div>
 
           <div className='mb-3'>
             <label htmlFor='email' className='form-label mt-2 text-color'>
-              Dirección de correo
+              {t("email")}
             </label>
             <input
               type='email'
@@ -121,15 +126,15 @@ function Registro () {
               placeholder='Email'
             />
             <div id='errEmail' style={{ display: 'none', color: 'red' }}>
-              *Debes introducir un email válido "miguel@gmail.com"
+              {t("emailErr")}
             </div>
             <div id='errEmailExiste' style={{ display: 'none', color: 'red' }}>
-              *El Email ya existe en la base de datos"
+              {t("errEmailExiste")}
             </div>
           </div>
           <div className='mb-3'>
             <label htmlFor='password' className='form-label text-color'>
-              Contraseña
+              {t("contraseña")}
             </label>
             <input
               type='password'
@@ -140,14 +145,13 @@ function Registro () {
               placeholder='Contraseña'
             />
             <div id='errFormatPass' style={{ display: 'none', color: 'red' }}>
-              *La contraseña debe tener 1 mayúscula, 1 minuscula, 1 número, 1
-              simbolo y entre 8 y 12 carácteres
+              {t("errFormatPass")}
             </div>
           </div>
 
           <div className='mb-3'>
             <label htmlFor='password' className='form-label text-color'>
-              Repetir contraseña
+              {t("repPass")}
             </label>
             <input
               type='password'
@@ -159,25 +163,22 @@ function Registro () {
             />
           </div>
           <div id='errPassIgual' style={{ display: 'none', color: 'red' }}>
-            *Las contraseñas tiene que ser iguales
+            {t("errPassIgual")}
           </div>
           <div id='errSesion' style={{ display: 'none', color: 'red' }}>
-              <h1>La sesión ha expirado</h1>
+              <h1>{t("sesionErr")}</h1>
           </div>
           <div id='errInterno' style={{ display: 'none', color: 'red' }}>
-              *Tenemos problemas en el servido, intentalo más tarde
-          </div>
-          <div id='errInterno' style={{ display: 'none', color: 'red' }}>
-              *Tenemos problemas en el servido, intentalo más tarde
+              {t("errInterno")}
           </div>
           <div id='errUsuarioServidor' style={{ display: 'none', color: 'red' }}>
-              *Usuario desconocido
+              {t("usuarioDesc")}
           </div>
           <div id='errPeticiones' style={{ display: 'none', color: 'red' }}>
-              *Demasiadas peticiones, intentalo más tarde
+              {t("intentosErr")}
           </div>
           <button type='submit' className='btn btn-primary w-100'>
-            Registrarme
+            {t("registro")}
           </button>
         </form>
       </div>

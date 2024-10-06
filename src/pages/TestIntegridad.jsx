@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../utils/firebase'
+import { useTranslation } from 'react-i18next';
 import validarEnlaceNoticia from '../utils/validadores/validarEnlaceNoticia'
 
 function TestIntegridad () {
   const [enlace, setEnlace] = useState('')
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+
 
   useEffect(() => {
     const flagLogin = onAuthStateChanged(auth, user => {
@@ -29,17 +37,17 @@ function TestIntegridad () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container my-5'>
-          <h1 className='mb-4'>Test de Integridad</h1>
+          <h1 className='mb-4'>{t("test_int")}</h1>
           <div className='container'>
             <section className='text-black py-5 ms-5 me-5 p-auto rounded-4 gradient-bg-landing'>
               <div className='container'>
                 <form onSubmit={ejecutarTest}>
                   <h2 className='text-center text-color p-5'>
-                    Introduce aquí el enlace
+                    {t("int_enlace")}
                   </h2>
                   <input
                     type='text'
@@ -47,16 +55,16 @@ function TestIntegridad () {
                     id='enlace'
                     value={enlace}
                     onChange={e => setEnlace(e.target.value)}
-                    placeholder='Enlace'
+                    placeholder={t("enlace")}
                   />
                   <div className='p-5'>
                     <button className='btn btn-success btn-lg'>
-                      Inspeccionar articulo
+                      {t("inspec_articulo")}
                     </button>
                   </div>
                 </form>
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un enlace válido
+                  {t("err_link")}
                 </div>
               </div>
             </section>

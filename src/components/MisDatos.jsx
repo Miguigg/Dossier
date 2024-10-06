@@ -1,20 +1,23 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import { auth } from '../utils/firebase'
 import { sendEmailVerification } from 'firebase/auth'
-import ComponenteModal from './ComponenteModal';
+import ComponenteModal from './ComponenteModal'
+
 import '../css/comun.css'
 
 function MisDatos (props) {
   const [show, setShow] = useState(false)
   const handleShow = () => setShow(true)
   const [usuarioVerificado, setUsuarioVerificado] = useState('')
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+
+  const t = props.t
 
   const handleRedirect = () => {
-    navigate('/home');
-  };
-  
+    navigate('/home')
+  }
+
   const handleShowAlert = () => {
     handleShow()
   }
@@ -43,8 +46,12 @@ function MisDatos (props) {
   }
   return (
     <div>
+      <h2 className='text-dark'>
+        {t('mis_datos')}
+        <hr className='border border-primary border-3 opacity-75'></hr>
+      </h2>
       <div className='mb-3 mt-2'>
-        <label className='form-label text-color'>Nombre</label>
+        <label className='form-label text-color'>{t('nombre')}</label>
         <input
           className='form-control'
           value={props.datosUsr.nombre}
@@ -54,7 +61,7 @@ function MisDatos (props) {
         />
       </div>
       <div className='mb-3 mt-2'>
-        <label className='form-label text-color'>Apellidos</label>
+        <label className='form-label text-color'>{t('apellidos')}</label>
         <input
           className='form-control'
           value={props.datosUsr.apellidos}
@@ -65,7 +72,7 @@ function MisDatos (props) {
       </div>
       <div className='mb-3'>
         <label htmlFor='email' className='form-label mt-2 text-color'>
-          Dirección de correo
+          {t('email')}
         </label>
         <input
           type='email'
@@ -75,30 +82,38 @@ function MisDatos (props) {
           disabled
         />
       </div>
-      <a href='/editar-cuenta' className='btn btn-success w-100 mt-3' role='button'>
-        Editar usuario
+      <a
+        href='/editar-cuenta'
+        className='btn btn-success w-100 mt-3'
+        role='button'
+      >
+        {t('edit_usr')}
       </a>
       <a
         href='/eliminar-cuenta'
         className='btn btn-danger w-100 mt-3'
         role='button'
       >
-        Eliminar cuenta
+        {t('eliminar_cuenta')}
       </a>
       <>
         {usuarioVerificado === null ? (
           <div className='p-5 '>
-            <p className='text-err'>Email no verificado</p>
+            <p className='text-err'>{t('verif_email')}</p>
             <button
               className='btn btn-primary'
               onClick={e => sendVerificationEmail()}
             >
-              Mandar email de verificación
+              {t('envio_mail')}
             </button>
-            <ComponenteModal show={show} handleClose={handleClose} msg="Debes confirmar el correo electronico en el mensaje que acabamos de enviar" />
+            <ComponenteModal
+              show={show}
+              handleClose={handleClose}
+              msg={t("confirmarCorreo")}
+            />
           </div>
         ) : (
-          <p className='p-5 text-exito'>Email verificado</p>
+          <p className='p-5 text-exito'>{t('mail_verificado')}</p>
         )}
       </>
     </div>

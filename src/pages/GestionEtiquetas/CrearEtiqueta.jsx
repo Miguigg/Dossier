@@ -7,6 +7,7 @@ import { auth } from '../../utils/firebase'
 import { collection, addDoc, updateDoc , doc } from 'firebase/firestore'
 import exportFuncionesCuenta from '../../utils/firebase'
 import ComponenteModal from '../../components/ComponenteModal'
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -19,6 +20,13 @@ function CrearEtiqueta () {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+  
+
   const handleShowAlert = () => {
     handleShow()
   };
@@ -81,16 +89,16 @@ function CrearEtiqueta () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("errSesionIniciada")}</h1>
         </div>
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Crear nueva etiqueta</h2>
+            <h2 className='text-center text-color'>{t("crear_et")}</h2>
             <form onSubmit={crearEtiqueta}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
-                  Nombre Etiqueta
+                  {t("nombre_et")}
                 </label>
                 <input
                   type='text'
@@ -98,21 +106,21 @@ function CrearEtiqueta () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre etiqueta'
+                  placeholder={t("nombre_et")}
                 />
                 <div
                   id='errNombreFormato'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Debes introducir un nombre válido para la etiqueta
+                  {t("err_nombre_etiqueta")}
                 </div>
               </div>
               <div className='mb-3'>
-                <label className='form-label text-color'>Descripcion</label>
+                <label className='form-label text-color'>{t("descripcion")}</label>
                 <textarea
                   className='form-control'
                   value={descripcion}
-                  placeholder='Escribe una descripción'
+                  placeholder={t("descripcion")}
                   id='descripcion'
                   onChange={e => setDescripcion(e.target.value)}
                 ></textarea>
@@ -120,21 +128,21 @@ function CrearEtiqueta () {
                   id='errDescripcion'
                   style={{ display: 'none', color: 'red' }}
                 >
-                  *Introduce una descripcion adecuada
+                  {t("err_descripcion")}
                 </div>
                 <div id='errBack' style={{ display: 'none', color: 'red' }}>
-                  *Tenemos problemas con el servidor, intentalo más tarde
+                  {t("errInterno")}
                 </div>
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Crear etiqueta
+                {t("crear_et")}
               </button>
               <a href='/cuenta-usr' className='btn btn-danger w-100 mt-3' role='button'>
-                Cancelar
+                {t("cancelar")}
               </a>
             </form>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas en el servidor" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>

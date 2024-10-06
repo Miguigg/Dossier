@@ -6,6 +6,7 @@ import { auth } from '../../utils/firebase'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
 import ComponenteModal from '../../components/ComponenteModal'
 import exportFuncionesCuenta from '../../utils/firebase'
+import { useTranslation } from 'react-i18next';
 
 import '../../css/landing.css'
 import '../../css/login.css'
@@ -26,6 +27,13 @@ function AddAccesoDirecto () {
     setShow(false)
     handleRedirect()
     };
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+        i18n.changeLanguage(navigator.language)
+  }, [])
+  
 
   useEffect(() => {
     const flagLogin = onAuthStateChanged(auth, user => {
@@ -87,16 +95,16 @@ function AddAccesoDirecto () {
     <>
       {usuarioAutenticado === null ? (
         <div className='p-5'>
-          <h1>Debes tener la sesión iniciada</h1>
+          <h1>{t("sesionErr")}</h1>
         </div>
       ) : (
         <div className='container'>
           <div className='login-container gradient-bg-landing'>
-            <h2 className='text-center text-color'>Añadir acceso directo</h2>
+            <h2 className='text-center text-color'>{t("anhadir_accesos")}</h2>
             <form onSubmit={AñadirAccesoDirecto}>
               <div className='mb-3'>
                 <label className='form-label mt-2 text-color'>
-                  Nombre del acceso directo
+                  {t("nombre_acceso_dir")}
                 </label>
                 <input
                   type='text'
@@ -104,44 +112,43 @@ function AddAccesoDirecto () {
                   value={nombre}
                   onChange={e => setNombre(e.target.value)}
                   id='nombre'
-                  placeholder='Nombre'
+                  placeholder={t("nombre_acceso_dir")}
                 />
                 <div id='errNombre' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un nombre válido para el articulo, solo
-                  letras
+                  {t("nombre_acceso_valido")}
                 </div>
               </div>
 
               <div className='mb-3'>
-                <label className='form-label mt-2 text-color'>Enlace</label>
+                <label className='form-label mt-2 text-color'>{t("enlace")}</label>
                 <input
                   type='text'
                   className='form-control'
                   value={enlace}
                   onChange={e => setEnlace(e.target.value)}
                   id='enlace'
-                  placeholder='Enlace'
+                  placeholder={t("enlace")}
                 />
                 <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                  *Debes introducir un enlace válido
+                  {t("err_link")}
                 </div>
               </div>
               <div id='errBack' style={{ display: 'none', color: 'red' }}>
-                *Tenemos problemas con el servidor, intentalo más tarde
+                {t("errInterno")}
               </div>
               <button type='submit' className='btn btn-success w-100 mt-3'>
-                Añadir acceso directo
+                {t("anhadir_accesos")}
               </button>
               <a
                 href='/cuenta-usr'
                 className='btn btn-danger w-100 mt-3'
                 role='button'
               >
-                Cancelar
+                {t("cancelar")}
               </a>
             </form>
           </div>
-          <ComponenteModal show={show} handleClose={handleClose} msg="Tenemos problemas en el servidor" />
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
         </div>
       )}
     </>

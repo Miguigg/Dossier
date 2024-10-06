@@ -3,6 +3,7 @@ import { auth } from '../utils/firebase'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 import exportFuncionesCuenta from '../utils/firebase'
 import ComponenteModal from './ComponenteModal'
@@ -12,6 +13,12 @@ function ListaArticulos (props) {
   const [listaArticulos, setListaArticulos] = useState([])
   const handleShow = () => setShow(true)
   const [show, setShow] = useState(false)
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
 
   const handleShowAlert = () => {
     handleShow()
@@ -50,19 +57,19 @@ function ListaArticulos (props) {
 
   return (
     <div className='container my-5'>
-      <h1 className='mb-4'>Lista de articulos</h1>
+      <h1 className='mb-4'>{t("lista_articulos")}</h1>
       <a href='/add-articulo' className='btn btn-success' role='button'>
-        Añadir articulo a etiqueta
+        {t("add_art_a_et")}
       </a>
       {listaArticulos.length < 1 ? (
         <div className='text-err'>
-          <h1>No hay articulos que mostrar</h1>
+          <h1>{t("err_art_vacio")}</h1>
         </div>
       ) : (
         <div className='list-group p-3'>
           {listaArticulos.length < 1 ? (
             <div className='text-err'>
-              <h1>No hay articulos que mostrar</h1>
+              <h1>{t("err_art_vacio")}</h1>
             </div>
           ) : (
             <div>
@@ -128,7 +135,7 @@ function ListaArticulos (props) {
       <ComponenteModal
         show={show}
         handleClose={handleClose}
-        msg='Tenemos problemas para contactar con el servidor, intentalo más tarde'
+        msg={t("errInterno")}
       />
     </div>
   )
