@@ -94,7 +94,7 @@ function MisDatos (props) {
         className='btn btn-danger w-100 mt-3'
         role='button'
       >
-        {t('eliminar_et')}
+        {t('eliminar_cuenta')}
       </a>
       <>
         {usuarioVerificado === null ? (
@@ -109,7 +109,7 @@ function MisDatos (props) {
             <ComponenteModal
               show={show}
               handleClose={handleClose}
-              msg='Debes confirmar el correo electronico en el mensaje que acabamos de enviar'
+              msg={t("confirmarCorreo")}
             />
           </div>
         ) : (

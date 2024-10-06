@@ -27,6 +27,8 @@ i18n.use(initReactI18next).init({
                 verif_email:"Unverified email",
                 envio_mail:"Send verification email",
                 mail_verificado:"The email is already verified",
+                importante:"Important",
+                aceptar:"Accept",
                 //Login
                 email:"Email address",
                 emailErr:"*You must enter a valid email 'miguel@gmail.com'",
@@ -38,6 +40,7 @@ i18n.use(initReactI18next).init({
                 intentosErr:"*Too many requests, please try again later",
                 recConstra:"Recover password",
                 confirmarCorreo:"You must confirm the email in the message we just sent",
+                incorrecta_pass:"Incorrect password",
                 //Nav
                 registro:"Register",
                 noticias:"Latest news",
@@ -93,6 +96,7 @@ i18n.use(initReactI18next).init({
                 add_art_a_et:"Add item to tag",
                 err_art_vacio:"There are no items to display",
                 lista_articulos:"Article List",
+                no_descripcion:"There is no description to show",
                 //Accesos directos
                 anhadir_accesos:"Add shortcut",
                 nombre_acceso_dir:"Shortcut Name",
@@ -124,6 +128,8 @@ i18n.use(initReactI18next).init({
                 verif_email:"Email no verificado",
                 envio_mail:"Enviar email de verificación",
                 mail_verificado:"El mail ya está verificado",
+                importante:"Importante",
+                aceptar:"Aceptar",
                 //Login
                 login:"Login",
                 email:"Dirección de correo",
@@ -136,6 +142,7 @@ i18n.use(initReactI18next).init({
                 intentosErr:"*Demasiadas peticiones, inténtalo más tarde",
                 recConstra:"Recuperar contraseña",
                 confirmarCorreo:"Debes confirmar el correo electrónico en el mensaje que acabamos de enviar",
+                incorrecta_pass:"Contraseña incorrecta",
                 //Nav
                 registro:"Registro",
                 noticias:"Últimas noticias",
@@ -191,6 +198,7 @@ i18n.use(initReactI18next).init({
                 add_art_a_et:"Añadir artículo a etiqueta",
                 err_art_vacio:"No hay artículos que mostrar",
                 lista_articulos:"Lista de artículos",
+                no_descripcion:"No hay descripción que mostrar",
                 //Accesos directos
                 anhadir_accesos:"Añadir acceso directo",
                 nombre_acceso_dir:"Nombre acceso directo",

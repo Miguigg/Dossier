@@ -159,7 +159,7 @@ function EliminarArticulo () {
                 <textarea
                   className='form-control'
                   value={descripcion}
-                  placeholder='Escribe una descripción'
+                  placeholder={t("no_descripcion")}
                   id='descripcion'
                   onChange={e => setDescripcion(e.target.value)}
                   disabled

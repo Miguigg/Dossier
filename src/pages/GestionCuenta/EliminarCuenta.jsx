@@ -212,12 +212,12 @@ function EliminarCuenta () {
           <ComponenteModal
             show={show}
             handleClose={handleClose}
-            msg='Tenemos problemas para contactar con el servidor, cierre sesión y vuelva iniciarla antes de intentarlo de nuevo'
+            msg={t("errInterno")}
           />
           <ComponenteModal
             show={showErr}
             handleClose={handleCloseErr}
-            msg='Contraseña incorrecta'
+            msg={t("incorrecta_pass")}
           />
         </div>
       )}
