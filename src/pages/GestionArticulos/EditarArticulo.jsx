@@ -1,0 +1,205 @@
+import { useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from '../../utils/firebase'
+import { collection, query, where, getDocs , doc, updateDoc } from 'firebase/firestore'
+import validarArticulo from '../../utils/validadores/validadorArticulo'
+import exportFuncionesCuenta from '../../utils/firebase'
+import ComponenteModal from '../../components/ComponenteModal'
+import { useTranslation } from 'react-i18next';
+
+import '../../css/landing.css'
+import '../../css/login.css'
+
+function EditArticulo () {
+  const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
+
+  const [nombre, setNombre] = useState('')
+  const [descripcion, setDescripcion] = useState('')
+  const [listaEtiquetas, setListaEtiquetas] = useState('')
+  const [etiquetaSeleccionada, setEtiquetaSeleccionada] = useState('')
+  const [enlace, setEnlace] = useState('');
+
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+
+  const navigate = useNavigate()
+
+  const location = useLocation();
+
+  const data = location.state;
+
+  const {t, i18n} = useTranslation();
+
+  useEffect(() => {
+      i18n.changeLanguage(navigator.language)
+  }, [])
+
+  let handleEtiquetaChange = (e) => {
+    setEtiquetaSeleccionada(e.target.value)
+  }
+
+  const handleRedirect = () => {
+    navigate('/etiquetas')
+  }
+
+  const handleShowAlert = () => {
+    handleShow()
+  };
+
+  const handleClose = () => {
+    setShow(false)
+  };
+
+  const EditarArticulo = async (e) => {
+    e.preventDefault()
+
+    if (validarArticulo(nombre,enlace,etiquetaSeleccionada,descripcion)) {
+      const docRef = doc(exportFuncionesCuenta.db, "Articulos", data.idArticulo);
+      await updateDoc(docRef, {
+        nombre: nombre,
+        enlace: enlace,
+        descripcion: descripcion,
+        idEtiqueta: etiquetaSeleccionada
+      });
+      handleRedirect()
+    }
+  }
+
+  useEffect(() => {
+    const flagLogin = onAuthStateChanged(auth, user => {
+      if (user) {
+        setUsuarioAutenticado(user)
+      } else {
+        setUsuarioAutenticado(null)
+      }
+    })
+    return () => {
+      flagLogin()
+    }
+  }, [])
+
+    //Para el select
+    function getDocsEtiquetas () {
+      onAuthStateChanged(auth, async user => {
+        if (user) {
+          let tmpLista = []
+          const uid = user.uid
+          const q = query(
+            collection(exportFuncionesCuenta.db, 'Etiquetas'),
+            where('idUsuario', '==', uid)
+          )
+  
+          const querySnapshot = await getDocs(q)
+          querySnapshot.forEach(doc => {
+            tmpLista.push(doc.data())
+          })
+          setListaEtiquetas(tmpLista)
+          handleClose()
+        } else {
+          handleShowAlert()
+        }
+      })
+    }
+
+  //recuperar datos del objeto a modificar
+  useEffect(() => {
+    setNombre(data.nombre)
+    setDescripcion(data.descripcion)
+    setEnlace(data.enlace)
+    getDocsEtiquetas()
+  }, [])
+
+  const hasValues = obj => Object.keys(obj).length > 0;
+
+  return (
+    <>
+      {usuarioAutenticado === null ? (
+        <div className='p-5'>
+          <h1>{t("errSesionIniciada")}</h1>
+        </div>
+      ) : (
+        <div className='container'>
+          <div className='login-container gradient-bg-landing'>
+            <h2 className='text-center text-color'>{t("editar_art")}</h2>
+            <form onSubmit={EditarArticulo}>
+              <div className='mb-3'>
+                <label className='form-label mt-2 text-color'>
+                  {t("art_nombre")}
+                </label>
+                <input
+                  type='text'
+                  className='form-control'
+                  value={nombre}
+                  onChange={e => setNombre(e.target.value)}
+                  id='nombre'
+                  placeholder={t("art_nombre")}
+                />
+                <div id='errNombre' style={{ display: 'none', color: 'red' }}>
+                  {t("err_nombre_art")}
+                </div>
+              </div>
+              <div>
+                  <label className="form-label mt-2 text-color">{t("selecciona_etq")}</label>
+                  {hasValues(listaEtiquetas) ? (
+                  <select id="selectEtc" className="form-select form-select mb-3" onChange={handleEtiquetaChange}> 
+                    <option value="0"> -- {t("selecciona_etq")} -- </option>  
+                    {listaEtiquetas.map((et) => <option key={et.idEtiqueta} value={et.idEtiqueta}>{et.nombre}</option>)}
+                  </select>
+                  ) : (
+                    <div id="errSelect" style={{display: "block", color: "red"}}>
+                    {t("err_etq_disp")}
+                    </div>
+                  )}
+                  <div id="errSelect" style={{display: "none", color: "red"}}>
+                    {t("err_select_etq")}
+                  </div>
+              </div>
+              <div className='mb-3'>
+                <label className='form-label mt-2 text-color'>{t("enlace")}</label>
+                <input
+                  type='text'
+                  className='form-control'
+                  value={enlace}
+                  onChange={e => setEnlace(e.target.value)}
+                  id='enlace'
+                  placeholder={t("enlace")}
+                />
+                <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
+                  {t("err_link")}
+                </div>
+              </div>
+              <div className='mb-3'>
+                <label htmlFor='password' className='form-label text-color'>
+                  {t("descripcion")}
+                </label>
+                <textarea
+                  className='form-control'
+                  value={descripcion}
+                  placeholder={t("descripcion")}
+                  id='descripcion'
+                  onChange={e => setDescripcion(e.target.value)}
+                ></textarea>
+                <div
+                  id='errDescripcion'
+                  style={{ display: 'none', color: 'red' }}
+                >
+                  {t("err_descripcion")}
+                </div>
+              </div>
+              <button type='submit' className='btn btn-success w-100 mt-3'>
+                {t("editar_art")}
+              </button>
+              <a href='/etiquetas' className='btn btn-danger w-100 mt-3' role='button'>
+                {t("cancelar")}
+              </a>
+            </form>
+          </div>
+          <ComponenteModal show={show} handleClose={handleClose} msg={t("errInterno")} />
+        </div>
+      )}
+    </>
+  )
+}
+
+export default EditArticulo

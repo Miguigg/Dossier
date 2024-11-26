@@ -1,0 +1,11 @@
+.text-color{
+    color: black;
+  }
+
+.text-err{
+  color: red;
+}
+
+.text-exito{
+  color: green;
+}

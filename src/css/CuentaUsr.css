@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+}
+th {
+    background-color: transparent;
+}
+tbody tr:nth-child(odd) {
+    background-color: transparent;
+}
+tbody tr:nth-child(even) {
+    background-color: transparent;
+}
+
+.custom-btn {
+    background-color: #7749F8;
+    color: #fff;
+}
