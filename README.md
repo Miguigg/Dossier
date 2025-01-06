@@ -14,6 +14,15 @@ The app uses react, and the framework Vite, a fast frontend build tool
 npm run build
 ```
 
+## Configure OpenAI
+
+Permanent setup: To make the setup permanent, add the variable through the system properties as follows:
+
+1. Right-click on 'This PC' or 'My Computer' and select 'Properties'.
+2. Click on 'Advanced system settings'.
+3. Click the 'Environment Variables' button.
+4. In the 'System variables' section, click 'New...' and enter OPENAI_API_KEY as the variable name and your API key as the variable value.
+
 ## Usage
 
 ```terminal
