@@ -2,7 +2,15 @@ import { useState, useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../utils/firebase'
 import { useTranslation } from 'react-i18next';
+import { extract } from '@extractus/article-extractor'
+import { Mistral } from "@mistralai/mistralai";
+
 import validarEnlaceNoticia from '../utils/validadores/validarEnlaceNoticia'
+import OpenAI from "openai";
+
+const openai = new OpenAI({ apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true, maxRetries: 1});
+const apiKey = import.meta.env.VITE_MISTRAL_API_KEY;
+const client = new Mistral({apiKey});
 
 function TestIntegridad () {
   const [enlace, setEnlace] = useState('')
@@ -27,10 +35,42 @@ function TestIntegridad () {
       flagLogin()
     }
   }, [])
+  
+  const runModerationOpenAI = async (text) => {
+    await openai.moderations.create({
+      model: "omni-moderation-latest",
+      input: [text]
+    }).then((response) => {
+      console.log(response)
+    })
+  }
 
-  const ejecutarTest = e => {
+  const runModerationMistral = async (text) => {
+    await client.classifiers.moderate({
+      model : "mistral-moderation-latest",  
+      inputs : [text]
+    }).then((response) => {
+      console.log(response.results)
+    })
+  }
+
+  const ejecutarTest = async e => {
     e.preventDefault()
-    if (validarEnlaceNoticia(enlace)) { /* empty */ }
+    if (validarEnlaceNoticia(enlace)) {      
+      try {
+        const article = await extract(enlace)
+        console.log(article)
+      } catch (err) {
+        console.error(err)
+      }
+      
+      const contenido = await extract(enlace)
+      const filtrado = contenido.content.replace(/<\/?[^>]+(>|$)/g, "").replace(/(\r\n|\n|\r)/gm, "").replace(/\s\s+/g, ' ')
+      
+      //Comprobar que modelo está seleccionado
+      runModerationMistral(filtrado)
+      runModerationOpenAI(filtrado)
+    }  
   }
 
   return (
