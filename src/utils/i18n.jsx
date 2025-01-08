@@ -104,6 +104,12 @@ i18n.use(initReactI18next).init({
                 edit_acceso:"Edit shortcut",
                 eliminar_acceso:"Delete shortcut",
                 err_vacio_accesos:"No shortcuts to display",
+                //Validaciones
+                hate_and_discrimination:"Hate and discrimination",
+                sexual:"Sexual content",
+                violence_and_threats: "Violence and threats",
+                dangerous_and_criminal_content: "Dangerous and criminal content",
+                selfharm: "Selfharm",
             },
         },
         es: {
@@ -204,7 +210,13 @@ i18n.use(initReactI18next).init({
                 nombre_acceso_dir:"Nombre acceso directo",
                 nombre_acceso_valido:"*Debes introducir un nombre válido para el artículo, solo letras",
                 edit_acceso:"Editar acceso directo",
-                eliminar_acceso:"Eliminar acceso directo"                
+                eliminar_acceso:"Eliminar acceso directo",
+                //Validaciones
+                hate_and_discrimination:"Odio y discriminación",
+                sexual:"Contenido sexual",
+                violence_and_threats: "Violencia y amenazas",
+                dangerous_and_criminal_content: "Contenido peligroso y criminal",
+                selfharm: "Autolesiones",
             },
         },
     }

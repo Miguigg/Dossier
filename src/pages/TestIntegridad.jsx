@@ -4,6 +4,7 @@ import { auth } from '../utils/firebase'
 import { useTranslation } from 'react-i18next';
 import { extract } from '@extractus/article-extractor'
 import { Mistral } from "@mistralai/mistralai";
+import ResultadoAnalisis from '../components/ResultadoAnalisis';
 
 import validarEnlaceNoticia from '../utils/validadores/validarEnlaceNoticia'
 import OpenAI from "openai";
@@ -14,13 +15,18 @@ const client = new Mistral({apiKey});
 
 function TestIntegridad () {
   const [enlace, setEnlace] = useState('')
+  const [resMistral, setResMistral] = useState({})
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
+  const [showResMistral, setshowResMistral] = useState(false);
 
+  const handleShow = () => {
+    setshowResMistral(true);
+  };
   const {t, i18n} = useTranslation();
 
   useEffect(() => {
       i18n.changeLanguage(navigator.language)
-  }, [])
+  }, [i18n])
 
 
   useEffect(() => {
@@ -50,7 +56,8 @@ function TestIntegridad () {
       model : "mistral-moderation-latest",  
       inputs : [text]
     }).then((response) => {
-      console.log(response.results)
+      setResMistral(response.results)
+      handleShow()
     })
   }
 
@@ -58,18 +65,15 @@ function TestIntegridad () {
     e.preventDefault()
     if (validarEnlaceNoticia(enlace)) {      
       try {
-        const article = await extract(enlace)
-        console.log(article)
+        const contenido = await extract(enlace)
+        const filtrado = contenido.content.replace(/<\/?[^>]+(>|$)/g, "").replace(/(\r\n|\n|\r)/gm, "").replace(/\s\s+/g, ' ')
+        
+        //Comprobar que modelo está seleccionado
+        runModerationMistral(filtrado)
+        runModerationOpenAI(filtrado)
       } catch (err) {
         console.error(err)
       }
-      
-      const contenido = await extract(enlace)
-      const filtrado = contenido.content.replace(/<\/?[^>]+(>|$)/g, "").replace(/(\r\n|\n|\r)/gm, "").replace(/\s\s+/g, ' ')
-      
-      //Comprobar que modelo está seleccionado
-      runModerationMistral(filtrado)
-      runModerationOpenAI(filtrado)
     }  
   }
 
@@ -109,6 +113,7 @@ function TestIntegridad () {
               </div>
             </section>
           </div>
+          {showResMistral && <ResultadoAnalisis json={resMistral} />}
         </div>
       )}
     </>
