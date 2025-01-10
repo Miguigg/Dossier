@@ -8,7 +8,7 @@ function ResultadoAnalisis (props) {
 
   useEffect(() => {
     i18n.changeLanguage(navigator.language)
-  }, [])
+  }, [i18n])
 
   var resultados = props.json[0].categories
   return (
@@ -16,8 +16,8 @@ function ResultadoAnalisis (props) {
       <table>
         <thead>
           <tr>
-            <th>Presemcia de...</th>
-            <th>Conclusión</th>
+            <th>{t('presencia')}</th>
+            <th>{t('conclusion')}</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@ function ResultadoAnalisis (props) {
         </tbody>
       </table>
       <hr />
-      <p>Aquellos con un check quieren decir que el contenido analizado es correcto y no presenta amenazas de ese tipo</p>
+      <p>{t('guiaImgs')}</p>
     </div>
   )
 }

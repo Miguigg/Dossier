@@ -110,6 +110,11 @@ i18n.use(initReactI18next).init({
                 violence_and_threats: "Violence and threats",
                 dangerous_and_criminal_content: "Dangerous and criminal content",
                 selfharm: "Selfharm",
+                presencia:"Presence of...",
+                conclusion:"Conclusion",
+                guiaImgs:"Those with a check mean that the content analyzed is correct and does not present threats of that type",
+                errPeticionMistral:"*We are having problems on the Mistral server, please try again later",
+                errPeticionOpenAI:"*We are having problems on the OpenAI server, please try again later",
             },
         },
         es: {
@@ -217,6 +222,11 @@ i18n.use(initReactI18next).init({
                 violence_and_threats: "Violencia y amenazas",
                 dangerous_and_criminal_content: "Contenido peligroso y criminal",
                 selfharm: "Autolesiones",
+                presencia:"Presencia de...",
+                conclusion:"Conclusión",
+                guiaImgs:"Aquellos con un check quieren decir que el contenido analizado es correcto y no presenta amenazas de ese tipo",
+                errPeticionMistral:"*Tenemos problemas en el servidor de Mistral, inténtalo más tarde",
+                errPeticionOpenAI:"*Tenemos problemas en el servidor de OpenAI, inténtalo más tarde",
             },
         },
     }
