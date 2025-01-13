@@ -109,7 +109,7 @@ function TestIntegridad () {
         
        //const filtradoOpenAI = contenido.toString().substring(0, 100)
 
-        //Comprobar que modelo está seleccionado
+        
         runModerationMistral(filtrado)
         runModerationOpenAI(filtrado)
       } catch (err) {
