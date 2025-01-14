@@ -215,6 +215,7 @@ i18n.use(initReactI18next).init({
                 nombre_acceso_dir:"Nombre acceso directo",
                 nombre_acceso_valido:"*Debes introducir un nombre válido para el artículo, solo letras",
                 edit_acceso:"Editar acceso directo",
+                err_vacio_accesos:"No hay accesos directos que mostrar",
                 eliminar_acceso:"Eliminar acceso directo",
                 //Validaciones
                 hate_and_discrimination:"Odio y discriminación",
