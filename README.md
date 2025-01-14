@@ -16,7 +16,7 @@ npm run build
 
 ## Configure OpenAI
 
-Permanent setup: To make the setup permanent, add the variable through the system properties as follows:
+Permanent setup: to use the integrity test, you must obtain the API key from Mistral and OpenAI
 
 1. Open the .env file
 2. Go to the APIs a register to obtain you API key
