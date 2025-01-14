@@ -18,10 +18,9 @@ npm run build
 
 Permanent setup: To make the setup permanent, add the variable through the system properties as follows:
 
-1. Right-click on 'This PC' or 'My Computer' and select 'Properties'.
-2. Click on 'Advanced system settings'.
-3. Click the 'Environment Variables' button.
-4. In the 'System variables' section, click 'New...' and enter OPENAI_API_KEY as the variable name and your API key as the variable value.
+1. Open the .env file
+2. Go to the APIs a register to obtain you API key
+3. Paste each key on their field in this file replacing the comment (//your key)
 
 ## Usage
 
@@ -33,7 +32,12 @@ npm run dev
 npm run test
 
 ```
+By defauld, the app wuill run on  http://localhost:5173/ 
+To try the app you can use the following user:
 
+- miguelgg1412@outlook.es
+- 1234Mgg*
+  
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
