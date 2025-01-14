@@ -1,8 +1,42 @@
-# React + Vite
+# Dossier
+Dossier is an application that allows you to store your favorite media, your featured news...
+It will allow you to store and organize them in labels.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+It also implements a “recent” tab that will show you the latest breaking news.
 
-Currently, two official plugins are available:
+Finally, it implements a couple of artificial intelligence models that will analyze texts (in English or Spanish) to detect if it is fake news.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+
+Use the package manager [npm](https://pip.pypa.io/en/stable/) to install Dossier from its package json.
+The app uses react, and the framework Vite, a fast frontend build tool 
+```bash
+npm run build
+```
+
+## Configure OpenAI
+
+Permanent setup: To make the setup permanent, add the variable through the system properties as follows:
+
+1. Right-click on 'This PC' or 'My Computer' and select 'Properties'.
+2. Click on 'Advanced system settings'.
+3. Click the 'Environment Variables' button.
+4. In the 'System variables' section, click 'New...' and enter OPENAI_API_KEY as the variable name and your API key as the variable value.
+
+## Usage
+
+```terminal
+npm run dev
+
+# If you want to run the tests
+
+npm run test
+
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
