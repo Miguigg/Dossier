@@ -10,7 +10,7 @@ function Landing(){
 
     useEffect(() => {
         i18n.changeLanguage(navigator.language)
-    }, [])
+    }, [i18n])
 
     return(
         <div className="App mt-2 container-react">
@@ -53,14 +53,14 @@ function Landing(){
                 </div>
             </section>
     
-            <section className="text-black py-5 ms-5 me-5 p-auto rounded-4 gradient-bg-landing">
+            <section className="text-black py-5 ms-5 me-5 mb-5 p-auto rounded-4 gradient-bg-landing">
                 <div className="container">
                 <h2 className="text-center">{t("nosotros")}</h2>
                 <p className="lead text-center">{t("about")}</p>
                 </div>
             </section>
     
-            <footer className="text-black text-center py-4 footer gradient-bg-landing">
+            <footer className="text-black text-center py-4 foot">
                 <div className="container">
                 <p>&copy; {t("derechos")}</p>
                 </div>
