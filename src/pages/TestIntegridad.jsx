@@ -1,41 +1,23 @@
 import { useState, useEffect } from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, getIdToken } from 'firebase/auth'
 import { auth } from '../utils/firebase'
 import { useTranslation } from 'react-i18next'
-import { extract } from '@extractus/article-extractor'
-import { Mistral } from '@mistralai/mistralai'
 import ResultadoAnalisis from '../components/ResultadoAnalisis'
 
 import validarEnlaceNoticia from '../utils/validadores/validarEnlaceNoticia'
 import loading from '../imagenes/loading.gif'
-import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true,
-  maxRetries: 1
-})
-
-const apiKey = import.meta.env.VITE_MISTRAL_API_KEY
-const client = new Mistral({ apiKey })
 
 function TestIntegridad () {
   const [enlace, setEnlace] = useState('')
   const [resMistral, setResMistral] = useState({})
-  const [resOpenAI, setResOpenAI] = useState({})
 
   const [usuarioAutenticado, setUsuarioAutenticado] = useState('')
   const [showResMistral, setshowResMistral] = useState(false)
-  const [showResOpenAI, setshowResOpenAI] = useState(false)
   const [showLoadingMistral, setshowLoadingMistral] = useState(false)
-  const [showLoadingOpenAI, setshowLoadingOpenAI] = useState(false)
 
   const handleShowMistral = () => {
     setshowResMistral(true)
-  }
-
-  const handleShowOpenAI = () => {
-    setshowResOpenAI(true)
   }
 
   const { t, i18n } = useTranslation()
@@ -57,63 +39,47 @@ function TestIntegridad () {
     }
   }, [])
 
-  const runModerationOpenAI = async text => {
-    setshowLoadingOpenAI(true)
-    try {
-      await openai.moderations
-        .create({
-          model: 'omni-moderation-latest',
-          input: [text]
-        })
-        .then(response => {
-          setResOpenAI(response.results)
-          handleShowOpenAI()
-          document.getElementById('errPeticionMistral').style.display = 'none'
-          setshowLoadingOpenAI(false)
-        })
-    } catch {
-      document.getElementById('errPeticionOpenAI').style.display = 'block'
-      setshowLoadingOpenAI(false)
-    }
-  }
-
-  const runModerationMistral = async text => {
-    setshowLoadingMistral(true)
-    try {
-      await client.classifiers
-        .moderate({
-          model: 'mistral-moderation-latest',
-          inputs: [text]
-        })
-        .then(response => {
-          setResMistral(response.results)
-          handleShowMistral()
-          document.getElementById('errPeticionMistral').style.display = 'none'
-          setshowLoadingMistral(false)
-        })
-    } catch {
-      document.getElementById('errPeticionMistral').style.display = 'block'
-      setshowLoadingMistral(false)
-    }
-  }
-
   const ejecutarTest = async e => {
     e.preventDefault()
+    setshowLoadingMistral(true)
     if (validarEnlaceNoticia(enlace)) {
       try {
-        const contenido = await extract(enlace)
-        const filtrado = contenido.content
-          .replace(/<\/?[^>]+(>|$)/g, '')
-          .replace(/(\r\n|\n|\r)/gm, '')
-          .replace(/\s\s+/g, ' ')
-        
-       //const filtradoOpenAI = contenido.toString().substring(0, 100)
-
-        
-        runModerationMistral(filtrado)
-        runModerationOpenAI(filtrado)
+        //let resultEnlace = enlace.replace(/\//g, "%2F")
+    
+        onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            const token = await getIdToken(user);
+            console.log(token)
+            
+            fetch("http://localhost:3000/mistralAPI/", {
+              method: 'POST', 
+              headers: {
+                'Content-Type': 'application/json' 
+              },
+              body: JSON.stringify({
+                url: enlace,
+                token: token
+              })
+            })
+            .then(response => response.json()) 
+            .then(data => {
+              console.log('Success:', data); 
+              //setResMistral(response.results)
+              // handleShowMistral()
+              // document.getElementById('errPeticionMistral').style.display = 'none'
+              //setshowLoadingMistral(false)
+            })
+            .catch((error) => {
+              console.error('Error:', error); 
+              setshowLoadingMistral(false)
+              document.getElementById('errPeticionMistral').style.display = 'block'
+            });
+          }
+        });
       } catch (err) {
         console.error(err)
+        setshowLoadingMistral(false)
+        document.getElementById('errPeticionMistral').style.display = 'block'
       }
     }
   }
@@ -164,10 +130,8 @@ function TestIntegridad () {
             {t('errPeticionOpenAI')}
           </div>
           {showLoadingMistral && <img src={loading} width={50} height={50} alt="logo"/>}
-          {showLoadingOpenAI && <img src={loading} width={50} height={50} alt="logo"/>}
 
           {showResMistral && <ResultadoAnalisis json={resMistral} />}
-          {showResOpenAI && <ResultadoAnalisis json={resOpenAI} />}
         </div>
       )}
     </>

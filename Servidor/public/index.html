@@ -11,9 +11,8 @@
     <p id="message"></p>
     <script>
         async function getMessage() {
-            const response = await fetch('http://localhost:3000/mistralAPI/https:%2F%2Fwww.eldiario.es%2Fcatalunya%2Ffeijoo-afirma-moratoria-antidesahucios-protegido-58-000-familias-no-beneficiado-nadie_1_11990244.html');
-            const data = await response.json();
-            console.log(data);
+            const response = await fetch('http://localhost:3000/mistralAPI/https:%2F%2Fwww.eldiario.es%2Ftecnologia%2Fnvidia-pierde-400-000-millones-bolsa-irrupcion-inteligencia-artificial-china-no-chips_1_11997410.html').then
+            (response => response.json()).then(data => console.log(data));
         }
     </script>
 </body>

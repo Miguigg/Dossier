@@ -1,4 +1,3 @@
-// server.js
 import express from 'express'
 import { extract } from '@extractus/article-extractor'
 const app = express()
@@ -18,22 +17,6 @@ function validarEnlaceNoticia (enlace) {
 
 app.use(cors())
 
-async function handleShowMistral (text) {
-  try {
-    await client.classifiers
-      .moderate({
-        model: 'mistral-moderation-latest',
-        inputs: [text]
-      })
-      .then(response => {
-        console.log(response.results[0].categories)
-        return response.results[0].categories
-      })
-  } catch (e) {
-    return 'failed'
-  }
-}
-
 async function extractData (enlace) {
   if (validarEnlaceNoticia(enlace)) {
     try {
@@ -44,7 +27,7 @@ async function extractData (enlace) {
         .replace(/\s\s+/g, ' ')
 
       return filtrado
-    } catch (err) {
+    } catch {
       return 'failed'
     }
   }
@@ -55,17 +38,22 @@ app.get('/mistralAPI/:text', async (req, res) => {
   const enlace = req.params.text
   const data = await extractData(enlace)
 
-  await handleShowMistral(data).then(response => {res.send(response)})
-
- /* if (response === 'failed' || response === undefined) {
-    console.log('Error en el servidor')
-    res.status(500).send('Error en el servidor')
-  } else {
-    res.json(response)
-  }*/
+  await client.classifiers
+  .moderate({
+    model: 'mistral-moderation-latest',
+    inputs: [data]
+  })
+  .then(response => {
+    console.log(response.results[0])
+    res.send(response.results[0].categories)
+  })
 })
 
-// Starting the server
+app.post('/mistralAPI/', (req, res) => {
+  console.log('POST parameter received are: ', req)
+})
+
+
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`)
 })
