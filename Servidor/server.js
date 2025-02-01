@@ -1,13 +1,21 @@
 import express from 'express'
 import { extract } from '@extractus/article-extractor'
-const app = express()
 import cors from 'cors'
 import { Mistral as _Mistral } from '@mistralai/mistralai'
+import bodyParser from 'body-parser'
+import serviceAccount from './serviceAccountKey.json' assert   { type: "json" };
+import admin from 'firebase-admin'
+
+const app = express()
+
 const mistralKey = 'Nvl5lYkexkTV9Xid23WKbOSY2Hb2LRj8'
 
 const client = new _Mistral({ apiKey: mistralKey })
 
 const port = 3000
+
+
+
 
 function validarEnlaceNoticia (enlace) {
   const reEnlace =
@@ -16,6 +24,25 @@ function validarEnlaceNoticia (enlace) {
 }
 
 app.use(cors())
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+async function validateTokeb(token) {
+const isValid = await admin
+  .auth().verifyIdToken(token)
+  .then((decodedToken) => {
+    console.log("Correcto")
+    return true
+  })
+  .catch((token) => {
+    console.log("Incorrecto")
+    return false
+  });
+
+  return isValid
+}
 
 async function extractData (enlace) {
   if (validarEnlaceNoticia(enlace)) {
@@ -33,26 +60,29 @@ async function extractData (enlace) {
   }
 }
 
-//http://localhost:3000/mistralAPI/https:%2F%2Fwww.eldiario.es%2Fcatalunya%2Ffeijoo-afirma-moratoria-antidesahucios-protegido-58-000-familias-no-beneficiado-nadie_1_11990244.html
-app.get('/mistralAPI/:text', async (req, res) => {
-  const enlace = req.params.text
-  const data = await extractData(enlace)
+app.use(bodyParser.json())
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-  await client.classifiers
-  .moderate({
-    model: 'mistral-moderation-latest',
-    inputs: [data]
-  })
-  .then(response => {
-    console.log(response.results[0])
-    res.send(response.results[0].categories)
-  })
+app.post('/mistralAPI/', urlencodedParser, async function (req, res) {  
+  
+  const isValid = await validateTokeb(req.body.token)
+  
+  if( isValid){
+    const data = await extractData(req.body.url)
+  
+    await client.classifiers
+    .moderate({
+      model: 'mistral-moderation-latest',
+      inputs: [data]
+    })
+    .then(response => {
+      console.log(response.results[0])
+      res.send(response.results[0].categories)
+    })
+  }else{
+    res.send("Token incorrecto")
+  }
 })
-
-app.post('/mistralAPI/', (req, res) => {
-  console.log('POST parameter received are: ', req)
-})
-
 
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`)
