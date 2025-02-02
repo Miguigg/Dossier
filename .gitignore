@@ -25,3 +25,4 @@ dist-ssr
 .env
 Secrets.txt
 Servidor/serviceAccountKey.json
+Servidor/serviceAccountKey.json
