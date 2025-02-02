@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .env
+Secrets.txt
+Servidor/serviceAccountKey.json
