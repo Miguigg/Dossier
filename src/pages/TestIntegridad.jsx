@@ -43,9 +43,7 @@ function TestIntegridad () {
     e.preventDefault()
     setshowLoadingMistral(true)
     if (validarEnlaceNoticia(enlace)) {
-      try {
-        //let resultEnlace = enlace.replace(/\//g, "%2F")
-    
+      try {    
         onAuthStateChanged(auth, async (user) => {
           if (user) {
             const token = await getIdToken(user);
@@ -63,14 +61,12 @@ function TestIntegridad () {
             })
             .then(response => response.json()) 
             .then(data => {
-              console.log('Success:', data); 
-              //setResMistral(response.results)
-              // handleShowMistral()
-              // document.getElementById('errPeticionMistral').style.display = 'none'
-              //setshowLoadingMistral(false)
+              setResMistral(data)
+              handleShowMistral()
+              document.getElementById('errPeticionMistral').style.display = 'none'
+              setshowLoadingMistral(false)
             })
-            .catch((error) => {
-              console.error('Error:', error); 
+            .catch(() => {
               setshowLoadingMistral(false)
               document.getElementById('errPeticionMistral').style.display = 'block'
             });

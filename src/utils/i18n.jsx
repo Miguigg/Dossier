@@ -61,6 +61,8 @@ i18n.use(initReactI18next).init({
                 int_enlace:"Enter the link here",
                 inspec_articulo:"Inspect article",
                 err_link:"*You must enter a valid link",
+                resumen:"Article summary",
+                temas:"Topics of the article",
                 //Etiquetas
                 err_et_select:"No tags selected",
                 et_seleccionada:"Selected Tag: ",
@@ -174,6 +176,8 @@ i18n.use(initReactI18next).init({
                 int_enlace:"Introduce aquí el enlace",
                 inspec_articulo:"Inspeccionar artículo",
                 err_link:"*Debes introducir un enlace válido",
+                resumen:"Resumen del articulo",
+                temas:"Temas del artículo",
                 //Etiquetas
                 err_et_select:"No hay etiquetas seleccionadas",
                 et_seleccionada:"Etiqueta Seleccionada: ",
