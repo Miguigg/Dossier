@@ -9,22 +9,29 @@ Finally, it implements a couple of artificial intelligence models that will anal
 ## Installation
 
 Use the package manager [npm](https://pip.pypa.io/en/stable/) to install Dossier from its package json.
-The app uses react, and the framework Vite, a fast frontend build tool 
+The app uses react, and the framework Vite, a fast frontend build tool
+You must run npm install on two places, the main project under the directory /Dossier and under the directory /Dossier/servidor 
 ```bash
 npm run build
 ```
+So, you can see that the app includes two node projects. A web app to manage news a see the results of the tests and a server to connect the app to the ai api and to scrap the articles 
 
-## Configure OpenAI
+## Configure Mistral
 
-Permanent setup: To make the setup permanent, add the variable through the system properties as follows:
+Mistral is the truly free AI used on this project, To configure it you must
 
-1. Right-click on 'This PC' or 'My Computer' and select 'Properties'.
-2. Click on 'Advanced system settings'.
-3. Click the 'Environment Variables' button.
-4. In the 'System variables' section, click 'New...' and enter OPENAI_API_KEY as the variable name and your API key as the variable value.
+1. Obtain your API key on their webpage https://docs.mistral.ai/
+
+2. Paste it on the file "server.js" , replace YOUR_MISTRAl_KEY with your key
+
+## Configure Firebase on Server
+
+You must obtain your credentials on your project control panel. Then go to project settings/Service Accounts and generate API key.
+
+Paste the content of that file inside serviceAccountKey
 
 ## Usage
-
+Inside /Dossier
 ```terminal
 npm run dev
 
@@ -32,6 +39,14 @@ npm run dev
 
 npm run test
 
+```
+Inside /Dossier/Servidor
+```terminal
+node .\server.js
+
+# If you want to run the tests
+
+npm run test
 ```
 
 ## Contributing
