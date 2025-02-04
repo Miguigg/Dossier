@@ -61,6 +61,8 @@ i18n.use(initReactI18next).init({
                 int_enlace:"Enter the link here",
                 inspec_articulo:"Inspect article",
                 err_link:"*You must enter a valid link",
+                resumen:"Article summary",
+                temas:"Topics of the article",
                 //Etiquetas
                 err_et_select:"No tags selected",
                 et_seleccionada:"Selected Tag: ",
@@ -104,6 +106,17 @@ i18n.use(initReactI18next).init({
                 edit_acceso:"Edit shortcut",
                 eliminar_acceso:"Delete shortcut",
                 err_vacio_accesos:"No shortcuts to display",
+                //Validaciones
+                hate_and_discrimination:"Hate and discrimination",
+                sexual:"Sexual content",
+                violence_and_threats: "Violence and threats",
+                dangerous_and_criminal_content: "Dangerous and criminal content",
+                selfharm: "Selfharm",
+                presencia:"Presence of...",
+                conclusion:"Conclusion",
+                guiaImgs:"Those with a check mean that the content analyzed is correct and does not present threats of that type",
+                errPeticionMistral:"*We are having problems on the Mistral server, please try again later",
+                errPeticionOpenAI:"*We are having problems on the OpenAI server, please try again later",
             },
         },
         es: {
@@ -163,6 +176,8 @@ i18n.use(initReactI18next).init({
                 int_enlace:"Introduce aquí el enlace",
                 inspec_articulo:"Inspeccionar artículo",
                 err_link:"*Debes introducir un enlace válido",
+                resumen:"Resumen del articulo",
+                temas:"Temas del artículo",
                 //Etiquetas
                 err_et_select:"No hay etiquetas seleccionadas",
                 et_seleccionada:"Etiqueta Seleccionada: ",
@@ -204,7 +219,19 @@ i18n.use(initReactI18next).init({
                 nombre_acceso_dir:"Nombre acceso directo",
                 nombre_acceso_valido:"*Debes introducir un nombre válido para el artículo, solo letras",
                 edit_acceso:"Editar acceso directo",
-                eliminar_acceso:"Eliminar acceso directo"                
+                err_vacio_accesos:"No hay accesos directos que mostrar",
+                eliminar_acceso:"Eliminar acceso directo",
+                //Validaciones
+                hate_and_discrimination:"Odio y discriminación",
+                sexual:"Contenido sexual",
+                violence_and_threats: "Violencia y amenazas",
+                dangerous_and_criminal_content: "Contenido peligroso y criminal",
+                selfharm: "Autolesiones",
+                presencia:"Presencia de...",
+                conclusion:"Conclusión",
+                guiaImgs:"Aquellos con un check quieren decir que el contenido analizado es correcto y no presenta amenazas de ese tipo",
+                errPeticionMistral:"*Tenemos problemas en el servidor de Mistral, inténtalo más tarde",
+                errPeticionOpenAI:"*Tenemos problemas en el servidor de OpenAI, inténtalo más tarde",
             },
         },
     }

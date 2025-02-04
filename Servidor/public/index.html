@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express.js Server</title>
+</head>
+<body>
+    <h1>Client-Server Communication</h1>
+    <button onclick="getMessage()">Get Message from Server</button>
+    <p id="message"></p>
+    <script>
+        async function getMessage() {
+            const response = await fetch('http://localhost:3000/mistralAPI/https:%2F%2Fwww.eldiario.es%2Ftecnologia%2Fnvidia-pierde-400-000-millones-bolsa-irrupcion-inteligencia-artificial-china-no-chips_1_11997410.html').then
+            (response => response.json()).then(data => console.log(data));
+        }
+    </script>
+</body>
+</html>
