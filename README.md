@@ -30,6 +30,14 @@ You must obtain your credentials on your project control panel. Then go to proje
 
 Paste the content of that file inside serviceAccountKey
 
+By defauld, the app wuill run on  http://localhost:5173/ 
+To try the app you can use the following user:
+
+- miguelgg1412@outlook.es
+- 1234Mgg*
+
+And the server will run on http://localhost:3000
+
 ## Usage
 Inside /Dossier
 ```terminal
