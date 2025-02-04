@@ -12,7 +12,6 @@ function ResultadoAnalisis (props) {
 
   var temas = props.json.results[0].tags.choices[0].message.content
   var array = temas.split(",");
-  console.log((array))
   var resultados = props.json.results[0].categories
   return (
     <div className='mt-4'>

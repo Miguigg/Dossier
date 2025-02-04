@@ -41,14 +41,12 @@ function TestIntegridad () {
 
   const ejecutarTest = async e => {
     e.preventDefault()
-    setshowLoadingMistral(true)
     if (validarEnlaceNoticia(enlace)) {
+      setshowLoadingMistral(true)
       try {    
         onAuthStateChanged(auth, async (user) => {
           if (user) {
             const token = await getIdToken(user);
-            console.log(token)
-            
             fetch("http://localhost:3000/mistralAPI/", {
               method: 'POST', 
               headers: {
@@ -72,8 +70,7 @@ function TestIntegridad () {
             });
           }
         });
-      } catch (err) {
-        console.error(err)
+      } catch {
         setshowLoadingMistral(false)
         document.getElementById('errPeticionMistral').style.display = 'block'
       }

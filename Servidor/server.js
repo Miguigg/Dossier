@@ -37,10 +37,10 @@ async function validateTokeb (token) {
   const isValid = await admin
     .auth()
     .verifyIdToken(token)
-    .then(decodedToken => {
+    .then(() => {
       return true
     })
-    .catch(token => {
+    .catch(() => {
       return false
     })
 
@@ -76,7 +76,7 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
         })
         .then(async response => {
           response.results[0].url = req.body.url
-          await delay(2000)
+          await delay(1500)
           await client.chat
             .complete({
               model: 'mistral-large-latest',
@@ -91,7 +91,7 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
             })
             .then(async chatResponse => {
               response.results[0].tags = chatResponse
-              await delay(2000)
+              await delay(1500)
               await client.chat
                 .complete({
                   model: 'mistral-large-latest',
