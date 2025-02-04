@@ -8,7 +8,7 @@ Finally, it implements a couple of artificial intelligence models that will anal
 
 ## Installation
 
-Use the package manager [npm](https://pip.pypa.io/en/stable/) to install Dossier from its package json.
+Use the package manager [npm](https://www.npmjs.com/) to install Dossier from its package json.
 The app uses react, and the framework Vite, a fast frontend build tool
 You must run npm install on two places, the main project under the directory /Dossier and under the directory /Dossier/servidor 
 ```bash
@@ -20,7 +20,7 @@ So, you can see that the app includes two node projects. A web app to manage new
 
 Mistral is the truly free AI used on this project, To configure it you must
 
-1. Obtain your API key on their webpage https://docs.mistral.ai/
+1. Obtain your API key on their [webpage](https://docs.mistral.ai/)
 
 2. Paste it on the file "server.js" , replace YOUR_MISTRAl_KEY with your key
 
