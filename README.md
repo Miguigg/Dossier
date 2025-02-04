@@ -38,6 +38,10 @@ To try the app you can use the following user:
 
 And the server will run on http://localhost:3000
 
+#Extension
+
+For the extension you must create a file .env.development inside /Dossier/extension/dossier-extension. You must fill it with the data, following [this guide](https://www.plasmo.com/blog/posts/firebase-chrome-extension)
+
 ## Usage
 Inside /Dossier
 ```terminal
@@ -48,6 +52,8 @@ npm run dev
 npm run test
 
 ```
+
+
 Inside /Dossier/Servidor
 ```terminal
 node .\server.js
@@ -59,7 +65,13 @@ npm run test
 
 - miguelgg1412@outlook.es
 - 1234Mgg*
-  
+
+And, to build the extensión, for the first time, you must run 
+```terminal
+ pnpm run dev
+```
+inside  /Dossier/extension/dossier-extension. It will generate a folder with the name "build". Inside it you can find the extension to import to chromium based browser
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
