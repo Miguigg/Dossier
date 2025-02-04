@@ -38,7 +38,7 @@ To try the app you can use the following user:
 
 And the server will run on http://localhost:3000
 
-#Extension
+## Extension
 
 For the extension you must create a file .env.development inside /Dossier/extension/dossier-extension. You must fill it with the data, following [this guide](https://www.plasmo.com/blog/posts/firebase-chrome-extension)
 
