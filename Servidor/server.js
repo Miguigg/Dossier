@@ -8,7 +8,7 @@ import admin from 'firebase-admin'
 
 const app = express()
 
-const mistralKey = "YOUR_MISTRAl_KEY"
+const mistralKey = "Nvl5lYkexkTV9Xid23WKbOSY2Hb2LRj8"
 
 const client = new _Mistral({ apiKey: mistralKey })
 
@@ -76,7 +76,7 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
         })
         .then(async response => {
           response.results[0].url = req.body.url
-          await delay(1500)
+          await delay(2000)
           await client.chat
             .complete({
               model: 'mistral-large-latest',
@@ -91,7 +91,7 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
             })
             .then(async chatResponse => {
               response.results[0].tags = chatResponse
-              await delay(1500)
+              await delay(2000)
               await client.chat
                 .complete({
                   model: 'mistral-large-latest',
@@ -111,10 +111,12 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
             })
         })
     }else{
+      console.log("test")
       res.status(406).send('failed, content unreachable')
       res.send('failed')
     }
   } else {
+    console.log("test")
     res.status(403).send('Invalid toke, forbidden');
   }
 })

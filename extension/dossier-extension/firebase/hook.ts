@@ -4,7 +4,8 @@ import {
   onAuthStateChanged,
   setPersistence,
   signInWithCredential,
-  User
+  User,
+  signInWithEmailAndPassword 
 } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 import { useEffect, useMemo, useState } from "react"
@@ -26,18 +27,22 @@ export const useFirebase = () => {
     }
   }
 
-  const onLogin = () => {
+  interface OnLoginParams {
+    email: string;
+    pass: string;
+  }
+
+  const onLogin = ({ email, pass }: OnLoginParams): void => {
     setIsLoading(true)
-    chrome.identity.getAuthToken({ interactive: true }, async function (token) {
+    chrome.identity.getAuthToken({ interactive: true }, async function (token: string | undefined) {
       if (chrome.runtime.lastError || !token) {
-        console.error(chrome.runtime.lastError.message)
+        console.error(chrome.runtime.lastError?.message)
         setIsLoading(false)
         return
       }
       if (token) {
-        const credential = GoogleAuthProvider.credential(null, token)
         try {
-          await signInWithCredential(auth, credential)
+          await signInWithEmailAndPassword(auth, email, pass)
         } catch (e) {
           console.error("Could not log in. ", e)
         }
