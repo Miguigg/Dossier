@@ -4,12 +4,15 @@ import {
   User,
   signInWithEmailAndPassword,
   getIdToken,
+  setPersistence,
+  browserLocalPersistence,
   onAuthStateChanged
 } from 'firebase/auth'
 import { auth } from '~firebase'
 import loading from './assets/loading.gif'
 import x from './assets/x.png'
 import check from './assets/check.png'
+import './style.css'
 
 export default function IndexPopup () {
   const { isLoading, onLogout } = useFirebase()
@@ -83,6 +86,7 @@ export default function IndexPopup () {
       .then(userCredential => {
         const user = userCredential.user
         setUser(user)
+        setPersistence(auth, browserLocalPersistence)
       })
       .catch(error => {
         const errorCode = error.code
@@ -130,36 +134,38 @@ export default function IndexPopup () {
       }}
     >
       <h1>
-        Bienvenido a <a href=' http://localhost:5173/'>Dossier</a> Extension!
+        Bienvenido a <a href=' http://localhost:5173/'>Dossier</a>!
       </h1>
       {!user ? (
         <div>
           <form onSubmit={signIn}>
-            <label htmlFor='email' className='form-label mt-2 text-color'>
-              Tu email
-            </label>
-            <input
-              type='email'
-              className='form-control'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              id='email'
-              placeholder='Enter your email'
-            />
-            <div id='errEmail' style={{ display: 'none', color: 'red' }}>
-              <p>Error en el Correo</p>
-            </div>
-            <label htmlFor='password' className='form-label text-color'>
-              Contraseña
-            </label>
-            <input
-              type='password'
-              className='form-control'
-              value={passwd}
-              id='password'
-              onChange={e => setPasswd(e.target.value)}
-              placeholder='Enter your password'
-            />
+            <p>
+              <label htmlFor='email'>
+                Tu email
+              </label>
+              <input
+                type='email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                id='email'
+                placeholder='Enter your email'
+              />
+              <div id='errEmail' style={{ display: 'none', color: 'red' }}>
+                <p>Error en el Correo</p>
+              </div>
+            </p>
+            <p>
+              <label htmlFor='password' className='form-label text-color'>
+                Contraseña
+              </label>
+              <input
+                type='password'
+                value={passwd}
+                id='password'
+                onChange={e => setPasswd(e.target.value)}
+                placeholder='Enter your password'
+              />
+            </p>
             <div id='errCuenta' style={{ display: 'none', color: 'red' }}>
               <p>Error de sesion</p>
             </div>
@@ -188,9 +194,7 @@ export default function IndexPopup () {
           </form>
         </div>
       ) : (
-        <button onClick={() => onLogout()}>Log out</button>
-      )}
-      <div>
+        <div>
         {isLoading ? 'Loading...' : ''}
         {!!user ? (
           <div>
@@ -286,6 +290,7 @@ export default function IndexPopup () {
           ''
         )}
       </div>
+      )}
     </div>
   )
 }
