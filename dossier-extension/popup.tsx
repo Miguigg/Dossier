@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   User,
   signInWithEmailAndPassword,
@@ -25,6 +25,13 @@ export default function IndexPopup () {
   const handleShowMistral = () => {
     setshowResMistral(true)
   }
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setUser(user)
+      useMemo(() => (user), [user])
+    })
+  }, [])
 
   function validarEnlaceNoticia (enlace) {
     const reEnlace =
