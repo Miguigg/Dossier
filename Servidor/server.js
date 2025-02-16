@@ -3,7 +3,7 @@ import { extract } from '@extractus/article-extractor'
 import cors from 'cors'
 import { Mistral as _Mistral } from '@mistralai/mistralai'
 import bodyParser from 'body-parser'
-import serviceAccount from './serviceAccountKey.json' assert { type: 'json' }
+import serviceAccount from './serviceAccountKey.json' with  { type: 'json' }
 import admin from 'firebase-admin'
 
 const app = express()

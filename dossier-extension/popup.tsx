@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useFirebase } from '~firebase/hook'
 import {
   User,
   signInWithEmailAndPassword,
@@ -15,7 +14,6 @@ import check from './assets/check.png'
 import './style.css'
 
 export default function IndexPopup () {
-  const { isLoading, onLogout } = useFirebase()
   const [email, setEmail] = useState('')
   const [passwd, setPasswd] = useState('')
   const [user, setUser] = useState<User>(null)
@@ -195,7 +193,6 @@ export default function IndexPopup () {
         </div>
       ) : (
         <div>
-        {isLoading ? 'Loading...' : ''}
         {!!user ? (
           <div>
             <form onSubmit={ejecutarTest}>
@@ -258,7 +255,7 @@ export default function IndexPopup () {
                         ) {
                           return (
                             <tr key={index}>
-                              <td>{key}</td>
+                              <td>{key.replace("_", " ")}</td>
                               <td>
                                 {temas.results[0].categories[key] ? (
                                   <img

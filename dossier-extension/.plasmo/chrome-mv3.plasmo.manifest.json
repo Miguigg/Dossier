@@ -1,0 +1,38 @@
+{
+  "icons": {
+    "16": "./gen-assets/icon16.plasmo.png",
+    "32": "./gen-assets/icon32.plasmo.png",
+    "48": "./gen-assets/icon48.plasmo.png",
+    "64": "./gen-assets/icon64.plasmo.png",
+    "128": "./gen-assets/icon128.plasmo.png"
+  },
+  "manifest_version": 3,
+  "action": {
+    "default_icon": {
+      "16": "./gen-assets/icon16.plasmo.png",
+      "32": "./gen-assets/icon32.plasmo.png",
+      "48": "./gen-assets/icon48.plasmo.png",
+      "64": "./gen-assets/icon64.plasmo.png",
+      "128": "./gen-assets/icon128.plasmo.png"
+    },
+    "default_popup": "./popup.html"
+  },
+  "version": "0.0.1",
+  "author": "Plasmo Corp. <foss@plasmo.com>",
+  "name": "DEV | Dossier extension",
+  "description": "Showcasing how easy it is to have auth with Plasmo.",
+  "permissions": [
+    "identity"
+  ],
+  "key": "Nvl5lYkexkTV9Xid23WKbOSY2Hb2LRj8",
+  "host_permissions": [
+    "https://*/*"
+  ],
+  "oauth2": {
+    "client_id": "372146943992-tduhvhkf4d7r4vvu8jhtdf7m6ivdivot.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
+}
