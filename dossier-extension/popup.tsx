@@ -53,7 +53,7 @@ export default function IndexPopup () {
         onAuthStateChanged(auth, async user => {
           if (user) {
             const token = await getIdToken(user)
-            fetch('http://localhost:3000/mistralAPI/', {
+            fetch('http://localhost:3000/mistralAPI/extension', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ export default function IndexPopup () {
                 type='submit'
                 className='btn btn-primary w-100 mt-3 text-color'
               >
-                Login
+                Test
               </button>
               <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
                 <p>Error en el enlace</p>
@@ -234,12 +234,12 @@ export default function IndexPopup () {
               <div>
                 <ul className='list-group list-group-flush'>
                   <h1>Resumen</h1>
-                  <p>{temas.results[0].resumen.choices[0].message.content}</p>
+                  <p className='resumen'>{temas.results[0].resumen.choices[0].message.content}</p>
                   <h1>Temas del articulo</h1>
                   {temas.results[0].tags.choices[0].message.content
                     .split(',')
                     .map((item, index) => (
-                      <li key={index} className='list-group-item'>
+                      <li key={index} className='resumen'>
                         {item}
                       </li>
                     ))}
