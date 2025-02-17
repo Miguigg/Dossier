@@ -27,3 +27,4 @@ Secrets.txt
 Servidor/serviceAccountKey.json
 Servidor/serviceAccountKey.json
 /dossier-extension/.plasmo
+dossier-extension/.plasmo/cache/parcel/data.mdb
