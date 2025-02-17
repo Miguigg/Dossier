@@ -10,7 +10,7 @@ Finally, it implements a couple of artificial intelligence models that will anal
 
 Use the package manager [npm](https://www.npmjs.com/) to install Dossier from its package json.
 The app uses react, and the framework Vite, a fast frontend build tool
-You must run npm install on two places, the main project under the directory /Dossier and under the directory /Dossier/servidor 
+You must run npm install on thre places, the main project under the directory /Dossier , under the directory /Dossier/servidor and on /Dossier/dossier-extension
 ```bash
 npm run build
 ```
