@@ -121,6 +121,64 @@ app.post('/mistralAPI/', urlencodedParser, async function (req, res) {
   }
 })
 
+app.post('/mistralAPI/extension', urlencodedParser, async function (req, res) {
+  const isValid = await validateTokeb(req.body.token)
+
+  if (isValid) {
+    const data = await extractData(req.body.url)
+    if (data != 'failed') {
+      await client.classifiers
+        .moderate({
+          model: 'mistral-moderation-latest',
+          inputs: [data]
+        })
+        .then(async response => {
+          response.results[0].url = req.body.url
+          await delay(2000)
+          await client.chat
+            .complete({
+              model: 'mistral-large-latest',
+              messages: [
+                {
+                  role: 'user',
+                  content:
+                    'Dame una respuesta con solamente una lista de 5 palabras clave de este texto, sin más texto, separadas con comas' +
+                    data
+                }
+              ]
+            })
+            .then(async chatResponse => {
+              response.results[0].tags = chatResponse
+              await delay(2000)
+              await client.chat
+                .complete({
+                  model: 'mistral-large-latest',
+                  messages: [
+                    {
+                      role: 'user',
+                      content:
+                        'Haz un resumen de un párrafo de 1 línea del siguiente texto' +
+                        data
+                    }
+                  ]
+                })
+                .then(async chatResponse2 => {
+                  response.results[0].resumen = chatResponse2
+                  res.send(response)
+                })
+            })
+        })
+    }else{
+      console.log("test")
+      res.status(406).send('failed, content unreachable')
+      res.send('failed')
+    }
+  } else {
+    console.log("test")
+    res.status(403).send('Invalid toke, forbidden');
+  }
+})
+
 app.listen(port, () => {
   console.log(`Server is listening at http://localhost:${port}`)
 })
