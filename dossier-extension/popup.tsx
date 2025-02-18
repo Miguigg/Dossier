@@ -139,14 +139,14 @@ export default function IndexPopup () {
       }}
     >
       <h1>
-        Bienvenido a <a href=' http://localhost:5173/'>Dossier</a>!
+        {chrome.i18n.getMessage("popup")}
       </h1>
       {!user ? (
         <div>
           <form onSubmit={signIn}>
             <p>
               <label htmlFor='email'>
-                Tu email
+              {chrome.i18n.getMessage("email")}
               </label>
               <input
                 type='email'
@@ -156,12 +156,12 @@ export default function IndexPopup () {
                 placeholder='Enter your email'
               />
               <div id='errEmail' style={{ display: 'none', color: 'red' }}>
-                <p>Error en el Correo</p>
+                <p>{chrome.i18n.getMessage("invalidEmail")}</p>
               </div>
             </p>
             <p>
               <label htmlFor='password' className='form-label text-color'>
-                Contraseña
+              {chrome.i18n.getMessage("contrasenha")}
               </label>
               <input
                 type='password'
@@ -171,23 +171,20 @@ export default function IndexPopup () {
                 placeholder='Enter your password'
               />
             </p>
-            <div id='errCuenta' style={{ display: 'none', color: 'red' }}>
-              <p>Error de sesion</p>
-            </div>
             <div id='errSesion' style={{ display: 'none', color: 'red' }}>
-              <p>Error de sesion</p>
+              <p>{chrome.i18n.getMessage("errSesion")}</p>
             </div>
             <div id='errInterno' style={{ display: 'none', color: 'red' }}>
-              <p>Error interno</p>
+              <p>{chrome.i18n.getMessage("errInterno")}</p>
             </div>
             <div
               id='errUsuarioServidor'
               style={{ display: 'none', color: 'red' }}
             >
-              <p>Usuario desconocido</p>
+              <p>{chrome.i18n.getMessage("errUsuarioServidor")}</p>
             </div>
             <div id='errPeticiones' style={{ display: 'none', color: 'red' }}>
-              <p>Demasiados intentos</p>
+              <p>{chrome.i18n.getMessage("errPeticiones")}</p>
             </div>
             <br />
             <button
@@ -203,7 +200,7 @@ export default function IndexPopup () {
         {!!user ? (
           <div>
             <form onSubmit={ejecutarTest}>
-              <label className='form-label mt-2 text-color'>Enlace</label>
+              <label className='form-label mt-2 text-color'>{chrome.i18n.getMessage("enlace")}</label>
               <input
                 className='form-control'
                 onChange={e => setEnlace(e.target.value)}
@@ -217,13 +214,13 @@ export default function IndexPopup () {
                 Test
               </button>
               <div id='errEnlace' style={{ display: 'none', color: 'red' }}>
-                <p>Error en el enlace</p>
+                <p>{chrome.i18n.getMessage("errEnlace")}</p>
               </div>
               <div
                 id='errPeticionMistral'
                 style={{ display: 'none', color: 'red' }}
               >
-                Error al conectar con el servidor
+                {chrome.i18n.getMessage("errPeticionMistral")}
               </div>
             </form>
             {showLoadingMistral && (
@@ -233,9 +230,9 @@ export default function IndexPopup () {
             {showResMistral && (
               <div>
                 <ul className='list-group list-group-flush'>
-                  <h1>Resumen</h1>
+                  <h1>{chrome.i18n.getMessage("Resumen")}</h1>
                   <p className='resumen'>{temas.results[0].resumen.choices[0].message.content}</p>
-                  <h1>Temas del articulo</h1>
+                  <h1>{chrome.i18n.getMessage("Temas")}</h1>
                   {temas.results[0].tags.choices[0].message.content
                     .split(',')
                     .map((item, index) => (
@@ -247,8 +244,8 @@ export default function IndexPopup () {
                 <table>
                   <thead>
                     <tr>
-                      <th>Presencia</th>
-                      <th>Conclusión</th>
+                      <th>{chrome.i18n.getMessage("Presencia")}</th>
+                      <th>{chrome.i18n.getMessage("Conclusion")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -262,18 +259,18 @@ export default function IndexPopup () {
                         ) {
                           return (
                             <tr key={index}>
-                              <td>{key.replace("_", " ")}</td>
+                              <td>{chrome.i18n.getMessage(key)}</td>
                               <td>
                                 {temas.results[0].categories[key] ? (
                                   <img
-                                    src={x}
+                                    src={check}
                                     width={50}
                                     height={50}
                                     alt='logo'
                                   />
                                 ) : (
                                   <img
-                                    src={check}
+                                    src={x}
                                     width={50}
                                     height={50}
                                     alt='logo'

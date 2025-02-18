@@ -8,7 +8,7 @@ import admin from 'firebase-admin'
 
 const app = express()
 
-const mistralKey = "Nvl5lYkexkTV9Xid23WKbOSY2Hb2LRj8"
+const mistralKey = "YOUR_MISTRAl_KEY"
 
 const client = new _Mistral({ apiKey: mistralKey })
 

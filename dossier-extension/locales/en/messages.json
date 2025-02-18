@@ -1,0 +1,90 @@
+{
+    "dossier_extension": {
+      "message": "dossier-extension",
+      "description": "dossier-extension"
+    },
+    "extensionDescription": {
+      "message": "Dossier extension",
+      "description": "Dossier extension"
+    },
+    "popup": {
+      "message": "Welcome to Dossier",
+      "description": "Popup message."
+    },
+    "email": {
+        "message": "Your email",
+        "description": "Popup message."
+    },
+    "invalidEmail": {
+        "message": "Invalid email",
+        "description":"Invalid email"
+    },
+    "contrasenha": {
+        "message": "Password",
+        "description":"Password"
+    },
+    "errSesion": {
+        "message": "Session error",
+        "description": "Session error"
+    },
+    "errInterno": {
+        "message": "Internal error",
+        "description": "Internal error"
+    },
+    "errUsuarioServidor": {
+        "message": "Unknown user",
+        "description": "Unknown user"
+    },
+    "errPeticiones": {
+        "message": "Too much trafic",
+        "description":"Too much trafic"
+    },
+    "enlace": {
+        "message": "Link",
+        "description": "Link"
+    },
+    "errEnlace": {
+        "message": "Invalid link",
+        "description": "Invalid link"
+    },
+    "errPeticionMistral": {
+        "message": "Could not connect to server",
+        "description": "Could not connect to server"
+    },
+    "Resumen": {
+        "message":"Summary",
+        "description":"Summary"
+    },
+    "Temas": {
+        "message":"Themes",
+        "description":"Themes"
+    },
+    "sexual": {
+        "message": "Sexual content",
+        "description": "Sexual content"
+    },
+    "hate_and_discrimination":{
+        "message": "Hate and discrimination",
+        "description": "Hate and discrimination"
+    },
+    "violence_and_threats":{
+        "message": "Violence and threats",
+        "description": "Violence and threats"
+    },
+    "dangerous_and_criminal_content":{
+        "message": "Dangerous and criminal content",
+        "description": "Dangerous and criminal content"  
+    },
+    "selfharm":{
+        "message": "Selfharm",
+        "description": "Selfharm" 
+    },
+    "Presencia":{
+        "message":"Is Present",
+        "description":"Is Present"
+    },
+    "Conclusion":{
+        "message":"Conclusion",
+        "description":"Conclusion"
+    }
+  }
