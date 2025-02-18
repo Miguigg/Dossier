@@ -12,7 +12,7 @@ Use the package manager [npm](https://www.npmjs.com/) to install Dossier from it
 The app uses react, and the framework Vite, a fast frontend build tool
 You must run npm install on thre places, the main project under the directory /Dossier , under the directory /Dossier/servidor and on /Dossier/dossier-extension
 ```bash
-npm run build
+npm install
 ```
 So, you can see that the app includes two node projects. A web app to manage news a see the results of the tests and a server to connect the app to the ai api and to scrap the articles 
 
@@ -29,6 +29,8 @@ Mistral is the truly free AI used on this project, To configure it you must
 You must obtain your credentials on your project control panel. Then go to project settings/Service Accounts and generate API key.
 
 Paste the content of that file inside serviceAccountKey
+
+Plus, you need and OAuth Client id, follow [this](https://www.plasmo.com/blog/posts/firebase-chrome-extension) tutorial to obtain one
 
 By defauld, the app wuill run on  http://localhost:5173/ 
 To try the app you can use the following user:
