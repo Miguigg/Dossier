@@ -85,6 +85,12 @@ export default function IndexPopup () {
     }
   }
 
+  const onLogout = async () => {
+    if (user) {
+      await auth.signOut()
+    }
+  }
+
   const signIn = e => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, passwd)
@@ -286,6 +292,7 @@ export default function IndexPopup () {
                 </table>
               </div>
             )}
+            <button onClick={() => onLogout()}>Log out</button>
           </div>
         ) : (
           ''
