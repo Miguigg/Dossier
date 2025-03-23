@@ -33,10 +33,7 @@ Paste the content of that file inside serviceAccountKey
 Plus, you need and OAuth Client id, follow [this](https://www.plasmo.com/blog/posts/firebase-chrome-extension) tutorial to obtain one
 
 By defauld, the app wuill run on  http://localhost:5173/ 
-To try the app you can use the following user:
-
-- miguelgg1412@outlook.es
-- 1234Mgg*
+To try the app you can create and register a new user from the register page
 
 And the server will run on http://localhost:3000
 
