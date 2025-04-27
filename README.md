@@ -32,7 +32,7 @@ Mistral is the truly free AI used on this project, To configure it you must
 
 You must obtain your credentials on your project control panel. Then go to project settings/Service Accounts and generate API key.
 
-Paste the content of that file inside serviceAccountKey
+Paste the content of that file inside serviceAccountKey. If its not on the server folder, create a json with that name
 
 Plus, you need and OAuth Client id, follow [this](https://www.plasmo.com/blog/posts/firebase-chrome-extension) tutorial to obtain one
 
