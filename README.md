@@ -66,8 +66,6 @@ node .\server.js
 npm run test
 ```
 
-- miguelgg1412@outlook.es
-- 1234Mgg*
 
 And, to build the extensión, for the first time, you must run 
 ```terminal
