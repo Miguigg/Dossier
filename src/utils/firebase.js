@@ -5,20 +5,20 @@ import encrypt from "./validadores/encrypt";
 import { initializeApp } from "firebase/app";
 import { collection  } from 'firebase/firestore'
 
-
+//Ask the developper
 const firebaseConfig = {
 
-  apiKey: "AIzaSyA0cs-pFgNfuZ3WBB1-y-JWgIFO7HtabNk",
+  apiKey: "FIREBASE DATA",
 
-  authDomain: "dossier-f6634.firebaseapp.com",
+  authDomain: "FIREBASE DATA",
 
-  projectId: "dossier-f6634",
+  projectId: "FIREBASE DATA",
 
-  storageBucket: "dossier-f6634.appspot.com",
+  storageBucket: "FIREBASE DATA",
 
-  messagingSenderId: "372146943992",
+  messagingSenderId: "FIREBASE DATA",
 
-  appId: "1:372146943992:web:4a95bf8bcb7087fdce880d"
+  appId: "FIREBASE DATA"
 
 };
 
