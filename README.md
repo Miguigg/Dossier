@@ -16,6 +16,10 @@ npm install
 ```
 So, you can see that the app includes two node projects. A web app to manage news a see the results of the tests and a server to connect the app to the ai api and to scrap the articles 
 
+## Configure Firebase on the main App
+
+To do this, you must go to Dossier/src/utils/firebase.js and paste the configuration of the Firebase control panel on the firebaseConfig object
+
 ## Configure Mistral
 
 Mistral is the truly free AI used on this project, To configure it you must
